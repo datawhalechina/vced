@@ -9,4 +9,5 @@ You can configure the behavior, look, and feel of the theme in many ways.
 jina
 clip/index
 VideoLoader/index
+SimpleIndexer/index
 ```
