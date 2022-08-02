@@ -1,7 +1,7 @@
 # SimpleIndexer
 
 ## 逻辑结构图
-![](https://i.imgur.com/lclf8L1.png)
+![process](./img/process.png)
 
 
 ## 基础实现
