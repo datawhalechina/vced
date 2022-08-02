@@ -1,14 +1,16 @@
 # SimpleIndexer
 
 ## 逻辑结构图
+
 ![process](./img/process.png)
 
-
 ## 基础实现
+
 注：**Python教程按照代码顺序撰写，但是由于存在较为复杂的互相调用，建议结合逻辑结构图理解**。
 
 ### YAML配置
-```YAML=
+
+```YAML
 jtype: SimpleIndexer
 with:
   match_args: 
@@ -19,9 +21,11 @@ metas:
     - executor.py
   workspace: workspace/
 ```
+
 `limit`即片段获取章节中的`maxCount`。
 
 ### 导入第三方库
+
 ```python
 import inspect
 import os
@@ -34,18 +38,23 @@ from torch import Tensor
 import torch
 import time
 ```
+
 inspect库用于获取对象信息，帮助校验类的内容。
 
 ### 类初始化
+
 基本概念理解：
+
 + Executor是Jina处理Document的载体
 + Flow是Jina使得Executor提效和缩放（可以使用于大规模数据）的工具
 
 引入Executor的好处：
+
 + 使不同基于DocumentArray的函数都可以遵从同一个配置状态（**与OOP的思想相同**）
 + 让函数可以跟Flow适配
 + Flow中的Executor可以同时对多个DocumentArrays进行处理，并且能够快捷部署上云
 + 可以被容器化，并通过`jina hub push/pull`的方式实现共享
+
 ```python
 class SimpleIndexer(Executor):
 
@@ -66,6 +75,7 @@ class SimpleIndexer(Executor):
 ```
 
 参数解释：
+
 + `pretrained_model_name_or_path`：预训练的模型使用Vision Transformer-Base/32, input batch size为32*32，不同architecture参见下图
 ![architecture](https://miro.medium.com/max/1058/1*mpOMDF0UOsSftEf9kLa2NQ.png)
 + `match_args`：DocumentArray匹配函数的参数
@@ -73,6 +83,7 @@ class SimpleIndexer(Executor):
 + `traversal_right`：索引对应DocumentArray默认的遍历路径
 + `traversal_left`：搜索对应DocumentArray默认的遍历路径
 + `device`：预处理设备
+
 ```python
         self._match_args = match_args or {}
         self._index = DocumentArray(
@@ -99,13 +110,16 @@ class SimpleIndexer(Executor):
     def table_name(self) -> str:
         return self._index._table_name
 ```
+
 + `storage`：存储数据库格式
 + `connection`：database对应路径
 
 ### 创建索引
+
 @requests方法：
 + 被装饰的方法在提供服务时被映射到网络端点上，与特殊网络请求相结合，并且需要对网络搜索做出响应
 + 可选的参数`on=`类似nodejs中的路由概念，将Executor中被装饰的方法与指定路径相绑定
+
 ```python
     @requests(on='/index')
     def index(
@@ -121,9 +135,11 @@ class SimpleIndexer(Executor):
         print(t1)
         print(t2)
 ```
+
 `docs`统一以DocumentArray的类型存储，并添加到索引之中。
 
 ### 神经搜索
+
 ```python
     @requests(on='/search')
     def search(
@@ -148,7 +164,9 @@ class SimpleIndexer(Executor):
         texts: DocumentArray = docs[traversal_left]
         stored_docs: DocumentArray = self._index[traversal_right]
 ```
+
 对参数进行初始化，texts和stored_docs即为demo中输入的文字和被抽帧视频对应的图片。
+
 ```python
         doc_ids = parameters.get("doc_ids")
         t1 = time.time()
@@ -169,6 +187,7 @@ class SimpleIndexer(Executor):
 ```
 
 对文本和图像分别进行embedding操作。
+
 ```python
                     for i, image_features in enumerate(tensor_images_features):
                         tensor = image_features
@@ -191,7 +210,8 @@ class SimpleIndexer(Executor):
 ```
 
 通过`self.score`计算文本和图片的匹配度，同时创建对应索引。
-```python       
+
+```python
                 _list = self.getMultiRange(result,0.1 if parameters.get("thod") is None else parameters.get('thod') )
                 t3 = time.time()
                 print('range cost:', t3 - t2)
@@ -203,6 +223,7 @@ class SimpleIndexer(Executor):
 ```
 
 从`getMultiRange`中获取相似度阈值`thod`的取值。
+
 ```python
                 docArr = DocumentArray.empty(len(index_list))
                 for i, doc in enumerate(docArr):
@@ -219,6 +240,7 @@ class SimpleIndexer(Executor):
 对每段文本分别进行匹配，得出对应关系最优的图像。
 
 ### 多个片段获取
+
 ```python
     def getMultiRange(self, result: list, thod = 0.1, maxCount: int = 10):
         ignore_range = {}
@@ -241,9 +263,11 @@ class SimpleIndexer(Executor):
         # print(ignore_range)
         return index_list
 ```
+
 此处返回`maxCount`即10个视频片段，因需要避免镜头重复出现，所以设置`ignore_range`，否则片段基本一致，只是前后错开几帧。
 
 ### 最大查找
+
 ```python
     def getNextMaxItem(self, result: list, ignore_range: dict[list]):
         maxItem = None
@@ -256,9 +280,11 @@ class SimpleIndexer(Executor):
                 maxItem = item
         return maxItem
 ```
+
 顺序遍历，有更大的就替换。
 
 ### 单一范围框定
+
 ```python
     def getRange(self, maxItem, result: list, thod = 0.1, ignore_range: list[int] = None):
         maxImageScore = maxItem["score"]
@@ -272,6 +298,7 @@ class SimpleIndexer(Executor):
 ```
 
 简单初始化与`filter`过滤条件设定.
+
 ```python
         for i in range(maxIndex):
             prev_index = maxIndex - 1 - i
@@ -292,14 +319,17 @@ class SimpleIndexer(Executor):
 ```
 
 从最相似的一帧图片分别向左右两侧延伸开去，这里的`thod`可以近似理解成**导数**，如相邻的两帧变化过大则不被纳入这一视频片段，调整变量可以使标准变严格或者宽松。
+
 ```python
         if (rightIndex - leftIndex) > 60:
             return self.getRange(maxItem, result, thod/2, ignore_range)
         return leftIndex, max(rightIndex, leftIndex + 10), d_result[maxIndex]
 ```
+
 视频过长时将`thod`折半，相当于把纳入标准抬高，保证新的视频不长于上一片段，达到压缩的目的，同时通过`max(rightIndex, leftIndex + 10)`限制视频不超过10s。
 
 ### 匹配计算
+
 ```python
     def score(self, image_features, text_features):
 
@@ -313,9 +343,11 @@ class SimpleIndexer(Executor):
 
         return probs
 ```
+
 对特征进行标准化，按照余弦相似度计算，最终通过softmax模型得出probability。
 
 ### 静态方法
+
 ```python
     @staticmethod
     def _filter_match_params(docs, match_args):
@@ -327,6 +359,7 @@ class SimpleIndexer(Executor):
 ```
 
 字典key-value形式实现条件过滤。
+
 ```python
     @requests(on='/delete')
     def delete(self, parameters: Dict, **kwargs):
@@ -335,6 +368,7 @@ class SimpleIndexer(Executor):
             return
         del self._index[deleted_ids]
 ```
+
 基本的删除操作。
 
 ```python
@@ -348,6 +382,7 @@ class SimpleIndexer(Executor):
                     f'cannot update doc {doc.id} as it does not exist in storage'
                 )
 ```
+
 更新操作。
 
 ```python
@@ -357,6 +392,7 @@ class SimpleIndexer(Executor):
         for doc in docs:
             doc.embedding = self._index[doc.id].embedding
 ```
+
 通过id获取embedding。
 
 ```python
@@ -364,17 +400,20 @@ class SimpleIndexer(Executor):
     def clear(self, **kwargs):
         self._index.clear()
 ```
+
 清空数据库操作。
 
-
 ## 进阶延展
+
 ### GPU引入及与CPU协同
+
 在进行Embedding的时候，通过`.embed(..., device='cuda')`来引入GPU（限制`if torch.cuda.is_available()`），同时如果DocumentArrary过大，可以使用`.embed(..., batch_size=128)`调整batch_size。
 
 在深度学习应用场景下，经常会导入大量数据，这时需要在CPU上进行预处理，并通过GPU做训练。这时可以使用DocArray提供的`dataloader()`，通过分batch的方式并行化完成。
 ![Load, map, batch in one-shot](https://docarray.jina.ai/_images/dataloader.svg)
 
 不妨看看官网给出的示例。假如现有一个.proto文件，压缩格式为tar.gz，我们可以通过如下的方式导入数据。(`num_worker`指线程数)
+
 ```python
 import time
 
@@ -397,7 +436,9 @@ for da in DocumentArray.dataloader(
 ):
     gpu_job(da)
 ```
+
 这样就可以在保证流程的情况下，避免几类问题：
+
 + 数据量太大，内存溢出
 + CPU只有单核运行
 + CPU预处理较慢，导致GPU无法充分利用
@@ -405,11 +446,13 @@ for da in DocumentArray.dataloader(
 须知流水线是遵从**木桶原理**的，因而需要保证有限的资源被合理地充分调度，并利用起来。
 
 ### 向量搜索
+
 源代码中选择了SQLite作为后端，在处理较大体量的数据时，读取、更新、删除、条件检索Document时均有良好的表现。（参见[One Million Scale Benchmark](https://docarray.jina.ai/advanced/document-store/benchmark/?highlight=qdrant)）然而SQLite在向量搜索应用中并不理想，虽然表中的$Recall@10$达到了1.00，但是其底层逻辑是穷尽式，而非检索**nearest neighbour**，因而效率非常低。
 
 Elastic Search在Recall这一任务中性能最优，同时作为分布式搜索和分析引擎，较为常见。因而笔者将结合Jina生态粗略讲述Elastic Search使用方法，详细内容参见ES-Jina文件夹。
 
 YAML配置如下：
+
 ```YAML
 version: "3.7"
 services:
@@ -429,13 +472,15 @@ networks:
 ```
 
 ### Jina Hub的使用
-> Do not reinvent the wheel. 不要重复造轮子。
 
+> Do not reinvent the wheel. 不要重复造轮子。
 在Jina Hub中存在SimpleIndexer的[原型](https://hub.jina.ai/executor/zb38xlt4)，[源码](https://github.com/jina-ai/executor-simpleindexer/blob/main/executor.py)也同样可获取，其中实现了除了搜索之外的绝大多数功能，可以直接进行调用。
 
 这里简单给出两种通过docker调用的方式，只需要几行代码就可以实现（需要安装[Kubernetes](https://kubernetes.io/)）：
+
 1. Docarray Entrypoint
-```python=
+
+```python
 from docarray import Document, DocumentArray
 
 da = DocumentArray([Document(text='hello')])
@@ -447,7 +492,8 @@ print(r.to_json())
 通过`python SimpleIndexer-docarray-docker.py`指令启动服务。
 
 2. Jina Entrypoint
-```python=
+
+```python
 from jina import Flow
 from docarray import Document, DocumentArray
 
@@ -459,6 +505,8 @@ print(r.to_json())
 ```
 
 通过`python SimpleIndexer-jina-docker.py`指令启动服务。
+
 ## 参考资料
+
 [Document](https://docarray.jina.ai/fundamentals/document/)
 [DocumentArray](https://docarray.jina.ai/fundamentals/documentarray/)
