@@ -1,0 +1,33 @@
+jtype: Flow
+with:
+  port: ${{ CONTEXT.PORT_EXPOSE }}
+  monitoring: true
+executors:
+  - name: cliptextencoder
+    needs: gateway
+    uses: ${{ CONTEXT.CLIP_TEXT_ENCODER }}
+    uses_with:
+      docs_dir: ${{ CONTEXT.CLIP_TEXT_ENCODER_DIR}}
+    uses_metas:
+      workspace: ${{ CONTEXT.FLow_WORKSPACE }}
+  - name: clippictureencoder
+    needs: gateway
+    uses: ${{ CONTEXT.CLIP_PICTURE_ENCODER }}
+    uses_with:
+      docs_dir: ${{ CONTEXT.CLIP_PICTURE_ENCODER_DIR}}
+    uses_metas:
+      workspace: ${{ CONTEXT.FLow_WORKSPACE }}
+  - name: executor_01
+    needs: [cliptextencoder,clippictureencoder]
+    uses: ${{ CONTEXT.ENCODER_01 }}
+    uses_with:
+      docs_dir: ${{ CONTEXT.ENCODER_01_DIR}}
+    uses_metas:
+      workspace: ${{ CONTEXT.FLow_WORKSPACE }}
+  - name: executor_02
+    needs: executor_01
+    uses: ${{ CONTEXT.ENCODER_02 }}
+    uses_with:
+      docs_dir: ${{ CONTEXT.ENCODER_01_DIR}}
+    uses_metas:
+      workspace: ${{ CONTEXT.FLow_WORKSPACE }}
