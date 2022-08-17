@@ -1,0 +1,12 @@
+version: "3"
+
+services:
+  jina-service:
+    build:
+      context: crawl_list
+      dockerfile: Dockerfile
+
+  web:
+    build:
+      context: crawl_tags
+      dockerfile: Dockerfile
