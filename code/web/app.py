@@ -7,6 +7,11 @@ import uuid
 
 # path of video
 VIDEO_PATH = f"{os.getcwd()}/data"
+if not os.path.exists(VIDEO_PATH):
+    os.mkdir(VIDEO_PATH)
+if not os.path.exists(VIDEO_PATH + "/videos/"):
+    os.mkdir(VIDEO_PATH + "/videos")
+
 port = 45679
 c = Client(host=f"grpc://localhost:{port}")
 
