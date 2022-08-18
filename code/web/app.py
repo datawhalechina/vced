@@ -5,6 +5,8 @@ import os
 import time
 import uuid
 
+# path of video
+VIDEO_PATH = f"{os.getcwd()}/data"
 port = 45679
 c = Client(host=f"grpc://localhost:{port}")
 
@@ -14,10 +16,18 @@ st.title('Welcome to VCED!')
 
 # upload
 uploaded_file = st.file_uploader("Choose a video")
+video_name = None  # name of the video
 if uploaded_file is not None:
     # preview, delete and download the video
     video_bytes = uploaded_file.read()
     st.video(video_bytes)
+
+    # save file to disk for later process
+    video_name = uploaded_file.name
+    with open(f"{VIDEO_PATH}/{video_name}", mode='wb') as f:
+        f.write(video_bytes)  # save video to disk
+
+video_file_path = f"{VIDEO_PATH}/{video_name}"
 uid = uuid.uuid1()
 
 # description
@@ -39,7 +49,6 @@ def cutVideo(start_t: str, length: int, input: str, output: str):
     os.system(f'ffmpeg -ss {start_t} -i {input} -t {length} -c:v copy -c:a copy -y {output}')
 
 def search_clip(uid, uri, text_prompt, topn_value):
-    uri = "/Users/super/Downloads/videoplayback.mp4"
     video = DocumentArray([Document(uri=uri, id=str(uid) + uploaded_file.name)])
     t1 = time.time()
     c.post('/index', inputs=video)
@@ -61,7 +70,7 @@ if search_button:
             if topn_value == None or topn_value == "":
                 topn_value = 1
             with st.spinner("Processing..."):
-                result = search_clip(uid, "", text_prompt, topn_value)
+                result = search_clip(uid, video_file_path, text_prompt, topn_value)
                 result = json.loads(result)
                 for i in range(len(result)):
                     matchLen = len(result[i]['matches'])
@@ -72,10 +81,8 @@ if search_button:
                         print(left)
                         print(right)
                         start_t = getTime(left)
-                        end_t = getTime(right)
-                        uri = "/Users/super/Downloads/videoplayback.mp4"
-                        output = "/Users/super/Downloads/videos/clip" + str(j) +".mp4"
-                        cutVideo(start_t,right-left, uri, output)
+                        output = VIDEO_PATH + "/videos/clip" + str(j) +".mp4"
+                        cutVideo(start_t,right-left, video_file_path, output)
                         st.video(output)
                 st.success("Done!")
     else:
