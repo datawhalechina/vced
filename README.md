@@ -24,7 +24,7 @@ VCED 可以通过你的文字描述来自动识别视频中相符合的片段进
 
 ----------------------------------------
 
-[QuickStart](https://github.com/datawhalechina/vced#installation) - [文档](https://github.com/datawhalechina/vced) - [Roadmap](https://github.com/datawhalechina/vced) - [反馈](https://github.com/datawhalechina/vced) - [参与贡献](https://github.com/datawhalechina/vced) - [关注我们](https://github.com/datawhalechina/vced) - [License](https://github.com/datawhalechina/vced)
+[QuickStart](https://github.com/datawhalechina/vced#quickstart) - [文档](https://github.com/datawhalechina/vced#%E6%96%87%E6%A1%A3) - [Roadmap](https://github.com/datawhalechina/vced#roadmap) - [反馈](https://github.com/datawhalechina/vced#%E5%8F%8D%E9%A6%88) - [参与贡献](https://github.com/datawhalechina/vced#%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE) - [关注我们](https://github.com/datawhalechina/vced#%E5%85%B3%E6%B3%A8%E6%88%91%E4%BB%AC) - [License](https://github.com/datawhalechina/vced#license)
 
 ----------------------------
 
@@ -32,7 +32,7 @@ VCED 可以通过你的文字描述来自动识别视频中相符合的片段进
    VCED demo
    <br/>
    <br/>
-  <img width="600" src="https://tva1.sinaimg.cn/large/e6c9d24ely1h5awuwxkzqg20hs0b4npm.gif" alt="MindsDB">	
+  <img width="600" src="./pics/demo.gif" alt="VCED">	
 
 </h2>
 
@@ -118,9 +118,9 @@ TBD
 | [十一](https://github.com/sshimii) | Jina 教程内容贡献者 |  |
 | [席颖](https://github.com/xiying-boy) | Jina 教程内容贡献者 |  |
 | [范致远](https://github.com/Elvisambition) | 跨模态模型教程内容贡献者 |  |
-| [崔腾松](https://github.com/2951121599) | 项目后端教程内容贡献者 |  |
+| [崔腾松](https://github.com/2951121599) | 项目后端教程内容贡献者 | [CSDN](https://blog.csdn.net/liluo_2951121599) |
 | [韩颐堃](https://github.com/YikunHan42) |项目后端教程内容贡献者 |  |
-| [吴祥](https://github.com/zadarmo) | 项目前端教程内容贡献者 |  |
+| [吴祥](https://github.com/zadarmo) | 项目前端教程内容贡献者 | [CSDN](https://blog.csdn.net/destiny_balabala) |
 | [边圣陶](https://github.com/Richard-Bian) | Docker 部署教程内容贡献者 |  |
 
 <a href="https://github.com/datawhalechina/vced/graphs/contributors">
@@ -128,6 +128,16 @@ TBD
 </a>
 
 Made with [contrib.rocks](https://contrib.rocks).
+
+### 特别感谢
+
+特别感谢以下项目与作者，其中 B 站 UP 主[人工智能小黄鸭](https://space.bilibili.com/15516023)给本项目提供了灵感，而且本项目的基础代码来自于 [ArthurKing01](https://github.com/ArthurKing01)。
+- [ArthurKing01/jina-clip](https://github.com/ArthurKing01/jina-clip)
+- [输入关键词就能自动剪视频？我写了一个AI视频搜剪神器？](https://www.bilibili.com/video/BV1n3411u7tJ?vd_source=d3a0e6f272cb4afd9c79cf807eefb3a4)
+- [Jina AI](https://jina.ai/)
+- [Streamlit](https://streamlit.io/)
+
+再次感谢以上项目与作者，同时感谢 Jina AI 对本项目的支持，Jina AI 是一家专注于神经搜索的公司。
 
 ## 关注我们
 <div align=center>
@@ -137,4 +147,4 @@ Made with [contrib.rocks](https://contrib.rocks).
 
 ## License
 
-VCED is licensed under [GNU General Public License v3.0](https://github.com/datawhalechina/vced/blob/master/LICENSE)
+VCED is licensed under [GNU General Public License v3.0](https://github.com/datawhalechina/vced/blob/21f5f745665abcebbe1556238af8070d6e4f5c2e/LICENSE)
