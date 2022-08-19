@@ -1,11 +1,11 @@
-# clip-as-service
-&ensp;&ensp;clip-as-service是jina-ai推出的多模态编码服务（支持多国语言文本的编码和图像的编码），可以以微服务的形式轻松嵌入到神经网络相关项目的代码框架中。  
-&ensp;&ensp;clip-as-service的神经网络框架使用了TensorRT,ONNX和PyTorch，在保证
-易用性的同时，提供了较快的运行速度。同时，该服务还可在本地端运行时，自适应的调整多个模型。  
-&ensp;&ensp;在接口方面，clip-as-service可以在gRPC,HTTP,WebSocket等多个协议之间轻松切换，提供了较为灵活的调用方式。
+# CLIP-as-service
+&ensp;&ensp;CLIP-as-service是jina-ai推出的多模态编码服务（支持多国语言文本的编码和图像的编码），可以以微服务的形式轻松嵌入到神经网络相关项目的代码框架中。 
+&ensp;&ensp;CLIP-as-service的神经网络框架使用了TensorRT,ONNX和PyTorch，在保证易用性的同时，提供了较快的运行速度。同时，该服务还可在本地端运行时，自适应的调整多个模型。 
+在接口方面，CLIP-as-service可以在gRPC,HTTP,WebSocket等多个协议之间轻松切换，提供了较为灵活的调用方式。
+
 ### 安装方式
 
-&ensp;&ensp;clip-as-service由服务端(clip-service)和用户端(clip-client)组成，两种组件均可通过pip的方式安装。
+&ensp;&ensp;CLIP-as-service由服务端(clip-service)和用户端(clip-client)组成，两种组件均可通过pip的方式安装。
 ```
 pip install clip-client
 ```
@@ -44,7 +44,7 @@ print(r)
 
 ```
 
-如果用户想在本地端启动clip-as-service服务，则可以使用以下方式：  
+如果用户想在本地端启动CLIP-as-service服务，则可以使用以下方式：  
 pytorch框架:
 ```
 python -m clip_server
@@ -65,7 +65,7 @@ from clip_client import Client
 
 c = Client('grpc://0.0.0.0:51000')
 c.profile()
-```  
+```
 之后，用户便可以调用自己需要的API来对数据进行处理。
-  
-clip-as-service
+
+CLIP-as-service
