@@ -24,7 +24,7 @@ VCED 可以通过你的文字描述来自动识别视频中相符合的片段进
 
 ----------------------------------------
 
-[QuickStart](https://github.com/datawhalechina/vced#quickstart) - [文档](https://github.com/datawhalechina/vced#%E6%96%87%E6%A1%A3) - [Roadmap](https://github.com/datawhalechina/vced#roadmap) - [反馈](https://github.com/datawhalechina/vced#%E5%8F%8D%E9%A6%88) - [参与贡献](https://github.com/datawhalechina/vced#%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE) - [关注我们](https://github.com/datawhalechina/vced#%E5%85%B3%E6%B3%A8%E6%88%91%E4%BB%AC) - [License](https://github.com/datawhalechina/vced#license)
+[QuickStart](https://github.com/datawhalechina/vced#quickstart) - [项目结构](https://github.com/datawhalechina/vced#%E6%96%87%E6%A1%A3) - [文档](https://github.com/datawhalechina/vced#%E6%96%87%E6%A1%A3) - [Roadmap](https://github.com/datawhalechina/vced#roadmap) - [反馈](https://github.com/datawhalechina/vced#%E5%8F%8D%E9%A6%88) - [参与贡献](https://github.com/datawhalechina/vced#%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE) - [关注我们](https://github.com/datawhalechina/vced#%E5%85%B3%E6%B3%A8%E6%88%91%E4%BB%AC) - [License](https://github.com/datawhalechina/vced#license)
 
 ----------------------------
 
@@ -81,6 +81,28 @@ streamlit run app.py
 ```
 
 Streamlit默认启动的端口为5051，也可以通过 `localhost:5051` 进行访问
+
+## 项目结构
+
+```
+    ├── code/service
+        ├── customClipImage (通过 CLIP 模型处理上传的视频)
+        ├── customClipText  (通过 CLIP 模型处理输入的文字)
+        ├── customIndexer   (创建向量数据的索引)
+        ├── videoLoader     (对上传的视频进行处理)
+        ├── workspace       (用于存储生成的向量数据)
+        ├── app.py          (后端主程序)                    
+        ├── Dockerfile                                                     
+        ├── requirements.txt                                             
+    
+    ├── code/web
+        ├── data            (用于存储上传的视频)
+        │   ├── videos      (用于存储简介好的视频片段)
+        ├── app.py          (前端主程序)
+        ├── Dockerfile
+        └── requirements.txt  
+
+```
 
 ## 文档
 
