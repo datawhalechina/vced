@@ -6,7 +6,7 @@
 <div align="center">
   <a href="https://www.python.org/downloads/" target="_blank"><img src="https://img.shields.io/badge/python-3.9.x-brightgreen.svg" alt="Python supported"></a>
   <a href="https://linklearner.com/"><img src="https://img.shields.io/website?url=https%3A%2F%2Flinklearner.com%2F%23%2F" alt="DataWhale Website"></a>
-	
+
   <h3 align="center">
     <a href="https://linklearner.com/">Website</a>
     <span> | </span>
@@ -14,7 +14,7 @@
     <span> | </span>
     <a href="https://linklearner.com/">Contribute</a>
   </h3>
-  
+
 </div>
 
 ----------------------------------------
@@ -24,7 +24,7 @@ VCED 可以通过你的文字描述来自动识别视频中相符合的片段进
 
 ----------------------------------------
 
-[QuickStart](https://github.com/datawhalechina/vced#quickstart) - [文档](https://github.com/datawhalechina/vced#%E6%96%87%E6%A1%A3) - [Roadmap](https://github.com/datawhalechina/vced#roadmap) - [反馈](https://github.com/datawhalechina/vced#%E5%8F%8D%E9%A6%88) - [参与贡献](https://github.com/datawhalechina/vced#%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE) - [关注我们](https://github.com/datawhalechina/vced#%E5%85%B3%E6%B3%A8%E6%88%91%E4%BB%AC) - [License](https://github.com/datawhalechina/vced#license)
+[QuickStart](https://github.com/datawhalechina/vced#quickstart) - [项目结构](https://github.com/datawhalechina/vced#%E6%96%87%E6%A1%A3) - [文档](https://github.com/datawhalechina/vced#%E6%96%87%E6%A1%A3) - [Roadmap](https://github.com/datawhalechina/vced#roadmap) - [反馈](https://github.com/datawhalechina/vced#%E5%8F%8D%E9%A6%88) - [参与贡献](https://github.com/datawhalechina/vced#%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE) - [关注我们](https://github.com/datawhalechina/vced#%E5%85%B3%E6%B3%A8%E6%88%91%E4%BB%AC) - [License](https://github.com/datawhalechina/vced#license)
 
 ----------------------------
 
@@ -40,7 +40,7 @@ VCED 可以通过你的文字描述来自动识别视频中相符合的片段进
 
 ### 通过 docker 启动
 
-使用docker镜像快速启动本项目:
+使用 docker 镜像快速启动本项目:
 
 ``` bash
 docker-compose up -d
@@ -81,6 +81,28 @@ streamlit run app.py
 ```
 
 Streamlit默认启动的端口为5051，也可以通过 `localhost:5051` 进行访问
+
+## 项目结构
+
+```
+    ├── code/service
+        ├── customClipImage (通过 CLIP 模型处理上传的视频)
+        ├── customClipText  (通过 CLIP 模型处理输入的文字)
+        ├── customIndexer   (创建向量数据的索引)
+        ├── videoLoader     (对上传的视频进行处理)
+        ├── workspace       (用于存储生成的向量数据)
+        ├── app.py          (后端主程序)                    
+        ├── Dockerfile                                                     
+        ├── requirements.txt                                             
+    
+    ├── code/web
+        ├── data            (用于存储上传的视频)
+        │   ├── videos      (用于存储简介好的视频片段)
+        ├── app.py          (前端主程序)
+        ├── Dockerfile
+        └── requirements.txt  
+
+```
 
 ## 文档
 
@@ -137,7 +159,7 @@ Made with [contrib.rocks](https://contrib.rocks).
 - [Jina AI](https://jina.ai/)
 - [Streamlit](https://streamlit.io/)
 
-再次感谢以上项目与作者，同时感谢 Jina AI 对本项目的支持，Jina AI 是一家专注于神经搜索的公司。
+再次感谢以上项目与作者，同时感谢 Jina AI 对本项目的支持，Jina AI 是一家神经搜索公司，致力于帮助企业和开发者轻松搭建多模态、跨模态应用。
 
 ## 关注我们
 <div align=center>
