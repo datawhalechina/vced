@@ -141,7 +141,7 @@ TBD
 | [席颖](https://github.com/xiying-boy) | Jina 教程内容贡献者 |  |
 | [范致远](https://github.com/Elvisambition) | 跨模态模型教程内容贡献者 | [Github](https://github.com/Richard-Bian) |
 | [崔腾松](https://github.com/2951121599) | 项目后端教程内容贡献者 | [CSDN](https://blog.csdn.net/liluo_2951121599) |
-| [韩颐堃](https://github.com/YikunHan42) |项目后端教程内容贡献者 | [yikunhan.me](yikunhan.me) |
+| [韩颐堃](https://github.com/YikunHan42) |项目后端教程内容贡献者 | [Homepage](https://yikunhan.me/) |
 | [吴祥](https://github.com/zadarmo) | 项目前端教程内容贡献者 | [CSDN](https://blog.csdn.net/destiny_balabala) |
 | [边圣陶](https://github.com/Richard-Bian) | Docker 部署教程内容贡献者 |  |
 
