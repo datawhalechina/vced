@@ -7,6 +7,7 @@
 ## 2. Streamlit
 
 [Streamlit](https://streamlit.io/)是一个基于Python的Web应用程序框架，可以帮助数据科学家和学者在短时间内开发机器学习(ML) 可视化仪表板。只需几行代码，就可以构建并部署强大的数据应用程序。其特点如下：
+
 - **跨平台**，支持Windows、macOS、linux
 - **只需要掌握Python**，开发者就可以构建Web App，不需要有任何的前端基础
 - **开源**，社区资源丰富（[Community forum](https://discuss.streamlit.io/)、[Github](https://github.com/streamlit/streamlit/)）
@@ -16,16 +17,19 @@
 ### 2.1 快速开始
 
 在开始之前，你需要确保你的电脑有以下环境：
+
 - 一个IDE或者文本编辑器
 - Python 3.7 - Python 3.10
 - pip
 
 安装Streamlit非常简单，打开终端，执行：
-```bash 
+
+```bash
 pip install streamlit
 ```
 
 官方提供了一个预设网页：
+
 ```bash
 streamlit hello
 ```
@@ -33,7 +37,9 @@ streamlit hello
 如果你能正常运行并打开该网页，说明你的Streamlit安装成功了！
 
 ### 2.2 自由开发
+
 Streamlit框架提供了很多[API](https://docs.streamlit.io/library/api-reference)供开发者使用。下面的步骤将指引你一步一步构建自己的第一个Web App：
+
 1. 打开IDE（如vscode），创建一个`hello-streamlit.py`文件，输入：
 
 ```python
@@ -81,7 +87,7 @@ streamlit run main.py
 
 <img src="./img/hello-streamlit.png" width="500"/>  
 
-完整代码参见`hello-streamlit.py`
+完整代码参见 [`hello-streamlit.py`](https://github.com/datawhalechina/vced/blob/709de9a0a0ce6a0b534c243c5bb58e00a08c6379/docs/source/user_guide/Frontend/hello-streamlit.py)
 
 这里只介绍了Streamlit的冰山一角，更多特性和细节感兴趣的同学可以去官网进一步学习。另外，官网也有很多[Streamlit模板](https://streamlit.io/gallery)，可以帮助你更高效地搭建自己的应用。
 

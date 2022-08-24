@@ -4,8 +4,6 @@
 
 使用`ffmpeg`从视频中提取图像帧、音频和字幕的执行器
 
-
-
 ## 介绍
 
 `VideoLoader` [executor](https://docs.jina.ai/fundamentals/executor/) 帮助将视频组件加载到Jina的 [`Document`](https://docs.jina.ai/fundamentals/document/) 类型中。它使用[`ffmpeg-python`](https://github.com/kkroening/ffmpeg-python)从视频中提取**图像帧、音频和字幕**。
@@ -47,8 +45,6 @@ r = da.post('jinahub://VideoLoader/latest')
 print(r.to_json())
 ```
 
-
-
 ```Python
 # In Jina 添加到flow中
 from jina import Flow
@@ -60,8 +56,6 @@ with f:
 r = f.post('/', inputs=DocumentArray([Document(text='hello')]))
 print(r.to_json())
 ```
-
-
 
 ## 示例
 
