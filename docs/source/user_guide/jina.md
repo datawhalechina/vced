@@ -1,40 +1,10 @@
-# Jina 全家桶
+# 1 Jina
 
-关键词：人工智能 开源 非结构化数据 多模态 跨模态
-
-- 通过使用完全开源的 Jina 全家桶，开发者和企业可以轻松打造多模态/跨模态应用。
-
-> 为帮助开发者和企业实现非结构化数据的搜索自由，从原型设计到方案实施，再到系统的云上部署和监视，以及搜索结果的调优，Jina 全家桶准备了全链路的解决方案。
-
-<img src="/Users/sloan/Documents/GitHub/vced/pics/Jina Eco.png" alt="Jina Eco" style="zoom:50%;" />
-
-## 如何使用 Jina 全家桶
-
-1. 从 [**DocArray**](https://github.com/jina-ai/docarray) 开始设计原型
-
-2. [**Jina**](https://github.com/jina-ai/jina) 将它变成服务
-
-3. 你可以参考 [**Jina Hub**](https://github.com/jina-ai/Jina-hub) 里的组件，加速开发进度
-
-4. 接着，你可以使用 [**JCloud**](https://github.com/jina-ai/JCloud) 部署项目
-
-5. 如果对准确率、召回率不满意，可以使用 [**Finetuner**](https://github.com/jina-ai/finetuner) 对模型调优
-
-6. 如果你处理的数据是文本和图像，可以使用 [**CLIP-as-service**](https://github.com/jina-ai/clip-as-service) 作为向量服务
-
-> 为保证使用体验，建议在 WSL、Linux、MacOS、Docker 使用。[Windows 环境请点击此处](https://mp.weixin.qq.com/s/dsrkivsRu0wLrCA09DAF4A)
-
-本次项目中重点介绍 Jina 和 DocArray，对搭建多模态、跨模态系统感兴趣的同学可自行去 [GitHub](https://github.com/jina-ai) 与 [官方文档](http://Jina.ai) 学习。
-
-
-
-## 1 Jina
-
-### 1.1 Jina 是什么
+## 1.1 Jina 是什么
 
 Jina 是一个基于云原生的深度学习搜索框架，赋能开发者打造可靠的云原生多模态、跨模态的搜索系统。
 
-### 1.2 三个基本概念
+## 1.2 三个基本概念
 
 Document、Executor 和 Flow 是 Jina 的三个基本概念。
 
@@ -42,7 +12,7 @@ Document、Executor 和 Flow 是 Jina 的三个基本概念。
 - Executor 可以理解为一个 Python 类，代表了 Jina 中的算法单元，比如把图像编码成向量、对结果进行排序等算法等都可以用 Executor 来表述。
 - Flow 将多个 Executor 连接起来，可以协调成流水线(pipeline)。也可以理解成一个高阶的任务。比如索引(index)、搜索(search)、训练(train)，都属于一个 Flow。
 
-### 1.3 安装 Jina 
+## 1.3 安装 Jina
 
 需要 Python3.7 及以上版本
 
@@ -57,7 +27,7 @@ conda install jina -c conda-forge
 docker pull jinaai/jina:latest
 ```
 
-### 1.4 快速上手
+## 1.4 快速上手
 
 我们通过下面的例子来理解 Jina 的基本概念：
 
@@ -128,14 +98,12 @@ c.post('/', Document())
 
 将 Executor 和 Flow 分开有以下优点：
 
-  - 服务器上的数据流是非阻塞和异步的，当 Executor 处于空闲状态时，会立即处理新的请求。
-  - 必要时会自动添加负载平衡，以确保最大吞吐量。
+- 服务器上的数据流是非阻塞和异步的，当 Executor 处于空闲状态时，会立即处理新的请求。
+- 必要时会自动添加负载平衡，以确保最大吞吐量。
 
+# 2 DocArray
 
-
-## 2 DocArray
-
-### 2.1 定义
+## 2.1 定义
 
 DocArray 是用于存储非结构化数据的数据结构工具包，是本次我们做跨模态应用的基础。通过这个小而精的入口，能友好地带你走进多模态、跨模态的世界。
 
@@ -143,7 +111,7 @@ DocArray 的亮点在于 Hierarchy + Nested。DocArray 有不同的层级结构�
 
 此外，DocArray 的设计对于 Python 用户来说非常直观，不需要学习新的语法。它融合了Json、Pandas、Numpy、Protobuf 的优点，更适用于数据科学家和深度学习工程师。
 
-### 2.2 三个基本概念
+## 2.2 三个基本概念
 
 DocArray 由三个简单的概念组成：
 
@@ -151,7 +119,7 @@ DocArray 由三个简单的概念组成：
 - DocumentArray：用于高效访问、处理和理解多个文档的容器，可以保存多个 Document 的列表。
 - Dataclass：用于直观表示多模式数据的高级API。
 
-### 2.3 安装
+## 2.3 安装
 
 3.x 版本的 Jina 已经包含了 DocArray，如果你用的是 3.x 的 Jina，可以跳过此步骤。如果你不清楚自己安装的版本号，可以在命令行里输入`jina -vf`来查看 Jina版本。
 
@@ -165,7 +133,7 @@ pip install docarray
 conda install -c conda-forge docarray
 ```
 
-### 2.4 快速上手
+## 2.4 快速上手
 
 ```python
 import docarray
@@ -176,9 +144,9 @@ docarray.__version__   # 如果版本号小于0.1.0，代表未成功安装docar
 
 由于本项目做的是视频搜索剪辑，这里重点介绍**文本、图像和视频**。
 
-#### 2.4.1 文本
+### 2.4.1 文本
 
-##### 2.4.1.1 创建文本
+#### 2.4.1.1 创建文本
 
 ```python
 from docarray import Document  # 导包
@@ -195,7 +163,7 @@ d = Document(text='👋	नमस्ते दुनिया!	你好世界！�
 print(d.text)
 ```
 
-##### 2.4.1.2 切割文本
+#### 2.4.1.2 切割文本
 
 ```python
 from docarray import Document  # 导包
@@ -205,7 +173,7 @@ d.chunks.extend([Document(text=c) for c in d.text.split('!')])  # 按'!'分割
 d.summary()
 ```
 
-##### 2.4.1.3 text、ndarray互转
+#### 2.4.1.3 text、ndarray互转
 
 ```python
 from docarray import DocumentArray, Document  # 导包
@@ -238,7 +206,7 @@ goodbye world
 hello goodbye
 ```
 
-##### 2.4.1.4 Demo: 简单文本匹配
+#### 2.4.1.4 Demo: 简单文本匹配
 
 ```python
 from docarray import Document, DocumentArray
@@ -268,13 +236,13 @@ print(q.matches[:, ('text', 'scores__jaccard')])
 {'value': 0.7142857142857143, 'ref_id': 'f47f7448709811ec960a1e008a366d49'}]]
 ```
 
-#### 2.4.2 图像
+### 2.4.2 图像
 
 图像部分需要提前安装 Pillow 和 matplotlib 包。首先以下图为例，进行图像部分的介绍：
 
 ![apple](../_static/pic/apple.png)
 
-##### 2.4.2.1 读取图片并转为tensor
+#### 2.4.2.1 读取图片并转为tensor
 
 ```python
 d = Document(uri='apple.png')
@@ -283,7 +251,7 @@ d.load_uri_to_image_tensor()
 print(d.tensor, d.tensor.shape)
 ```
 
-##### 2.4.2.2 进行简单的图像处理
+#### 2.4.2.2 进行简单的图像处理
 
 ```python
 from docarray import Document
@@ -302,7 +270,7 @@ print(d.tensor, d.tensor.shape)
 d.save_image_tensor_to_file('apple-proc.png', channel_axis=0)  # 因为前面进行了预处理，channel_axis应该设为0
 ```
 
-##### 2.4.2.3 读取图像集
+#### 2.4.2.3 读取图像集
 
 ```python
 from docarray import DocumentArray
@@ -313,7 +281,7 @@ da.plot_image_sprites('sprite-img.png')  # 使用plot_image_sprites绘制图片�
 
 ![sprite-img](../_static/pic/sprite-img.png)
 
-##### 2.4.2.4 切割大型图像
+#### 2.4.2.4 切割大型图像
 
 由于大型复杂图像包含了太多的元素和信息，难以定义搜索问题，因此很难对其进行搜索。
 
@@ -347,7 +315,7 @@ d.convert_image_tensor_to_sliding_windows(window_shape=(64, 64), strides=(10, 10
 d.chunks.plot_image_sprites('simpsons-chunks-stride-10.png')
 ```
 
-#### 2.4.3 视频
+### 2.4.3 视频
 
 #### 2.4.3.1 视频导入和切分
 
@@ -401,7 +369,31 @@ d = (
 )
 ```
 
-## 3. 附录
+# 3 Jina 全家桶
+
+通过使用完全开源的 Jina 全家桶，开发者和企业可以轻松打造多模态/跨模态应用。
+
+> 为帮助开发者和企业实现非结构化数据的搜索自由，从原型设计到方案实施，再到系统的云上部署和监视，以及搜索结果的调优，Jina 全家桶准备了全链路的解决方案。
+
+## 3.1 如何使用 Jina 全家桶
+
+1. 从 [**DocArray**](https://github.com/jina-ai/docarray) 开始设计原型
+
+2. [**Jina**](https://github.com/jina-ai/jina) 将它变成服务
+
+3. 你可以参考 [**Jina Hub**](https://github.com/jina-ai/Jina-hub) 里的组件，加速开发进度
+
+4. 接着，你可以使用 [**JCloud**](https://github.com/jina-ai/JCloud) 部署项目
+
+5. 如果对准确率、召回率不满意，可以使用 [**Finetuner**](https://github.com/jina-ai/finetuner) 对模型调优
+
+6. 如果你处理的数据是文本和图像，可以使用 [**CLIP-as-service**](https://github.com/jina-ai/clip-as-service) 作为向量服务
+
+> 为保证使用体验，建议在 WSL、Linux、MacOS、Docker 使用。[Windows 环境请点击此处](https://mp.weixin.qq.com/s/dsrkivsRu0wLrCA09DAF4A)
+
+本次项目中重点介绍 Jina 和 DocArray，对搭建多模态、跨模态系统感兴趣的同学可自行去 [GitHub](https://github.com/jina-ai) 与 [官方文档](http://Jina.ai) 学习。
+
+# 4. 附录
 
 <!--官方文档地址-->
 
