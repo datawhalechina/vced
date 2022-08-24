@@ -2,7 +2,7 @@
 
 ## 逻辑结构图
 
-![process](./iamges/process.png)
+![process](./images/process.png)
 
 ## 基础实现
 
