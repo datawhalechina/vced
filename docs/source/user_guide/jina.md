@@ -77,6 +77,8 @@ jina flow --uses toy.yml
 
 启动成功后，可以看到如下输出结果
 
+![flow_service](../_static/flow_service.png)
+
 然后创建 `client.py` 文件，执行 `python client.py`
 
 ```python
@@ -88,7 +90,7 @@ result = c.post('/', Document()) # 将一个空的 Document 传到服务端执�
 print(result.texts) 
 ```
 
-最终回打印出一个 `"['', 'foo was here', 'bar was here']"` 字符串。
+最终会打印出一个 `"['', 'foo was here', 'bar was here']"` 字符串。
 
 ## 5. DocArray
 
