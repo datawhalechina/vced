@@ -4,7 +4,7 @@ VCED: Video Clip Extraction by description 该项目可以通过文字描述来�
 
 ## VCED 是如何工作的
 
-VCED 项目的核心逻辑如下图所示
+VCED 项目的核心逻辑是通过多模态模型 CLIP 实现的，具体结构如下图所示：
 
 ![CLIP](./_static/pic/CLIP.png)
 图片源自：《[Learning transferable visual models from natural language supervision](https://arxiv.org/pdf/2103.00020.pdf)》
