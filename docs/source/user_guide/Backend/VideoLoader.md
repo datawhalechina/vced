@@ -4,6 +4,7 @@
 
 ### YAML配置
 
+
 ```yaml
 jtype: VideoLoader
 metas:
@@ -39,6 +40,8 @@ import
 ```
 
 ### 默认设置
+=======
+## 介绍
 
 ```python
 DEFAULT_FPS = 1.0
@@ -130,6 +133,7 @@ class VideoLoader(Executor):
         ).logger
 ```
 
+
 导入日志信息类
 
 ### 视频抽取
@@ -140,6 +144,12 @@ class VideoLoader(Executor):
 
 + `docs`：包含了Documents的待编码的DocumentArray
 + `parameters`：字典类型，包含了用于控制编码的参数（keys包括`traversal_paths`和`batch_size`)
+=======
+```Python
+# In Jina 添加到flow中
+from jina import Flow
+from docarray import Document, DocumentArray
+
 
 ```python
     @requests(on='/extract')
@@ -163,6 +173,7 @@ class VideoLoader(Executor):
                 )
 
 ```
+
 
 读入视频文件
 
@@ -391,6 +402,9 @@ class VideoLoader(Executor):
         scheme = urllib.parse.urlparse(uri).scheme
         return scheme in {'data'}
 ```
+=======
+## 示例
+
 
 判别是否为已有uri
 
