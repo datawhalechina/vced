@@ -6,4 +6,4 @@ services:
       context: code
       dockerfile: Dockerfile
     ports:
-      - "8901:8501"
+      - "8501:8501"
