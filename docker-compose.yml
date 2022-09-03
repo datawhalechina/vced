@@ -1,12 +1,9 @@
 version: "3"
 
 services:
-  jina-service:
+  vced:
     build:
-      context: crawl_list
+      context: code
       dockerfile: Dockerfile
-
-  web:
-    build:
-      context: crawl_tags
-      dockerfile: Dockerfile
+    ports:
+      - "8901:8501"
