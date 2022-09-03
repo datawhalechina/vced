@@ -143,7 +143,7 @@ TBD
 | [崔腾松](https://github.com/2951121599) | 项目后端教程内容贡献者 | [CSDN](https://blog.csdn.net/liluo_2951121599) |
 | [韩颐堃](https://github.com/YikunHan42) |项目后端教程内容贡献者 | [Homepage](https://yikunhan.me/) |
 | [吴祥](https://github.com/zadarmo) | 项目前端教程内容贡献者 | [CSDN](https://blog.csdn.net/destiny_balabala) |
-| [边圣陶](https://github.com/Richard-Bian) | Docker 部署教程内容贡献者 |  |
+| [边圣陶](https://github.com/Richard-Bian) | Docker 部署教程内容贡献者 | [https://www.bianst.cn](https://www.bianst.cn) |
 
 <a href="https://github.com/datawhalechina/vced/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=datawhalechina/vced" />
