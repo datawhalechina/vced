@@ -43,6 +43,7 @@ VCED 可以通过你的文字描述来自动识别视频中相符合的片段进
 使用 docker 镜像快速启动本项目:
 
 ``` bash
+docker-compose build
 docker-compose up -d
 ```
 
@@ -53,7 +54,7 @@ docker-compose up -d
 本项目依赖以下环境，在进行具体的安装之前请确保你的电脑已经安装好这些依赖
 
 1. 创建 python3.9 环境
-2. 安装 ffmpeg
+2. 安装 rust, ffmpeg, rust
 3. 安装 clip `pip install git+https://github.com/openai/CLIP.git`
 
 #### 启动 server
@@ -80,7 +81,7 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-Streamlit默认启动的端口为5051，也可以通过 `localhost:5051` 进行访问
+Streamlit默认启动的端口为8501，也可以通过 `localhost:8501` 进行访问
 
 ## 项目结构
 
@@ -91,17 +92,12 @@ Streamlit默认启动的端口为5051，也可以通过 `localhost:5051` 进行�
         ├── customIndexer   (创建向量数据的索引)
         ├── videoLoader     (对上传的视频进行处理)
         ├── workspace       (用于存储生成的向量数据)
-        ├── app.py          (后端主程序)                    
-        ├── Dockerfile                                                     
-        ├── requirements.txt                                             
-    
-    ├── code/web
+        ├── app.py          (后端主程序)                                                       ├── code/web
         ├── data            (用于存储上传的视频)
         │   ├── videos      (用于存储简介好的视频片段)
-        ├── app.py          (前端主程序)
-        ├── Dockerfile
-        └── requirements.txt  
-
+        ├── app.py          (前端主程序)  
+	├── Dockerfile                                                     
+    ├── requirements.txt  
 ```
 
 ## 文档
@@ -143,7 +139,7 @@ TBD
 | [崔腾松](https://github.com/2951121599) | 项目后端教程内容贡献者 | [CSDN](https://blog.csdn.net/liluo_2951121599) |
 | [韩颐堃](https://github.com/YikunHan42) |项目后端教程内容贡献者 | [Homepage](https://yikunhan.me/) |
 | [吴祥](https://github.com/zadarmo) | 项目前端教程内容贡献者 | [CSDN](https://blog.csdn.net/destiny_balabala) |
-| [边圣陶](https://github.com/Richard-Bian) | Docker 部署教程内容贡献者 |  |
+| [边圣陶](https://github.com/Richard-Bian) | Docker 部署教程内容贡献者 | [https://www.bianst.cn](https://www.bianst.cn) |
 
 <a href="https://github.com/datawhalechina/vced/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=datawhalechina/vced" />

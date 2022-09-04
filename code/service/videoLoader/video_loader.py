@@ -73,7 +73,7 @@ class VideoLoader(Executor):
         self._ffmpeg_video_args.setdefault('frame_pts', True)
         self._ffmpeg_video_args.setdefault('vsync', 0)
         self._ffmpeg_video_args.setdefault('vf', f'fps={DEFAULT_FPS}')
-        fps = re.findall('.*fps=(\d+(?:\.\d+)?).*', self._ffmpeg_video_args['vf'])
+        fps = re.findall(r'.*fps=(\d+(?:\.\d+)?).*', self._ffmpeg_video_args['vf'])
         if len(fps) > 0:
             self._frame_fps = float(fps[0])
 

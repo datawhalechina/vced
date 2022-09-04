@@ -1,10 +1,12 @@
-FROM python:3.9
+FROM richardbst/python:latest
+WORKDIR /web
+COPY requirements.txt requirements.txt
+RUN apt-get update -y \
+    && apt-get install gcc -y \
+    && apt-get install git -y \
+    && pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple some-package
+COPY . .
+EXPOSE 8501
+CMD ["streamlit","run","app.py"]
 
-ADD requirements.txt /app/
-ADD web /app/
 
-RUN pip install /app/requirements.txt
-
-WORKDIR /app
-
-CMD ["python", "app.py"]
