@@ -45,8 +45,8 @@ class CLIPTextEncoder(Executor):
 
 参数解释：
 
-+ `pretrained_model_name_or_path`：可以是[Hugging Face](https://huggingface.co/)中的线上repository，亦或是本地的directory，此处预训练的模型使用Vision Transformer-Base/32, input batch size为32*32
-+ `base_tokenizer_model`：基础的分词器，如果为空值的话则默认使用`pretrained_model_name_or_path`
++ `pretrained_model_name_or_path`：可以是 [Hugging Face](https://huggingface.co/) 中的线上 repository，亦或是本地的 directory，此处预训练的模型使用 Vision Transformer-Base/32, input batch size 为 32*32
++ `base_tokenizer_model`：基础的分词器，如果为空值的话则默认使用 `pretrained_model_name_or_path`
 + `max_length`：分词器能接受的最大长度，所有CLIP模型都为77
 + `device`：预处理设备
 + `traversal_paths`：遍历路径
@@ -76,12 +76,9 @@ class CLIPTextEncoder(Executor):
 
 ### 文本编码
 
-@requests方法可以参考[官网说明](https://docs.jina.ai/fundamentals/executor/executor-methods/?highlight=request%20method)
-
 ```python
     @requests
 	def encode(self, docs: DocumentArray, parameters: Dict, **kwargs):
-
         print('clip_text encode')
         for docs_batch in DocumentArray(
             filter(
@@ -89,14 +86,13 @@ class CLIPTextEncoder(Executor):
                 docs[parameters.get('traversal_paths', self.traversal_paths)],
             )
         ).batch(batch_size=parameters.get('batch_size', self.batch_size)) :
-            
             text_batch = docs_batch.texts
 ```
 
 参数解释：
 
-+ `docs`：包含了Documents的待编码的DocumentArray
-+ `parameters`：字典类型，包含了用于控制编码的参数（keys包括`traversal_paths`和`batch_size`)
++ `docs`：包含了 Documents 的待编码的 DocumentArray
++ `parameters`：字典类型，包含了用于控制编码的参数（keys 包括 `traversal_paths` 和 `batch_size`)
 
 对数据类型进行过滤，对所有文本进行批处理
 
@@ -113,25 +109,4 @@ class CLIPTextEncoder(Executor):
             print(t2)
 ```
 
-对文本数据进行编码，以DocumentArray形式存储，便于后续传值
-
-## 进阶延展
-
-### Executor调用
-
-多数用户可以想到的功能都已经被上传到[Jina Hub](https://hub.jina.ai/)上，CustomClipText的[主体](https://hub.jina.ai/executor/livtkbkg)也可以在hub中进行访问，可以直接调用封装好的Executor，实现自己的功能模块，同时可以通过*latest-gpu*版本利用显存资源
-
-### flow配置
-
-```YAML
-executors:
-	- name : encoder
-	  uses: 'jinahub://CLIPTextEncoder/latest'
-	  timeout_ready : -1
-	  uses_with:
-	  	name: openai/clip-vit-base-patch32
-```
-
-
-
-https://docs.jina.ai/fundamentals/executor/executor-methods/?highlight=request%20method
+对文本数据进行编码，以 DocumentArray 形式存储，便于后续传值
