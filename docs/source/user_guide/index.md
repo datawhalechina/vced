@@ -6,7 +6,8 @@
 :maxdepth: 2
 
 jina
-clip/index
+Jina-Multimodal-Crossmodal/index
+CLIP/index
 Frontend/index
 Backend/index
 docker

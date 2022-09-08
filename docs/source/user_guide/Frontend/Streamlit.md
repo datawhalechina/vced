@@ -2,7 +2,7 @@
 
 [Streamlit](https://streamlit.io/) 是一个基于 Python 的 Web 应用程序框架，可以帮助数据科学家和学者在短时间内开发机器学习可视化仪表板。只需几行代码，就可以构建并部署强大的数据应用程序。其特点如下：
 
-- **跨平台**，支持 Windows、macOS、linux
+- **跨平台**，支持 Windows、macOS、Linux
 - **只需要掌握 Python**，开发者就可以构建 Web App，不需要有任何的前端基础
 - **开源**，社区资源丰富（[Community forum](https://discuss.streamlit.io/)、[Github](https://github.com/streamlit/streamlit/)）
 
@@ -43,7 +43,7 @@ import streamlit as st
 2. 每个Web页面都会有一个title，如下图所示：
 
 <img src="./img/page-title.png" width="500"/>
-  
+
 ```python
 st.set_page_config(page_title="Hello Streamlit")
 ```
@@ -84,3 +84,11 @@ streamlit run main.py
 完整代码参见 [`hello-streamlit.py`](https://github.com/datawhalechina/vced/blob/709de9a0a0ce6a0b534c243c5bb58e00a08c6379/docs/source/user_guide/Frontend/hello-streamlit.py)
 
 这里只介绍了 Streamlit 的冰山一角，更多特性和细节感兴趣的同学可以去官网进一步学习。另外，官网也有很多 [Streamlit 模板](https://streamlit.io/gallery)，可以帮助你更高效地搭建自己的应用。
+
+以下即为使用流程：
+
+1. 上传视频
+2. 输入描述
+3. 输入Top N值
+4. 点击搜索，等待返回结果
+5. 查看搜索结果
