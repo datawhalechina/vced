@@ -9,6 +9,7 @@
 </div>
 
 ```{toctree}
+:caption: Frontend
 
 Streamlit
 Frontend
