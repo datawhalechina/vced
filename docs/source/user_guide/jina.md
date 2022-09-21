@@ -53,7 +53,7 @@ executors:
 ```python
 # 创建 test.py 文件与 YAML 文件在同一目录下
 # 导入 document、executor 和 flow 以及 requests 装饰器
-from jina import DocumentArray, Executor, requests
+from jina import DocumentArray, Executor, requests, Document
 
 # 编写 FooExecutor 与 BarExecutor 类，类中定义了函数 foo 和 bar
 # 该函数从网络请求接收 DocumentArray (先暂时不需要理解它是什么)，并在其内容后面附加 "foo was here" 与 "bar was here"
