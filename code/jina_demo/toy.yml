@@ -1,0 +1,16 @@
+# toy.yml
+# 运行以下命令启动 grpc 服务：
+# jina flow --uses toy.yml≈≈
+jtype: Flow
+with:
+  port: 51000
+  protocol: grpc
+executors:
+  - uses: FooExecutor
+    name: foo
+    py_modules:
+      - test.py
+  - uses: BarExecutor
+    name: bar
+    py_modules:
+      - test.py
