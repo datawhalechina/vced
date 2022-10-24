@@ -42,7 +42,7 @@ import streamlit as st
 
 2. 每个Web页面都会有一个title，如下图所示：
 
-<img src="./img/page-title.png" width="500"/>
+![page-title](./img/page-title.png)
 
 ```python
 st.set_page_config(page_title="Hello Streamlit")
