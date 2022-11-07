@@ -107,6 +107,11 @@ Streamlit默认启动的端口为8501，也可以通过 `localhost:8501` 进行�
 
 如果你想在本地查阅文档可以通过以下方式实现
 
+1. 将项目下载到本地
+2. 用浏览器打开 [docs/build/html/index.html](./docs/build/html/index.html)
+
+如果你对文档内容有修改想要查看最新的内容可以通过以下方式
+
 ```bash
 # 进入 docs 文件夹
 cd docs
