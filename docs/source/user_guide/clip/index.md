@@ -4,4 +4,5 @@
 :caption: CLIP
 
 CLIP
+Jina-Multimodal-Crossmodal
 ```
