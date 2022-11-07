@@ -1,0 +1,375 @@
+
+<!DOCTYPE html>
+
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>多模态和跨模态应用：新的交互方式 &#8212; VCED项目文档</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="项目前端介绍" href="../Frontend/index.html" />
+    <link rel="prev" title="CLIP 模型" href="CLIP.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="zh">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../../index.html">
+<p class="title">VCED</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  User Guide
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/datawhalechina/vced" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../jina.html">
+   Jina
+  </a>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   CLIP简介
+  </a>
+  <input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="CLIP.html">
+     CLIP 模型
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     多模态和跨模态应用：新的交互方式
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Frontend/index.html">
+   项目前端介绍
+  </a>
+  <input checked class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Frontend/Streamlit.html">
+     Streamlit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Frontend/Frontend.html">
+     VCED UI 构建
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Backend/index.html">
+   项目后端简介
+  </a>
+  <input checked class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Backend/VideoLoader.html">
+     VideoLoader
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Backend/CustomClipText.html">
+     CustomClipText
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Backend/CustomClipImage.html">
+     CustomClipImage
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Backend/SimpleIndexer.html">
+     SimpleIndexer
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   介绍
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   什么是多模态和跨模态应用？
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   它们与传统的交互方式有何不同？
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   开发多模态和跨模态应用存在哪些挑战？
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   开始🚀
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id7">
+   额外资源✨
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id8">
+   参考文献
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="id1">
+<h1>多模态和跨模态应用：新的交互方式<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h1>
+<p><img alt="" src="../../_images/example.png" /></p>
+<center>由 OpenAI DALL.E-2 生成</center>
+<div class="section" id="id2">
+<h2>介绍<a class="headerlink" href="#id2" title="永久链接至标题">#</a></h2>
+<p>随着我们寻找更有效的相互交流和共享信息方式，多模态和跨模态应用变得越来越流行。沟通的方式有很多种，每种方式都有自己的优缺点。比如说，口语对于快速传达信息非常有效，但我们很难理解口音重或者和我们说不同语言的人。书面语言更精确，但阅读大量文本可能会很慢而且乏味。</p>
+<blockquote>
+<div><p>这就是多模态和跨模态出现的地方！</p>
+</div></blockquote>
+</div>
+<div class="section" id="id3">
+<h2>什么是多模态和跨模态应用？<a class="headerlink" href="#id3" title="永久链接至标题">#</a></h2>
+<p>多模态应用允许我们通过利用每种方式的优势来结合不同的模态。例如，我们可以在对话中同时使用口语和书面语言，以确保我们相互理解。我们还可以使用图片或视频等作为视觉辅助工具，来帮助解释仅用文字难以描述的事物。</p>
+<p>跨模态应用针对的是来自不同模态（如视觉和听觉）的输入和输出。它通过使用一种感官的信息来增强另一种感官，使用户体验比传统应用更上一层楼。比如说，我们可以通过触摸的方式来帮助我们理解在触觉地图或盲文文本中看到的内容。我们还可以使用声音来帮助我们定位环境中的事物，一般通过声纳或雷达来完成。</p>
+</div>
+<div class="section" id="id4">
+<h2>它们与传统的交互方式有何不同？<a class="headerlink" href="#id4" title="永久链接至标题">#</a></h2>
+<p>多模态与跨模态应用与传统交互的不同，体现在以下几点上：</p>
+<ul class="simple">
+<li><p>它们支持输入和输出模态以任意方式进行排列组合，包括但不限于音频、视频和文本，从而创造更全面的用户体验。</p></li>
+<li><p>由于使用多种模态输入和输出信息，因而提高了准确性、精确度，以及可用性。</p></li>
+<li><p>由于能够同时使用多种模态，因而提高了效率。</p></li>
+<li><p>由于能够以任意组合使用多种模态，因而提高了灵活性。</p></li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h2>开发多模态和跨模态应用存在哪些挑战？<a class="headerlink" href="#id5" title="永久链接至标题">#</a></h2>
+<p>虽然多模态和跨模态应用提供了许多好处，但仍然需要考虑如下挑战：</p>
+<ul class="simple">
+<li><p>缺乏此类系统的设计模式。目前尚不清楚应该如何一致地表征、计算、存储和传输不同模态的数据；以及如何在不同工具之间切换。</p></li>
+<li><p>缺乏用于开发多模态和跨模态应用的工具和框架，没有一个可以包含多种模态的标准数据结构。</p></li>
+<li><p>多模态和跨模态应用的开发可能会更加复杂，因为需要考虑如何在应用中组合不同的模态。</p></li>
+<li><p>多模态和跨模态应用可能更难测试，因为需要确保模态正常运转并且用户体验是正面的。</p></li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h2>开始🚀<a class="headerlink" href="#id6" title="永久链接至标题">#</a></h2>
+<p>为了克服构建跨模态和多模态应用的挑战，可以利用 Jina 生态系统中的产品作为应用的构建模块：</p>
+<ul class="simple">
+<li><p>一个适用于所有数据类型的标准数据结构，即<a class="reference external" href="https://docarray.jina.ai/?utm_source=blog-multimodal">DocArray</a>（也称为非结构化数据的数据结构）。它能够像传统数据结构对文本数据一样轻松地存储和处理多种数据类型。</p></li>
+<li><p>可复用的代码片段可以作为<a class="reference external" href="https://hub.jina.ai/?utm_source=blog-multimodal">Jina Hub</a>的Executor轻松接入任何应用。</p></li>
+<li><p>使用<a class="reference external" href="https://docs.jina.ai/?utm_source=blog-multimodal">Jina</a>，可以获得即时的数据处理流水线，以将概念验证提升为生产级应用。可以专注于用例并处理其余部分。</p></li>
+<li><p>不要担心托管基础设施。当使用 Jina 构建时，可以通过<a class="reference external" href="https://docs.jina.ai/fundamentals/jcloud/?utm_source=blog-multimodal">JCloud</a>使用几行额外的代码轻松地将应用托管在云上。</p></li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h2>额外资源✨<a class="headerlink" href="#id7" title="永久链接至标题">#</a></h2>
+<p>如果不知道如何编码，仍然可以在终端上使用<a class="reference external" href="http://now.jina.ai/?utm_source=blog-multimodal">Jina NOW</a>构建复杂的搜索应用。过程有三个步骤👉</p>
+<p><strong>输入一些命令</strong>→<strong>加载数据/选择配置</strong>→<strong>获取应用</strong></p>
+</div>
+<div class="section" id="id8">
+<h2>参考文献<a class="headerlink" href="#id8" title="永久链接至标题">#</a></h2>
+<p><a class="reference external" href="https://medium.com/jina-ai/multimodal-and-crossmodal-applications-the-new-way-to-interact-d73d3e932990">Multimodal and Crossmodal applications: The new way to interact!</a></p>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="CLIP.html" title="上一页 页">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">上一页</p>
+            <p class="prev-next-title">CLIP 模型</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../Frontend/index.html" title="下一页 页">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title">项目前端介绍</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2022, VCED.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.2.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

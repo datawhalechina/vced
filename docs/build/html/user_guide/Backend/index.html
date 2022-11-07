@@ -1,0 +1,361 @@
+
+<!DOCTYPE html>
+
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>项目后端简介 &#8212; VCED项目文档</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="VideoLoader" href="VideoLoader.html" />
+    <link rel="prev" title="VCED UI 构建" href="../Frontend/Frontend.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="zh">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../../index.html">
+<p class="title">VCED</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  User Guide
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/datawhalechina/vced" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../jina.html">
+   Jina
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../CLIP/index.html">
+   CLIP简介
+  </a>
+  <input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../CLIP/CLIP.html">
+     CLIP 模型
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../CLIP/Jina-Multimodal-Crossmodal.html">
+     多模态和跨模态应用：新的交互方式
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Frontend/index.html">
+   项目前端介绍
+  </a>
+  <input checked class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Frontend/Streamlit.html">
+     Streamlit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Frontend/Frontend.html">
+     VCED UI 构建
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   项目后端简介
+  </a>
+  <input checked class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="VideoLoader.html">
+     VideoLoader
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="CustomClipText.html">
+     CustomClipText
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="CustomClipImage.html">
+     CustomClipImage
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="SimpleIndexer.html">
+     SimpleIndexer
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+
+<nav id="bd-toc-nav">
+    
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="id1">
+<h1>项目后端简介<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h1>
+<p>项目后端共由四个文件组成，其中VideoLoader负责对上传的视频进行关键帧提取，CustomClipText负责将上传的图片转换为向量数据，CustomClipImage负责将提取的关键帧转换为向量数据，SimpleIndexer负责向量数据的检索</p>
+<div class="toctree-wrapper compound">
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Backend</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="VideoLoader.html">VideoLoader</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="VideoLoader.html#id1">基础实现</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="VideoLoader.html#yaml">YAML配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VideoLoader.html#id2">导入第三方库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VideoLoader.html#id3">默认设置</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="VideoLoader.html#id4">介绍</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="VideoLoader.html#id5">类初始化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VideoLoader.html#id6">视频抽取</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VideoLoader.html#id7">图片参数获取</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VideoLoader.html#id8">音频参数获取</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VideoLoader.html#id9">字幕数据获取</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VideoLoader.html#id10">其他</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="VideoLoader.html#id11">示例</a></li>
+<li class="toctree-l2"><a class="reference internal" href="VideoLoader.html#id12">进阶延展</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="VideoLoader.html#executor">Executor调用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="VideoLoader.html#flow">flow配置</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="CustomClipText.html">CustomClipText</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="CustomClipText.html#id1">基础实现</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="CustomClipText.html#yaml">YAML配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CustomClipText.html#id2">导入第三方库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CustomClipText.html#id3">类初始化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CustomClipText.html#id4">文本编码</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="CustomClipImage.html">CustomClipImage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="CustomClipImage.html#id1">基础实现</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="CustomClipImage.html#yaml">YAML配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CustomClipImage.html#id2">导入第三方库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CustomClipImage.html#id3">类初始化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CustomClipImage.html#id4">图像编码</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="CustomClipImage.html#id5">进阶延展</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="CustomClipImage.html#executor">Executor调用</a></li>
+<li class="toctree-l3"><a class="reference internal" href="CustomClipImage.html#flow">flow配置</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="SimpleIndexer.html">SimpleIndexer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="SimpleIndexer.html#id1">逻辑结构图</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SimpleIndexer.html#id2">基础实现</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="SimpleIndexer.html#yaml">YAML配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SimpleIndexer.html#id3">导入第三方库</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SimpleIndexer.html#id4">类初始化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SimpleIndexer.html#id5">创建索引</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SimpleIndexer.html#id6">神经搜索</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SimpleIndexer.html#id7">多个片段获取</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SimpleIndexer.html#id8">最大查找</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SimpleIndexer.html#id9">单一范围框定</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SimpleIndexer.html#id10">匹配计算</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SimpleIndexer.html#id11">静态方法</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="SimpleIndexer.html#id12">进阶延展</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="SimpleIndexer.html#gpucpu">GPU引入及与CPU协同</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SimpleIndexer.html#id13">向量搜索</a></li>
+<li class="toctree-l3"><a class="reference internal" href="SimpleIndexer.html#jina-hub">Jina Hub的使用</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="SimpleIndexer.html#id14">参考资料</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../Frontend/Frontend.html" title="上一页 页">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">上一页</p>
+            <p class="prev-next-title">VCED UI 构建</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="VideoLoader.html" title="下一页 页">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title">VideoLoader</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2022, VCED.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.2.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

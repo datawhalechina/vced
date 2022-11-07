@@ -1,0 +1,787 @@
+
+<!DOCTYPE html>
+
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jina &#8212; VCED项目文档</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="CLIP简介" href="CLIP/index.html" />
+    <link rel="prev" title="User Guide" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="zh">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../index.html">
+<p class="title">VCED</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="index.html">
+  User Guide
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/datawhalechina/vced" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Jina
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="CLIP/index.html">
+   CLIP简介
+  </a>
+  <input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="CLIP/CLIP.html">
+     CLIP 模型
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="CLIP/Jina-Multimodal-Crossmodal.html">
+     多模态和跨模态应用：新的交互方式
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="Frontend/index.html">
+   项目前端介绍
+  </a>
+  <input checked class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Frontend/Streamlit.html">
+     Streamlit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Frontend/Frontend.html">
+     VCED UI 构建
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="Backend/index.html">
+   项目后端简介
+  </a>
+  <input checked class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Backend/VideoLoader.html">
+     VideoLoader
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Backend/CustomClipText.html">
+     CustomClipText
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Backend/CustomClipImage.html">
+     CustomClipImage
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Backend/SimpleIndexer.html">
+     SimpleIndexer
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   1. Jina 是什么
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   2. Jina 的三个基本概念
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   3. 安装 Jina
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   4. 快速上手
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#docarray">
+   5. DocArray
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     5.1 定义
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     5.2 三个基本概念
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     5.3 安装
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id8">
+   6. 文本处理
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     6.1 创建文本
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     6.2 切割文本
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#textndarray">
+     6.3 text、ndarray 互转
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#demo">
+     6.4 Demo: 简单的文本匹配
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id11">
+   7. 图像处理
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#tensor">
+     7.1 读取图片并转为 tensor
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     7.2 进行简单的图像处理
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id13">
+     7.3 读取图像集
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id14">
+     7.4 切割大型图像
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id15">
+   8. 视频处理
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id16">
+     8.1 视频导入和切分
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id17">
+     8.2 关键帧提取
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id18">
+     8.3 张量转存为视频
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#executor">
+   9. Executor
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#flow">
+   10. Flow
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="jina">
+<h1>Jina<a class="headerlink" href="#jina" title="永久链接至标题">#</a></h1>
+<div class="section" id="id1">
+<h2>1. Jina 是什么<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h2>
+<p>简单来说 Jina 可以帮助你快速把非结构化数据例如图像，文档视频等，转换为向量数据。并结合 Jina 的其他组件设计，帮助你快速的把向量数据利用起来，实现多模态的数据搜索。</p>
+</div>
+<div class="section" id="id2">
+<h2>2. Jina 的三个基本概念<a class="headerlink" href="#id2" title="永久链接至标题">#</a></h2>
+<p>Document、Executor 和 Flow 是 Jina 的三个基本概念。</p>
+<ul class="simple">
+<li><p>Document 是基本的数据类型，它的作用就是可以将非结构化数据与向量数据之间进行映射，具体细节会在 DocArray 一章中详细阐述。</p></li>
+<li><p>Executor 可以理解为一个 Python 类，代表了 Jina 中的算法单元，比如把图像编码成向量、对结果进行排序等算法等都可以用 Executor 来表述。</p></li>
+<li><p>Flow 可以将多个 Executor 连接起来，将他们协调成流水线(pipeline)。</p></li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>3. 安装 Jina<a class="headerlink" href="#id3" title="永久链接至标题">#</a></h2>
+<p><strong>安装 Jina 需要 Python3.7 及以上版本</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># via pypi</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">jina</span>
+
+<span class="c1"># via conda</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="n">jina</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span>
+
+<span class="c1"># via docker</span>
+<span class="n">docker</span> <span class="n">pull</span> <span class="n">jinaai</span><span class="o">/</span><span class="n">jina</span><span class="p">:</span><span class="n">latest</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id4">
+<h2>4. 快速上手<a class="headerlink" href="#id4" title="永久链接至标题">#</a></h2>
+<p>我们通过下面的例子来理解 Jina 的基本概念，首先我们需要定义一个 YAML 文件，用于指定 Flow 按照什么逻辑执行</p>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="c1"># toy.yml</span>
+<span class="nt">jtype</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Flow</span>
+<span class="nt">with</span><span class="p">:</span>
+  <span class="nt">port</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">51000</span>
+  <span class="nt">protocol</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">grpc</span>
+<span class="nt">executors</span><span class="p">:</span>
+<span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">FooExecutor</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">foo</span>
+  <span class="nt">py_modules</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">test.py</span>
+<span class="p p-Indicator">-</span> <span class="nt">uses</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">BarExecutor</span>
+  <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">bar</span>
+  <span class="nt">py_modules</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">test.py</span>
+</pre></div>
+</div>
+<p>定义好 YAML 文件后我们来定义具体的执行逻辑</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 创建 test.py 文件与 YAML 文件在同一目录下</span>
+<span class="c1"># 导入 document、executor 和 flow 以及 requests 装饰器</span>
+<span class="kn">from</span> <span class="nn">jina</span> <span class="kn">import</span> <span class="n">DocumentArray</span><span class="p">,</span> <span class="n">Executor</span><span class="p">,</span> <span class="n">requests</span><span class="p">,</span> <span class="n">Document</span>
+
+<span class="c1"># 编写 FooExecutor 与 BarExecutor 类，类中定义了函数 foo 和 bar</span>
+<span class="c1"># 该函数从网络请求接收 DocumentArray (先暂时不需要理解它是什么)，并在其内容后面附加 &quot;foo was here&quot; 与 &quot;bar was here&quot;</span>
+<span class="k">class</span> <span class="nc">FooExecutor</span><span class="p">(</span><span class="n">Executor</span><span class="p">):</span>
+    <span class="nd">@requests</span> <span class="c1"># 用于指定路由，类似网页访问 /index 和 /login 会被路由到不同的方法上是用样的概念，关于 request 下面会再进行详细介绍</span>
+    <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">docs</span><span class="p">:</span> <span class="n">DocumentArray</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">docs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Document</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;foo was here&#39;</span><span class="p">))</span>
+
+
+<span class="k">class</span> <span class="nc">BarExecutor</span><span class="p">(</span><span class="n">Executor</span><span class="p">):</span>
+    <span class="nd">@requests</span>
+    <span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">docs</span><span class="p">:</span> <span class="n">DocumentArray</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">docs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Document</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;bar was here&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>运行以下命令启动 grpc 服务：</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>jina flow --uses toy.yml
+</pre></div>
+</div>
+<p>启动成功后，可以看到如下输出结果</p>
+<p><img alt="flow_service" src="../_images/flow_service.png" /></p>
+<p>然后创建 <code class="docutils literal notranslate"><span class="pre">client.py</span></code> 文件，执行 <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">client.py</span></code></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 从 Jina 中导入连接的客户端与 Document</span>
+<span class="kn">from</span> <span class="nn">jina</span> <span class="kn">import</span> <span class="n">Client</span><span class="p">,</span> <span class="n">Document</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="n">Client</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;grpc://0.0.0.0:51000&#39;</span><span class="p">)</span>  <span class="c1"># 如果运行提示失败，可尝试使用localhost</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">Document</span><span class="p">())</span> <span class="c1"># 将一个空的 Document 传到服务端执行</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">texts</span><span class="p">)</span> 
+</pre></div>
+</div>
+<p>最终会打印出一个 <code class="docutils literal notranslate"><span class="pre">&quot;['',</span> <span class="pre">'foo</span> <span class="pre">was</span> <span class="pre">here',</span> <span class="pre">'bar</span> <span class="pre">was</span> <span class="pre">here']&quot;</span></code> 字符串。</p>
+</div>
+<div class="section" id="docarray">
+<h2>5. DocArray<a class="headerlink" href="#docarray" title="永久链接至标题">#</a></h2>
+<div class="section" id="id5">
+<h3>5.1 定义<a class="headerlink" href="#id5" title="永久链接至标题">#</a></h3>
+<p>DocArray 是用于存储非结构化数据的数据结构工具包，是本次我们做跨模态应用的基础。通过这个小而精的入口，能友好地带你走进多模态、跨模态的世界。</p>
+<p>DocArray 的亮点在于 Hierarchy + Nested。DocArray 有不同的层级结构，分层存储，第一层可以是一个整体的视频，第二层是该视频的不同镜头，第三层可以是镜头的某一帧。也可以是其他模态，比如第四层存储台词段落，第五层存储 ..... 既可以通过某个画面的描述搜索，也可以通过台词的意思去搜索，这样搜索的颗粒度，结构的多样性和结果的丰富度，都比传统文本检索好很多。</p>
+<p>此外，DocArray 的设计对于 Python 用户来说非常直观，不需要学习新的语法。它融合了 Json、Pandas、Numpy、Protobuf 的优点，更适用于数据科学家和深度学习工程师。</p>
+</div>
+<div class="section" id="id6">
+<h3>5.2 三个基本概念<a class="headerlink" href="#id6" title="永久链接至标题">#</a></h3>
+<p>DocArray 由三个简单的概念组成：</p>
+<ul class="simple">
+<li><p>Document：一种表示嵌套非结构化数据的数据结构，是 DocArray 的基本数据类型。无论是处理文本、图像、视频、音频、3D、表格 或它们的嵌套或组合，都可以用 Document 来表示，从而使得各类数据的结构都非常规整，方便后续处理</p></li>
+<li><p>DocumentArray：用于高效访问、处理和理解多个文档的容器，可以保存多个 Document 的列表</p></li>
+<li><p>Dataclass：用于直观表示多模式数据的高级API</p></li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h3>5.3 安装<a class="headerlink" href="#id7" title="永久链接至标题">#</a></h3>
+<p>3.x 版本的 Jina 已经包含了 DocArray，如果你用的是 3.x 的 Jina，可以跳过此步骤。如果你不清楚自己安装的版本号，可以在命令行里输入<code class="docutils literal notranslate"><span class="pre">jina</span> <span class="pre">-vf</span></code>来查看 Jina版本。</p>
+<p>由于本项目涉及的是视频搜索剪辑，所以这里重点介绍<strong>文本、图像和视频</strong>在 Jina 中是如何处理的。</p>
+</div>
+</div>
+<div class="section" id="id8">
+<h2>6. 文本处理<a class="headerlink" href="#id8" title="永久链接至标题">#</a></h2>
+<div class="section" id="id9">
+<h3>6.1 创建文本<a class="headerlink" href="#id9" title="永久链接至标题">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">jina</span> <span class="kn">import</span> <span class="n">Document</span>  <span class="c1"># 导包</span>
+
+<span class="c1"># 创建简单的文本数据</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;hello, world.&#39;</span><span class="p">)</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>  <span class="c1"># 通过text获取文本数据</span>
+<span class="c1"># 如果文本数据很大，或者自URI，可以先定义URI，然后将文本加载到文档中</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="n">uri</span><span class="o">=</span><span class="s1">&#39;https://www.w3.org/History/19921103-hypertext/hypertext/README.html&#39;</span><span class="p">)</span>
+<span class="n">d</span><span class="o">.</span><span class="n">load_uri_to_text</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+<span class="c1"># 支持多语言</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;👋	नमस्ते दुनिया!	你好世界！こんにちは世界！	Привет мир!&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id10">
+<h3>6.2 切割文本<a class="headerlink" href="#id10" title="永久链接至标题">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">jina</span> <span class="kn">import</span> <span class="n">Document</span>  <span class="c1"># 导包</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;👋	नमस्ते दुनिया!	你好世界！こんにちは世界！	Привет мир!&#39;</span><span class="p">)</span>
+<span class="n">d</span><span class="o">.</span><span class="n">chunks</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">Document</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;!&#39;</span><span class="p">)])</span>  <span class="c1"># 按&#39;!&#39;分割</span>
+<span class="n">d</span><span class="o">.</span><span class="n">summary</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="textndarray">
+<h3>6.3 text、ndarray 互转<a class="headerlink" href="#textndarray" title="永久链接至标题">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">jina</span> <span class="kn">import</span> <span class="n">DocumentArray</span><span class="p">,</span> <span class="n">Document</span>  <span class="c1"># 导包</span>
+
+<span class="c1"># DocumentArray 相当于一个 list，用于存放 Document</span>
+<span class="n">da</span> <span class="o">=</span> <span class="n">DocumentArray</span><span class="p">([</span><span class="n">Document</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;hello world&#39;</span><span class="p">),</span> 
+                    <span class="n">Document</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;goodbye world&#39;</span><span class="p">),</span>
+                    <span class="n">Document</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;hello goodbye&#39;</span><span class="p">)])</span>
+
+<span class="n">vocab</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">get_vocabulary</span><span class="p">()</span>  <span class="c1"># 输出：{&#39;hello&#39;: 2, &#39;world&#39;: 3, &#39;goodbye&#39;: 4}</span>
+
+<span class="c1"># 转为ndarray</span>
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">da</span><span class="p">:</span>
+    <span class="n">d</span><span class="o">.</span><span class="n">convert_text_to_tensor</span><span class="p">(</span><span class="n">vocab</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># 转为tensor向量，max_length为向量最大值，可不设置</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">tensor</span><span class="p">)</span> 
+   
+ <span class="c1"># 输出结果：</span>
+ <span class="p">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">2</span> <span class="mi">3</span><span class="p">]</span> <span class="c1">#用这种方式简单将字符串转为向量</span>
+ <span class="p">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">4</span> <span class="mi">3</span><span class="p">]</span>
+ <span class="p">[</span><span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">2</span> <span class="mi">4</span><span class="p">]</span>
+ 
+ <span class="c1"># ndarray</span>
+ <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">da</span><span class="p">:</span>
+    <span class="n">d</span><span class="o">.</span><span class="n">convert_tensor_to_text</span><span class="p">(</span><span class="n">vocab</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+
+<span class="c1"># 输出结果：</span>
+<span class="n">hello</span> <span class="n">world</span>
+<span class="n">goodbye</span> <span class="n">world</span>
+<span class="n">hello</span> <span class="n">goodbye</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="demo">
+<h3>6.4 Demo: 简单的文本匹配<a class="headerlink" href="#demo" title="永久链接至标题">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">jina</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">DocumentArray</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="n">uri</span><span class="o">=</span><span class="s1">&#39;https://www.gutenberg.org/files/1342/1342-0.txt&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">load_uri_to_text</span><span class="p">()</span> <span class="c1"># 链接是傲慢与偏见的电子书，此处将电子书内容加载到 Document 中</span>
+<span class="n">da</span> <span class="o">=</span> <span class="n">DocumentArray</span><span class="p">(</span><span class="n">Document</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="n">s</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">strip</span><span class="p">())</span> <span class="c1"># 按照换行进行分割字符串</span>
+<span class="n">da</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">d</span><span class="p">:</span> <span class="n">d</span><span class="o">.</span><span class="n">embed_feature_hashing</span><span class="p">())</span>
+
+<span class="n">q</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">Document</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;she entered the room&#39;</span><span class="p">)</span> <span class="c1"># 要匹配的文本</span>
+    <span class="o">.</span><span class="n">embed_feature_hashing</span><span class="p">()</span>  <span class="c1"># 通过 hash 方法进行特征编码</span>
+    <span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">da</span><span class="p">,</span> <span class="n">limit</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">exclude_self</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;jaccard&#39;</span><span class="p">,</span> <span class="n">use_scipy</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># 找到五个与输入的文本最相似的句子</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">q</span><span class="o">.</span><span class="n">matches</span><span class="p">[:,</span> <span class="p">(</span><span class="s1">&#39;text&#39;</span><span class="p">,</span> <span class="s1">&#39;scores__jaccard&#39;</span><span class="p">)])</span> <span class="c1"># 输出对应的文本与 jaccard 相似性分数</span>
+
+<span class="c1"># 输出结果：</span>
+<span class="p">[[</span><span class="s1">&#39;staircase, than she entered the breakfast-room, and congratulated&#39;</span><span class="p">,</span> 
+<span class="s1">&#39;of the room.&#39;</span><span class="p">,</span> 
+<span class="s1">&#39;She entered the room with an air more than usually ungracious,&#39;</span><span class="p">,</span> 
+<span class="s1">&#39;entered the breakfast-room, where Mrs. Bennet was alone, than she&#39;</span><span class="p">,</span> 
+<span class="s1">&#39;those in the room.&#39;</span><span class="p">],</span> 
+<span class="p">[{</span><span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="mf">0.6</span><span class="p">,</span> <span class="s1">&#39;ref_id&#39;</span><span class="p">:</span> <span class="s1">&#39;f47f7448709811ec960a1e008a366d49&#39;</span><span class="p">},</span> 
+<span class="p">{</span><span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="mf">0.6666666666666666</span><span class="p">,</span> <span class="s1">&#39;ref_id&#39;</span><span class="p">:</span> <span class="s1">&#39;f47f7448709811ec960a1e008a366d49&#39;</span><span class="p">},</span> 
+<span class="p">{</span><span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="mf">0.6666666666666666</span><span class="p">,</span> <span class="s1">&#39;ref_id&#39;</span><span class="p">:</span> <span class="s1">&#39;f47f7448709811ec960a1e008a366d49&#39;</span><span class="p">},</span> 
+<span class="p">{</span><span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="mf">0.6666666666666666</span><span class="p">,</span> <span class="s1">&#39;ref_id&#39;</span><span class="p">:</span> <span class="s1">&#39;f47f7448709811ec960a1e008a366d49&#39;</span><span class="p">},</span> 
+<span class="p">{</span><span class="s1">&#39;value&#39;</span><span class="p">:</span> <span class="mf">0.7142857142857143</span><span class="p">,</span> <span class="s1">&#39;ref_id&#39;</span><span class="p">:</span> <span class="s1">&#39;f47f7448709811ec960a1e008a366d49&#39;</span><span class="p">}]]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id11">
+<h2>7. 图像处理<a class="headerlink" href="#id11" title="永久链接至标题">#</a></h2>
+<p>图像部分需要提前安装 Pillow 和 matplotlib 包。首先以下图为例，进行图像部分的介绍：</p>
+<p><img alt="apple" src="../_images/apple.png" /></p>
+<div class="section" id="tensor">
+<h3>7.1 读取图片并转为 tensor<a class="headerlink" href="#tensor" title="永久链接至标题">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">d</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="n">uri</span><span class="o">=</span><span class="s1">&#39;apple.png&#39;</span><span class="p">)</span>
+<span class="n">d</span><span class="o">.</span><span class="n">load_uri_to_image_tensor</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">tensor</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id12">
+<h3>7.2 进行简单的图像处理<a class="headerlink" href="#id12" title="永久链接至标题">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">jina</span> <span class="kn">import</span> <span class="n">Document</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">Document</span><span class="p">(</span><span class="n">uri</span><span class="o">=</span><span class="s1">&#39;apple.png&#39;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">load_uri_to_image_tensor</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">set_image_tensor_shape</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">224</span><span class="p">,</span> <span class="mi">224</span><span class="p">))</span>  <span class="c1"># 设置shape</span>
+    <span class="o">.</span><span class="n">set_image_tensor_normalization</span><span class="p">()</span>  <span class="c1"># 标准化</span>
+    <span class="o">.</span><span class="n">set_image_tensor_channel_axis</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>  <span class="c1"># 更改通道</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">tensor</span><span class="p">,</span> <span class="n">d</span><span class="o">.</span><span class="n">tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># 你可以使用 save_image_tensor_to_file 将 tensor 转为图像。当然，因为做了预处理，图片返回时损失了很多信息。</span>
+<span class="n">d</span><span class="o">.</span><span class="n">save_image_tensor_to_file</span><span class="p">(</span><span class="s1">&#39;apple-proc.png&#39;</span><span class="p">,</span> <span class="n">channel_axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># 因为前面进行了预处理，channel_axis应该设为0</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id13">
+<h3>7.3 读取图像集<a class="headerlink" href="#id13" title="永久链接至标题">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">jina</span> <span class="kn">import</span> <span class="n">DocumentArray</span>
+
+<span class="n">da</span> <span class="o">=</span> <span class="n">DocumentArray</span><span class="o">.</span><span class="n">from_files</span><span class="p">(</span><span class="s1">&#39;Downloads/*.jpg&#39;</span><span class="p">)</span>  <span class="c1"># 从Downloads文件夹中读取所有的jpg文件，在这里你应该根据自己的路径设置</span>
+<span class="n">da</span><span class="o">.</span><span class="n">plot_image_sprites</span><span class="p">(</span><span class="s1">&#39;sprite-img.png&#39;</span><span class="p">)</span>  <span class="c1"># 使用 plot_image_sprites 绘制图片集图片，如下图</span>
+</pre></div>
+</div>
+<p><img alt="sprite-img" src="../_images/sprite-img.png" /></p>
+</div>
+<div class="section" id="id14">
+<h3>7.4 切割大型图像<a class="headerlink" href="#id14" title="永久链接至标题">#</a></h3>
+<p>由于大型复杂图像包含了太多的元素和信息，难以定义搜索问题，因此很难对其进行搜索。</p>
+<p>以下图为例，如果要对图像进行分析，首先就需要切割图像。这里使用滑动窗口来切割图像。</p>
+<p><img alt="complicated-image" src="../_images/complicated-image.jpeg" /></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">jina</span> <span class="kn">import</span> <span class="n">Document</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="n">uri</span><span class="o">=</span><span class="s1">&#39;complicated-image.jpeg&#39;</span><span class="p">)</span>
+<span class="n">d</span><span class="o">.</span><span class="n">load_uri_to_image_tensor</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="n">d</span><span class="o">.</span><span class="n">convert_image_tensor_to_sliding_windows</span><span class="p">(</span><span class="n">window_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">))</span>  <span class="c1"># 使用 64*64 的滑窗切割原图像，切分出 12*15=180 个图像张量</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+
+<span class="c1"># 可以通过 as_chunks=True，使得上述 180 张图片张量添加到 Document 块中。</span>
+<span class="c1"># PS：运行这行代码时，需要重新 load image tensor，否则会报错。</span>
+<span class="n">d</span><span class="o">.</span><span class="n">convert_image_tensor_to_sliding_windows</span><span class="p">(</span><span class="n">window_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">),</span> <span class="n">as_chunks</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">chunks</span><span class="p">)</span>
+
+<span class="n">d</span><span class="o">.</span><span class="n">chunks</span><span class="o">.</span><span class="n">plot_image_sprites</span><span class="p">(</span><span class="s1">&#39;simpsons-chunks.png&#39;</span><span class="p">)</span>  <span class="c1"># 使用 plot_image_sprites 将各个 chunk 绘制成图片集图片</span>
+</pre></div>
+</div>
+<p><img alt="simpsons-chunks" src="../_images/simpsons-chunks.png" /></p>
+<p>因为采用了滑动窗口扫描整个图像，使用了默认的 stride，切分后的图像不会有重叠，所以重新绘制出的图和原图差别不大。你也可以通过设置 strides 参数进行过采样。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">d</span><span class="o">.</span><span class="n">convert_image_tensor_to_sliding_windows</span><span class="p">(</span><span class="n">window_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">64</span><span class="p">),</span> <span class="n">strides</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">as_chunks</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">d</span><span class="o">.</span><span class="n">chunks</span><span class="o">.</span><span class="n">plot_image_sprites</span><span class="p">(</span><span class="s1">&#39;simpsons-chunks-stride-10.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="id15">
+<h2>8. 视频处理<a class="headerlink" href="#id15" title="永久链接至标题">#</a></h2>
+<div class="section" id="id16">
+<h3>8.1 视频导入和切分<a class="headerlink" href="#id16" title="永久链接至标题">#</a></h3>
+<p>视频需要依赖 av 包。首先，使用 <code class="docutils literal notranslate"><span class="pre">load_uri_to_video_tensor</span></code> 导入视频。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">jina</span> <span class="kn">import</span> <span class="n">Document</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="n">uri</span><span class="o">=</span><span class="s1">&#39;toy.mp4&#39;</span><span class="p">)</span>
+<span class="n">d</span><span class="o">.</span><span class="n">load_uri_to_video_tensor</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>相较于图像，视频是一个 4 维数组，第一维表示视频帧 id 或是视频的时间，剩下的三维则和图像一致。</p>
+<p>举个例子，假设 d.tensor.shape=（250，176，320，3），视频总长度 10s。说明视频大小为 176x320，包含 250 帧。从而推断出，帧速率约为 250/10=25fps。</p>
+<p>可以使用 append 方法将 Document 放入 chunk 中：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">d</span><span class="o">.</span><span class="n">tensor</span><span class="p">:</span>
+    <span class="n">d</span><span class="o">.</span><span class="n">chunks</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Document</span><span class="p">(</span><span class="n">tensor</span><span class="o">=</span><span class="n">b</span><span class="p">))</span>
+
+<span class="n">d</span><span class="o">.</span><span class="n">chunks</span><span class="o">.</span><span class="n">plot_image_sprites</span><span class="p">(</span><span class="s1">&#39;mov.png&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id17">
+<h3>8.2 关键帧提取<a class="headerlink" href="#id17" title="永久链接至标题">#</a></h3>
+<p>我们从视频中提取的图像，很多都是冗余的，可以使用 <code class="docutils literal notranslate"><span class="pre">only_keyframes</span></code> 这个参数来提取关键帧：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">docarray</span> <span class="kn">import</span> <span class="n">Document</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="n">Document</span><span class="p">(</span><span class="n">uri</span><span class="o">=</span><span class="s1">&#39;toy.mp4&#39;</span><span class="p">)</span>
+<span class="n">d</span><span class="o">.</span><span class="n">load_uri_to_video_tensor</span><span class="p">(</span><span class="n">only_keyframes</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">d</span><span class="o">.</span><span class="n">tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="id18">
+<h3>8.3 张量转存为视频<a class="headerlink" href="#id18" title="永久链接至标题">#</a></h3>
+<p>可以使用 <code class="docutils literal notranslate"><span class="pre">save_video_tensor_to_file</span></code> 进行视频的保存</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">docarray</span> <span class="kn">import</span> <span class="n">Document</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">Document</span><span class="p">(</span><span class="n">uri</span><span class="o">=</span><span class="s1">&#39;toy.mp4&#39;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">load_uri_to_video_tensor</span><span class="p">()</span>  <span class="c1"># 读取视频</span>
+    <span class="o">.</span><span class="n">save_video_tensor_to_file</span><span class="p">(</span><span class="s1">&#39;60fps.mp4&#39;</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>  <span class="c1"># 将其保存为60fps的视频</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="executor">
+<h2>9. Executor<a class="headerlink" href="#executor" title="永久链接至标题">#</a></h2>
+<p>前面我们提到 Executor 可以看作一个 python 类，用于在 DocumentArray 上执行一系列任务，如第 4 节快速开始中我们使用的方式一样，在 Executor 中我们可以将具体的业务逻辑进行封装得到一个服务。除了直接方法方式的调用，Executor 提供了路由的方式来帮助你不需要知道服务的具体逻辑就可以调用，类似于前后端分离的网站，前端通过 /index 这种形式对后端接口进行访问，后端程序收到请求后对其进行解析，并根据路由规则将该请求传递到指定的方法中执行。在 Jina 中是通过 requests 装饰器实现的。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyExecutor</span><span class="p">(</span><span class="n">Executor</span><span class="p">):</span>
+    <span class="nd">@requests</span>
+    <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="nd">@requests</span><span class="p">(</span><span class="n">on</span><span class="o">=</span><span class="s1">&#39;/index&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>上面的例子中就是一个 request 装饰器的例子，在一个 Executor 的方法中默认可以指定 <code class="docutils literal notranslate"><span class="pre">&#64;request(on=&quot;&quot;)</span></code> 参数，其中 on 后面接的字符串就是该方法绑定的路由，而且可以看到在 foo 方法中并没有 on 这个参数，此时就是默认路由，当请求找不到对应的路由时会执行该方法。</p>
+</div>
+<div class="section" id="flow">
+<h2>10. Flow<a class="headerlink" href="#flow" title="永久链接至标题">#</a></h2>
+<p>一个 Flow 可以理解为一系列任务的协调器，通过 add 方法可以将多个 Executor 串成一套执行逻辑。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">jina</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">DocumentArray</span><span class="p">,</span> <span class="n">Flow</span><span class="p">,</span> <span class="n">Executor</span><span class="p">,</span> <span class="n">requests</span>
+
+<span class="k">class</span> <span class="nc">FooExecutor</span><span class="p">(</span><span class="n">Executor</span><span class="p">):</span>
+    <span class="nd">@requests</span>
+    <span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">docs</span><span class="p">:</span> <span class="n">DocumentArray</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">docs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Document</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;foo was here&#39;</span><span class="p">))</span>
+
+
+<span class="k">class</span> <span class="nc">BarExecutor</span><span class="p">(</span><span class="n">Executor</span><span class="p">):</span>
+    <span class="nd">@requests</span>
+    <span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">docs</span><span class="p">:</span> <span class="n">DocumentArray</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">docs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Document</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;bar was here&#39;</span><span class="p">))</span>
+
+
+<span class="n">f</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">Flow</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">uses</span><span class="o">=</span><span class="n">FooExecutor</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;fooExecutor&#39;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">uses</span><span class="o">=</span><span class="n">BarExecutor</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;barExecutor&#39;</span><span class="p">)</span>
+<span class="p">)</span>  <span class="c1"># 创建一个空的 Flow</span>
+
+<span class="k">with</span> <span class="n">f</span><span class="p">:</span>  <span class="c1"># 启动 Flow</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">post</span><span class="p">(</span>
+        <span class="n">on</span><span class="o">=</span><span class="s1">&#39;/&#39;</span>
+    <span class="p">)</span> <span class="c1"># 向 flow 发送一个请求</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">texts</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>除了上面我们用 grpc 进行通信外，我们还可以使用纯 python 的方式对 Flow 进行调用，例如在上面我们定义了两个 Executor，分别是 FooExecutor 与 BarExecutor，并将这两个 Executor 添加到了同一个 Flow 中，通过 with 方法启动 Flow 并用 post 方法对 Flow 发送一个请求，最终程序会返回 <code class="docutils literal notranslate"><span class="pre">['foo</span> <span class="pre">was</span> <span class="pre">here',</span> <span class="pre">'bar</span> <span class="pre">was</span> <span class="pre">here']</span></code>。</p>
+<p>但是通过 YAML 方式将 Executor 和 Flow 分开有以下优点：</p>
+<ul class="simple">
+<li><p>服务器上的数据流是非阻塞和异步的，当 Executor 处于空闲状态时，会立即处理新的请求。</p></li>
+<li><p>必要时会自动添加负载平衡，以确保最大吞吐量。</p></li>
+</ul>
+<hr class="docutils" />
+<p>对 Jina 感兴趣的同学可以继续学习 <span class="xref myst">jina demo</span> 或者去 <a class="reference external" href="https://github.com/jina-ai">GitHub</a> 与 <a class="reference external" href="http://Jina.ai">Jina 官方文档</a> 去学习更多与 Jina 有关的知识。</p>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="index.html" title="上一页 页">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">上一页</p>
+            <p class="prev-next-title">User Guide</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="CLIP/index.html" title="下一页 页">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title">CLIP简介</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2022, VCED.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.2.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

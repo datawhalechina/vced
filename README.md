@@ -8,11 +8,11 @@
   <a href="https://linklearner.com/"><img src="https://img.shields.io/website?url=https%3A%2F%2Flinklearner.com%2F%23%2F" alt="DataWhale Website"></a>
 
   <h3 align="center">
-    <a href="https://linklearner.com/">Website</a>
-    <span> | </span>
+    <a href="https://linklearner.com/">Datawhale Website</a>
+    <br/>
     <a href="https://linklearner.com/">Docs</a>
     <span> | </span>
-    <a href="https://linklearner.com/">Contribute</a>
+    <a href="https://github.com/datawhalechina/vced#%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE">Contribute</a>
   </h3>
 
 </div>
@@ -24,7 +24,7 @@ VCED 可以通过你的文字描述来自动识别视频中相符合的片段进
 
 ----------------------------------------
 
-[QuickStart](https://github.com/datawhalechina/vced#quickstart) - [项目结构](https://github.com/datawhalechina/vced#%E6%96%87%E6%A1%A3) - [文档](https://github.com/datawhalechina/vced#%E6%96%87%E6%A1%A3) - [Roadmap](https://github.com/datawhalechina/vced#roadmap) - [反馈](https://github.com/datawhalechina/vced#%E5%8F%8D%E9%A6%88) - [参与贡献](https://github.com/datawhalechina/vced#%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE) - [关注我们](https://github.com/datawhalechina/vced#%E5%85%B3%E6%B3%A8%E6%88%91%E4%BB%AC) - [License](https://github.com/datawhalechina/vced#license)
+[QuickStart](https://github.com/datawhalechina/vced#quickstart) - [项目结构](https://github.com/datawhalechina/vced#%E6%96%87%E6%A1%A3) - [文档](https://github.com/datawhalechina/vced#%E6%96%87%E6%A1%A3) - [Learning Roadmap](https://github.com/SuperSupeng/vced/blob/4387bbeaf7c66cf03532ef64617a8877481dad0d/Roadmap.md) - [反馈](https://github.com/datawhalechina/vced#%E5%8F%8D%E9%A6%88) - [参与贡献](https://github.com/datawhalechina/vced#%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE) - [关注我们](https://github.com/datawhalechina/vced#%E5%85%B3%E6%B3%A8%E6%88%91%E4%BB%AC) - [License](https://github.com/datawhalechina/vced#license)
 
 ----------------------------
 
@@ -57,7 +57,7 @@ docker-compose up -d
 2. 安装 rust, ffmpeg, rust
 3. 安装 clip `pip install git+https://github.com/openai/CLIP.git`
 
-*Jina 暂不支持在 Windows 安装，如需在 Windows 上安装 Jina 请通过 WSL 方式，详情：[Jina 轻松学 —— Windows中安装Jina](https://blog.csdn.net/Jina_AI/article/details/122820646)*
+*Jina 暂不支持在 Windows 安装，如需在 Windows 上安装 Jina 请通过 WSL 方式，详情见：[Jina 轻松学 —— Windows中安装Jina](https://blog.csdn.net/Jina_AI/article/details/122820646)*
 
 #### 启动 server
 
@@ -94,11 +94,12 @@ Streamlit默认启动的端口为8501，也可以通过 `localhost:8501` 进行�
         ├── customIndexer   (创建向量数据的索引)
         ├── videoLoader     (对上传的视频进行处理)
         ├── workspace       (用于存储生成的向量数据)
-        ├── app.py          (后端主程序)                                                       ├── code/web
+        ├── app.py          (后端主程序)                                                       
+    ├── code/web
         ├── data            (用于存储上传的视频)
         │   ├── videos      (用于存储简介好的视频片段)
         ├── app.py          (前端主程序)  
-	├── Dockerfile                                                     
+	  ├── Dockerfile                                                     
     ├── requirements.txt  
 ```
 
@@ -115,10 +116,12 @@ pip install -r requirements.txt
 make html
 ```
 
-然后就可以在`public`文件夹下双击`index.html`即可看到文档
+然后就可以在`public`文件夹下双击`index.html`即可看到文档，如下所示
+![homepage](./pics/homepage.png)
 
-## Roadmap
-[Roadmap](https://github.com/datawhalechina/vced/blob/main/Roadmap.md)
+## Learning Roadmap
+
+内容学习路线详见：[Roadmap](https://github.com/datawhalechina/vced/blob/main/Roadmap.md)
 
 ## 反馈
 
@@ -135,8 +138,8 @@ make html
 | 姓名 | 职责 | 简介 |
 | :----| :---- | :---- |
 | [苏鹏](https://github.com/SuperSupeng) | 项目负责人 | [https://linktr.ee/subranium](https://linktr.ee/subranium) |
-| [十一](https://github.com/sshimii) | Jina 教程内容贡献者 |  |
-| [席颖](https://github.com/xiying-boy) | Jina 教程内容贡献者 |  |
+| [十一](https://github.com/sshimii) | Jina 教程内容贡献者 | [Github]((https://github.com/sshimii)) |
+| [席颖](https://github.com/xiying-boy) | Jina 教程内容贡献者 | [Github](https://github.com/xiying-boy) |
 | [范致远](https://github.com/Elvisambition) | 跨模态模型教程内容贡献者 | [Github](https://github.com/Richard-Bian) |
 | [崔腾松](https://github.com/2951121599) | 项目后端教程内容贡献者 | [CSDN](https://blog.csdn.net/liluo_2951121599) |
 | [韩颐堃](https://github.com/YikunHan42) |项目后端教程内容贡献者 | [Homepage](https://yikunhan.me/) |

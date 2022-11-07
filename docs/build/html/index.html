@@ -1,0 +1,244 @@
+
+<!DOCTYPE html>
+
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VCED &#8212; VCED项目文档</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="搜索" href="search.html" />
+    <link rel="next" title="User Guide" href="user_guide/index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="zh">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="#">
+<p class="title">VCED</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="user_guide/index.html">
+  User Guide
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/datawhalechina/vced" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   VCED 是如何工作的
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="vced">
+<h1>VCED<a class="headerlink" href="#vced" title="永久链接至标题">#</a></h1>
+<p>VCED: Video Clip Extraction by description</p>
+<p>该项目可以通过文字描述来自动识别视频中相符合的片段进行视频剪辑，通过跨模态模型与向量检索，结合前后端分离的模式，帮助你快速接触新一代搜索技术。</p>
+<div class="section" id="id1">
+<h2>VCED 是如何工作的<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h2>
+<p>VCED 项目的核心逻辑是通过多模态模型 CLIP 实现的，具体结构如下图所示：</p>
+<p><img alt="CLIP" src="_images/CLIP.png" />
+图片源自：《<a class="reference external" href="https://arxiv.org/pdf/2103.00020.pdf">Learning transferable visual models from natural language supervision</a>》</p>
+<ul class="simple">
+<li><p>首先将输入的文本通过 Text Encoder 进行 encoding，将文本转换为高维向量（embedding）。</p></li>
+<li><p>其次将上传的视频通过 Image Encoder 进行 encoding，一般上传的视频会通过抽取关键帧的方式对内容进行提取，最终将上传的视频提取为多个图像，并对提起的关键帧转化为高维向量（embedding）。Text/Image Encoder 根据业务需要的不同可以选择不同的 AI 模型</p></li>
+<li><p>跨模态模型的目的是将文本生成的向量数据与关键帧生成的向量数据映射到同一高维空间下，并使得文本描述与关键帧相符合的向量之间的距离尽可能的近</p></li>
+<li><p>再将得到的高维向量进行存储，因为数据量可能较大，一般业务上会采用索引的方式来快速的对向量数据进行检索，常用的索引方法比如 PQ 算法，HNSW 算法等</p></li>
+<li><p>最后输入一段文本后就可以用相同的方法将生成的向量与存储的向量进行比对，判断哪些向量之间的距离比较近，得到一个相似性分数，即可以找到离文本描述最相似的关键帧，再对原视频进行定位，最终找到相似的视频片段</p></li>
+</ul>
+<p>为了实现以上几个步骤，在本项目中引入了以下组件：</p>
+<ul class="simple">
+<li><p>为了解决如何对视频进行关键帧提取的问题，我们使用到了 ffmpeg，对应的实现方法在 <a class="reference external" href="https://github.com/datawhalechina/vced/blob/709de9a0a0ce6a0b534c243c5bb58e00a08c6379/code/service/videoLoader/video_loader.py">videoLoader</a> 中</p></li>
+<li><p>为了解决如何将文本与图像转换为向量的问题，我们使用到了 jina 的 DocArray，对应处理文本的方法在 <a class="reference external" href="https://github.com/datawhalechina/vced/blob/709de9a0a0ce6a0b534c243c5bb58e00a08c6379/code/service/customClipText/clip_text.py">customClipText</a> 中，对应处理图像的方法在 <a class="reference external" href="https://github.com/datawhalechina/vced/blob/709de9a0a0ce6a0b534c243c5bb58e00a08c6379/code/service/customClipImage/clip_image.py">customClipImage</a> 中</p></li>
+<li><p>为了解决如何将生成的向量数据存储以及检索的问题，我们使用到了 jina 自带的向量搜索方法，对应的实现方法在 <a class="reference external" href="https://github.com/datawhalechina/vced/blob/709de9a0a0ce6a0b534c243c5bb58e00a08c6379/code/service/customIndexer/executor.py">customIndexer</a> 中</p></li>
+<li><p>为了解决前端显示的问题，我们使用到了 <a class="reference external" href="https://streamlit.io/">Streamlit</a> 框架实现前端效果，对应的实现方法在 <a class="reference external" href="https://github.com/datawhalechina/vced/blob/709de9a0a0ce6a0b534c243c5bb58e00a08c6379/code/web/app.py">web/app.py</a> 中</p></li>
+</ul>
+<p>在了解了本项目的逻辑后就让我们对这些组件进行进一步介绍，希望能够激发你更多的创造灵感😁</p>
+<blockquote>
+<div><p>本项目仅仅实现了一些基础的功能，还有许多可以完善的地方，下面就简单的列一些可以完善的点供你参考：<br/></p>
+<ol class="arabic simple">
+<li><p>目前向量检索使用的是最简单的暴力搜索，所以向量检索花费的时间很慢，这里可以优化</p></li>
+<li><p>目前跨模态模型这里使用了比较大众的模型，文本与视频的匹配度有待提升</p></li>
+<li><p>目前 VCED 项目仅能够处理对单个视频的检索，需要对项目改造来实现对多个视频片段的检索<br/></p></li>
+</ol>
+<p>还有许多地方可以完善，或者将这个项目扩充更多的功能，欢迎你发挥聪明才智作出更令人惊艳的作品🥰</p>
+</div></blockquote>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/index.html">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/jina.html">Jina</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/CLIP/index.html">CLIP简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Frontend/index.html">项目前端介绍</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/Backend/index.html">项目后端简介</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='right-next' id="next-link" href="user_guide/index.html" title="下一页 页">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title">User Guide</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2022, VCED.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.2.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>
