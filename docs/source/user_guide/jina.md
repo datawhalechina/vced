@@ -14,7 +14,7 @@ Document、Executor 和 Flow 是 Jina 的三个基本概念。
 
 ## 3. 安装 Jina
 
-安装 Jina 需要 Python3.7 及以上版本
+**安装 Jina 需要 Python3.7 及以上版本**
 
 ```python
 # via pypi
@@ -400,4 +400,4 @@ with f:  # 启动 Flow
 
 ---
 
-对搭建多模态、跨模态系统感兴趣的同学可自行去 [GitHub](https://github.com/jina-ai) 与 [Jina 官方文档](http://Jina.ai) 去学习更多与 Jina 有关的知识。
+对 Jina 感兴趣的同学可以继续学习 [jina demo](./../../../code/jina_demo) 或者去 [GitHub](https://github.com/jina-ai) 与 [Jina 官方文档](http://Jina.ai) 去学习更多与 Jina 有关的知识。

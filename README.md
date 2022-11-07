@@ -57,6 +57,8 @@ docker-compose up -d
 2. 安装 rust, ffmpeg, rust
 3. 安装 clip `pip install git+https://github.com/openai/CLIP.git`
 
+*Jina 暂不支持在 Windows 安装，如需在 Windows 上安装 Jina 请通过 WSL 方式，详情：[Jina 轻松学 —— Windows中安装Jina](https://blog.csdn.net/Jina_AI/article/details/122820646)*
+
 #### 启动 server
 
 ```bash
