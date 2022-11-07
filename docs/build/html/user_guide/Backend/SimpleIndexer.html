@@ -1,0 +1,844 @@
+
+<!DOCTYPE html>
+
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SimpleIndexer &#8212; VCED项目文档</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="prev" title="CustomClipImage" href="CustomClipImage.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="zh">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../../index.html">
+<p class="title">VCED</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  User Guide
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/datawhalechina/vced" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../jina.html">
+   Jina
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../CLIP/index.html">
+   CLIP简介
+  </a>
+  <input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../CLIP/CLIP.html">
+     CLIP 模型
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../CLIP/Jina-Multimodal-Crossmodal.html">
+     多模态和跨模态应用：新的交互方式
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Frontend/index.html">
+   项目前端介绍
+  </a>
+  <input checked class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Frontend/Streamlit.html">
+     Streamlit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Frontend/Frontend.html">
+     VCED UI 构建
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   项目后端简介
+  </a>
+  <input checked class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="VideoLoader.html">
+     VideoLoader
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="CustomClipText.html">
+     CustomClipText
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="CustomClipImage.html">
+     CustomClipImage
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     SimpleIndexer
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   逻辑结构图
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   基础实现
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#yaml">
+     YAML配置
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     导入第三方库
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     类初始化
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     创建索引
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     神经搜索
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     多个片段获取
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     最大查找
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     单一范围框定
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     匹配计算
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     静态方法
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id12">
+   进阶延展
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#gpucpu">
+     GPU引入及与CPU协同
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id13">
+     向量搜索
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jina-hub">
+     Jina Hub的使用
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id14">
+   参考资料
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="simpleindexer">
+<h1>SimpleIndexer<a class="headerlink" href="#simpleindexer" title="永久链接至标题">#</a></h1>
+<div class="section" id="id1">
+<h2>逻辑结构图<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h2>
+<p><img alt="process" src="../../_images/process.png" /></p>
+</div>
+<div class="section" id="id2">
+<h2>基础实现<a class="headerlink" href="#id2" title="永久链接至标题">#</a></h2>
+<p>注：<strong>Python教程按照代码顺序撰写，但是由于存在较为复杂的互相调用，建议结合逻辑结构图理解</strong>。</p>
+<div class="section" id="yaml">
+<h3>YAML配置<a class="headerlink" href="#yaml" title="永久链接至标题">#</a></h3>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">jtype</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">SimpleIndexer</span>
+<span class="nt">with</span><span class="p">:</span>
+  <span class="nt">match_args</span><span class="p">:</span> 
+    <span class="nt">limit</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">$TOP_K</span>
+    <span class="nt">traversal_rdarray</span><span class="p">:</span> <span class="s">&#39;c&#39;</span>
+<span class="nt">metas</span><span class="p">:</span>
+  <span class="nt">py_modules</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">executor.py</span>
+  <span class="nt">workspace</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">workspace/</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">limit</span></code>即片段获取章节中的<code class="docutils literal notranslate"><span class="pre">maxCount</span></code>。</p>
+</div>
+<div class="section" id="id3">
+<h3>导入第三方库<a class="headerlink" href="#id3" title="永久链接至标题">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">inspect</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="kn">from</span> <span class="nn">jina</span> <span class="kn">import</span> <span class="n">DocumentArray</span><span class="p">,</span> <span class="n">Executor</span><span class="p">,</span> <span class="n">requests</span>
+<span class="kn">from</span> <span class="nn">jina.logging.logger</span> <span class="kn">import</span> <span class="n">JinaLogger</span>
+<span class="kn">import</span> <span class="nn">clip</span>
+<span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">Tensor</span>
+<span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">time</span>
+</pre></div>
+</div>
+<p>inspect库用于获取对象信息，帮助校验类的内容。</p>
+</div>
+<div class="section" id="id4">
+<h3>类初始化<a class="headerlink" href="#id4" title="永久链接至标题">#</a></h3>
+<p>基本概念理解：</p>
+<ul class="simple">
+<li><p>Executor是Jina处理Document的载体</p></li>
+<li><p>Flow是Jina使得Executor提效和缩放（可以使用于大规模数据）的工具</p></li>
+</ul>
+<p>引入Executor的好处：</p>
+<ul class="simple">
+<li><p>使不同基于DocumentArray的函数都可以遵从同一个配置状态（<strong>与OOP的思想相同</strong>）</p></li>
+<li><p>让函数可以跟Flow适配</p></li>
+<li><p>Flow中的Executor可以同时对多个DocumentArrays进行处理，并且能够快捷部署上云</p></li>
+<li><p>可以被容器化，并通过<code class="docutils literal notranslate"><span class="pre">jina</span> <span class="pre">hub</span> <span class="pre">push/pull</span></code>的方式实现共享</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SimpleIndexer</span><span class="p">(</span><span class="n">Executor</span><span class="p">):</span>
+
+    <span class="n">FILE_NAME</span> <span class="o">=</span> <span class="s1">&#39;index.db&#39;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">pretrained_model_name_or_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;ViT-B/32&#39;</span><span class="p">,</span>
+        <span class="n">match_args</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="n">table_name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;simple_indexer_table2&#39;</span><span class="p">,</span>
+        <span class="n">traversal_right</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;@r&#39;</span><span class="p">,</span>
+        <span class="n">traversal_left</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;@r&#39;</span><span class="p">,</span>
+        <span class="n">device</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;cpu&#39;</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>参数解释：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pretrained_model_name_or_path</span></code>：预训练的模型使用Vision Transformer-Base/32, input batch size为32*32，不同architecture参见下图
+<img alt="architecture" src="https://miro.medium.com/max/1058/1*mpOMDF0UOsSftEf9kLa2NQ.png" /></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">match_args</span></code>：DocumentArray匹配函数的参数</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">table_name</span></code>：数据库表名</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">traversal_right</span></code>：索引对应DocumentArray默认的遍历路径</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">traversal_left</span></code>：搜索对应DocumentArray默认的遍历路径</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">device</span></code>：预处理设备</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="bp">self</span><span class="o">.</span><span class="n">_match_args</span> <span class="o">=</span> <span class="n">match_args</span> <span class="ow">or</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">=</span> <span class="n">DocumentArray</span><span class="p">(</span>
+            <span class="n">storage</span><span class="o">=</span><span class="s1">&#39;sqlite&#39;</span><span class="p">,</span>
+            <span class="n">config</span><span class="o">=</span><span class="p">{</span>
+                <span class="s1">&#39;connection&#39;</span><span class="p">:</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">workspace</span><span class="p">,</span> <span class="n">SimpleIndexer</span><span class="o">.</span><span class="n">FILE_NAME</span><span class="p">),</span>
+                <span class="s1">&#39;table_name&#39;</span><span class="p">:</span> <span class="n">table_name</span><span class="p">,</span>
+            <span class="p">},</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">logger</span> <span class="o">=</span> <span class="n">JinaLogger</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">metas</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">default_traversal_right</span> <span class="o">=</span> <span class="n">traversal_right</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">default_traversal_left</span> <span class="o">=</span> <span class="n">traversal_left</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">pretrained_model_name_or_path</span> <span class="o">=</span> <span class="n">pretrained_model_name_or_path</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">device</span> <span class="o">=</span> <span class="n">device</span>
+
+        <span class="n">model</span><span class="p">,</span> <span class="n">preprocessor</span> <span class="o">=</span> <span class="n">clip</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pretrained_model_name_or_path</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">preprocessor</span> <span class="o">=</span> <span class="n">preprocessor</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">table_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index</span><span class="o">.</span><span class="n">_table_name</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">storage</span></code>：存储数据库格式</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">connection</span></code>：database对应路径</p></li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h3>创建索引<a class="headerlink" href="#id5" title="永久链接至标题">#</a></h3>
+<p>&#64;requests方法：</p>
+<ul class="simple">
+<li><p>被装饰的方法在提供服务时被映射到网络端点上，与特殊网络请求相结合，并且需要对网络搜索做出响应</p></li>
+<li><p>可选的参数<code class="docutils literal notranslate"><span class="pre">on=</span></code>类似nodejs中的路由概念，将Executor中被装饰的方法与指定路径相绑定</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="nd">@requests</span><span class="p">(</span><span class="n">on</span><span class="o">=</span><span class="s1">&#39;/index&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">index</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">docs</span><span class="p">:</span> <span class="s1">&#39;DocumentArray&#39;</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">docs</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_index</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
+        <span class="n">t2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">t2</span> <span class="o">-</span> <span class="n">t1</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">t1</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">t2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">docs</span></code>统一以DocumentArray的类型存储，并添加到索引之中。</p>
+</div>
+<div class="section" id="id6">
+<h3>神经搜索<a class="headerlink" href="#id6" title="永久链接至标题">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="nd">@requests</span><span class="p">(</span><span class="n">on</span><span class="o">=</span><span class="s1">&#39;/search&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">search</span><span class="p">(</span>
+        <span class="bp">self</span><span class="p">,</span>
+        <span class="n">docs</span><span class="p">:</span> <span class="s1">&#39;DocumentArray&#39;</span><span class="p">,</span>
+        <span class="n">parameters</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="p">):</span>
+        
+        <span class="n">match_args</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="p">{</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_match_args</span><span class="p">,</span> <span class="o">**</span><span class="n">parameters</span><span class="p">}</span>
+            <span class="k">if</span> <span class="n">parameters</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">_match_args</span>
+        <span class="p">)</span>
+
+        <span class="n">traversal_right</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+            <span class="s1">&#39;traversal_right&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_traversal_right</span>
+        <span class="p">)</span>
+        <span class="n">traversal_left</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;traversal_left&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_traversal_left</span><span class="p">)</span>
+        <span class="n">match_args</span> <span class="o">=</span> <span class="n">SimpleIndexer</span><span class="o">.</span><span class="n">_filter_match_params</span><span class="p">(</span><span class="n">docs</span><span class="p">,</span> <span class="n">match_args</span><span class="p">)</span>
+        <span class="c1"># print(&#39;in indexer&#39;,docs[traversal_left].embeddings.shape, self._index[traversal_right])</span>
+        <span class="n">texts</span><span class="p">:</span> <span class="n">DocumentArray</span> <span class="o">=</span> <span class="n">docs</span><span class="p">[</span><span class="n">traversal_left</span><span class="p">]</span>
+        <span class="n">stored_docs</span><span class="p">:</span> <span class="n">DocumentArray</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index</span><span class="p">[</span><span class="n">traversal_right</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>对参数进行初始化，texts和stored_docs即为demo中输入的文字和被抽帧视频对应的图片。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="n">doc_ids</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;doc_ids&quot;</span><span class="p">)</span>
+        <span class="n">t1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">inference_mode</span><span class="p">():</span>
+            <span class="n">t1_00</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">texts</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+                <span class="n">text_features</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">embedding</span>
+                <span class="n">text</span><span class="o">.</span><span class="n">embedding</span> <span class="o">=</span> <span class="kc">None</span>
+                <span class="k">for</span> <span class="n">sd</span> <span class="ow">in</span> <span class="n">stored_docs</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">doc_ids</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">sd</span><span class="o">.</span><span class="n">uri</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">doc_ids</span><span class="p">:</span>
+                        <span class="k">continue</span>
+                    <span class="n">images_features</span> <span class="o">=</span> <span class="n">sd</span><span class="o">.</span><span class="n">embedding</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;images len&#39;</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">images_features</span><span class="p">))</span>
+                    <span class="n">t1_0</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+                    <span class="n">tensor_images_features</span> <span class="o">=</span> <span class="p">[</span><span class="n">Tensor</span><span class="p">(</span><span class="n">image_features</span><span class="p">)</span> <span class="k">for</span> <span class="n">image_features</span> <span class="ow">in</span> <span class="n">images_features</span><span class="p">]</span>
+                    <span class="n">t1_1</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>对文本和图像分别进行embedding操作。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>                    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">image_features</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">tensor_images_features</span><span class="p">):</span>
+                        <span class="n">tensor</span> <span class="o">=</span> <span class="n">image_features</span>
+                        <span class="n">probs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">tensor</span><span class="p">,</span> <span class="n">text_features</span><span class="p">)</span>
+                        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                            <span class="s2">&quot;score&quot;</span><span class="p">:</span> <span class="n">probs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span>
+                            <span class="s2">&quot;index&quot;</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span>
+                            <span class="s2">&quot;uri&quot;</span><span class="p">:</span> <span class="n">sd</span><span class="o">.</span><span class="n">uri</span><span class="p">,</span>
+                            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="n">sd</span><span class="o">.</span><span class="n">id</span>
+                        <span class="p">})</span>
+                    <span class="n">t1_2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;tensor cost:&quot;</span><span class="p">,</span> <span class="n">t1_1</span> <span class="o">-</span> <span class="n">t1_0</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;part score cost:&quot;</span><span class="p">,</span> <span class="n">t1_2</span> <span class="o">-</span> <span class="n">t1_1</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">t1_0</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">t1_1</span><span class="p">)</span>
+                    <span class="nb">print</span><span class="p">(</span><span class="n">t1_2</span><span class="p">)</span>
+                <span class="n">t2</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;score cost:&#39;</span><span class="p">,</span> <span class="n">t2</span> <span class="o">-</span> <span class="n">t1</span><span class="p">)</span>
+                <span class="c1"># print(parameters, type(parameters.get(&quot;thod&quot;)))</span>
+</pre></div>
+</div>
+<p>通过<code class="docutils literal notranslate"><span class="pre">self.score</span></code>计算文本和图片的匹配度，同时创建对应索引。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>                <span class="n">_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getMultiRange</span><span class="p">(</span><span class="n">result</span><span class="p">,</span><span class="mf">0.1</span> <span class="k">if</span> <span class="n">parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;thod&quot;</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;thod&#39;</span><span class="p">)</span> <span class="p">)</span>
+                <span class="n">t3</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+                <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;range cost:&#39;</span><span class="p">,</span> <span class="n">t3</span> <span class="o">-</span> <span class="n">t2</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">t1</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">t1_00</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">t2</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">t3</span><span class="p">)</span>
+                <span class="c1"># print(index_list)</span>
+</pre></div>
+</div>
+<p>从<code class="docutils literal notranslate"><span class="pre">getMultiRange</span></code>中获取相似度阈值<code class="docutils literal notranslate"><span class="pre">thod</span></code>的取值。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>                <span class="n">docArr</span> <span class="o">=</span> <span class="n">DocumentArray</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">index_list</span><span class="p">))</span>
+                <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">doc</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">docArr</span><span class="p">):</span>
+                    <span class="n">doc</span><span class="o">.</span><span class="n">tags</span><span class="p">[</span><span class="s2">&quot;leftIndex&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">index_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;leftIndex&quot;</span><span class="p">]</span>
+                    <span class="n">doc</span><span class="o">.</span><span class="n">tags</span><span class="p">[</span><span class="s2">&quot;rightIndex&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">index_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;rightIndex&quot;</span><span class="p">]</span>
+                    <span class="c1"># print(index_list[i])</span>
+                    <span class="n">doc</span><span class="o">.</span><span class="n">tags</span><span class="p">[</span><span class="s2">&quot;maxImageScore&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">index_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;maxImage&quot;</span><span class="p">][</span><span class="s2">&quot;score&quot;</span><span class="p">])</span>
+                    <span class="n">doc</span><span class="o">.</span><span class="n">tags</span><span class="p">[</span><span class="s2">&quot;uri&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">index_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;maxImage&quot;</span><span class="p">][</span><span class="s2">&quot;uri&quot;</span><span class="p">]</span>
+                    <span class="n">doc</span><span class="o">.</span><span class="n">tags</span><span class="p">[</span><span class="s2">&quot;maxIndex&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">index_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;maxImage&quot;</span><span class="p">][</span><span class="s2">&quot;index&quot;</span><span class="p">]</span>
+                <span class="c1"># print(docArr)</span>
+                <span class="n">text</span><span class="o">.</span><span class="n">matches</span> <span class="o">=</span> <span class="n">docArr</span>
+</pre></div>
+</div>
+<p>对每段文本分别进行匹配，得出对应关系最优的图像。</p>
+</div>
+<div class="section" id="id7">
+<h3>多个片段获取<a class="headerlink" href="#id7" title="永久链接至标题">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">getMultiRange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">thod</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">maxCount</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">):</span>
+        <span class="n">ignore_range</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="n">index_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">maxCount</span><span class="p">):</span>
+            <span class="n">maxItem</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getNextMaxItem</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">ignore_range</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">maxItem</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="c1"># print(maxItem[&quot;score&quot;])</span>
+            <span class="n">leftIndex</span><span class="p">,</span> <span class="n">rightIndex</span><span class="p">,</span> <span class="n">maxImage</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getRange</span><span class="p">(</span><span class="n">maxItem</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">thod</span><span class="p">,</span> <span class="n">ignore_range</span><span class="p">)</span>
+            <span class="n">index_list</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s2">&quot;leftIndex&quot;</span><span class="p">:</span> <span class="n">leftIndex</span><span class="p">,</span>
+                <span class="s2">&quot;rightIndex&quot;</span><span class="p">:</span> <span class="n">rightIndex</span><span class="p">,</span>
+                <span class="s2">&quot;maxImage&quot;</span><span class="p">:</span> <span class="n">maxImage</span>
+            <span class="p">})</span>
+            <span class="k">if</span> <span class="n">maxImage</span><span class="p">[</span><span class="s2">&quot;uri&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">ignore_range</span><span class="p">:</span>
+                <span class="n">ignore_range</span><span class="p">[</span><span class="n">maxImage</span><span class="p">[</span><span class="s2">&quot;uri&quot;</span><span class="p">]]</span> <span class="o">+=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">leftIndex</span><span class="p">,</span> <span class="n">rightIndex</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">ignore_range</span><span class="p">[</span><span class="n">maxImage</span><span class="p">[</span><span class="s2">&quot;uri&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">leftIndex</span><span class="p">,</span> <span class="n">rightIndex</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="c1"># print(ignore_range)</span>
+        <span class="k">return</span> <span class="n">index_list</span>
+</pre></div>
+</div>
+<p>此处返回<code class="docutils literal notranslate"><span class="pre">maxCount</span></code>即10个视频片段，因需要避免镜头重复出现，所以设置<code class="docutils literal notranslate"><span class="pre">ignore_range</span></code>，否则片段基本一致，只是前后错开几帧。</p>
+</div>
+<div class="section" id="id8">
+<h3>最大查找<a class="headerlink" href="#id8" title="永久链接至标题">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">getNextMaxItem</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">result</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">ignore_range</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">list</span><span class="p">]):</span>
+        <span class="n">maxItem</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;uri&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">ignore_range</span> <span class="ow">and</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;index&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="n">ignore_range</span><span class="p">[</span><span class="n">item</span><span class="p">[</span><span class="s2">&quot;uri&quot;</span><span class="p">]]:</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="n">maxItem</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">maxItem</span> <span class="o">=</span> <span class="n">item</span>
+            <span class="k">if</span> <span class="n">item</span><span class="p">[</span><span class="s2">&quot;score&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">maxItem</span><span class="p">[</span><span class="s2">&quot;score&quot;</span><span class="p">]:</span>
+                <span class="n">maxItem</span> <span class="o">=</span> <span class="n">item</span>
+        <span class="k">return</span> <span class="n">maxItem</span>
+</pre></div>
+</div>
+<p>顺序遍历，有更大的就替换。</p>
+</div>
+<div class="section" id="id9">
+<h3>单一范围框定<a class="headerlink" href="#id9" title="永久链接至标题">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">getRange</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">maxItem</span><span class="p">,</span> <span class="n">result</span><span class="p">:</span> <span class="nb">list</span><span class="p">,</span> <span class="n">thod</span> <span class="o">=</span> <span class="mf">0.1</span><span class="p">,</span> <span class="n">ignore_range</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="n">maxImageScore</span> <span class="o">=</span> <span class="n">maxItem</span><span class="p">[</span><span class="s2">&quot;score&quot;</span><span class="p">]</span>
+        <span class="n">maxImageUri</span> <span class="o">=</span> <span class="n">maxItem</span><span class="p">[</span><span class="s2">&quot;uri&quot;</span><span class="p">]</span>
+        <span class="n">maxIndex</span> <span class="o">=</span> <span class="n">maxItem</span><span class="p">[</span><span class="s2">&quot;index&quot;</span><span class="p">]</span>
+        <span class="n">leftIndex</span> <span class="o">=</span> <span class="n">maxIndex</span>
+        <span class="n">rightIndex</span> <span class="o">=</span> <span class="n">maxIndex</span>
+        <span class="n">has_ignore_range</span> <span class="o">=</span> <span class="n">ignore_range</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+
+        <span class="n">d_result</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s2">&quot;uri&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">maxImageUri</span><span class="p">,</span> <span class="n">result</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>简单初始化与<code class="docutils literal notranslate"><span class="pre">filter</span></code>过滤条件设定.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">maxIndex</span><span class="p">):</span>
+            <span class="n">prev_index</span> <span class="o">=</span> <span class="n">maxIndex</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">i</span>
+            <span class="k">if</span> <span class="n">has_ignore_range</span> <span class="ow">and</span> <span class="n">prev_index</span> <span class="ow">in</span> <span class="n">ignore_range</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="c1"># print(maxImageScore, thod, maxImageUri, maxIndex)</span>
+            <span class="k">if</span> <span class="n">d_result</span><span class="p">[</span><span class="n">prev_index</span><span class="p">][</span><span class="s2">&quot;score&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">maxImageScore</span> <span class="o">-</span> <span class="n">thod</span><span class="p">:</span>
+                <span class="n">leftIndex</span> <span class="o">=</span> <span class="n">prev_index</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">break</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">maxIndex</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">d_result</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">has_ignore_range</span> <span class="ow">and</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">ignore_range</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="k">if</span> <span class="n">d_result</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s2">&quot;score&quot;</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">maxImageScore</span> <span class="o">-</span> <span class="n">thod</span><span class="p">:</span>
+                <span class="n">rightIndex</span> <span class="o">=</span> <span class="n">i</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">break</span>
+</pre></div>
+</div>
+<p>从最相似的一帧图片分别向左右两侧延伸开去，这里的<code class="docutils literal notranslate"><span class="pre">thod</span></code>可以近似理解成<strong>导数</strong>，如相邻的两帧变化过大则不被纳入这一视频片段，调整变量可以使标准变严格或者宽松。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>        <span class="k">if</span> <span class="p">(</span><span class="n">rightIndex</span> <span class="o">-</span> <span class="n">leftIndex</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">60</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">getRange</span><span class="p">(</span><span class="n">maxItem</span><span class="p">,</span> <span class="n">result</span><span class="p">,</span> <span class="n">thod</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">ignore_range</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">leftIndex</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">rightIndex</span><span class="p">,</span> <span class="n">leftIndex</span> <span class="o">+</span> <span class="mi">10</span><span class="p">),</span> <span class="n">d_result</span><span class="p">[</span><span class="n">maxIndex</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>视频过长时将<code class="docutils literal notranslate"><span class="pre">thod</span></code>折半，相当于把纳入标准抬高，保证新的视频不长于上一片段，达到压缩的目的，同时通过<code class="docutils literal notranslate"><span class="pre">max(rightIndex,</span> <span class="pre">leftIndex</span> <span class="pre">+</span> <span class="pre">10)</span></code>限制视频不超过10s。</p>
+</div>
+<div class="section" id="id10">
+<h3>匹配计算<a class="headerlink" href="#id10" title="永久链接至标题">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image_features</span><span class="p">,</span> <span class="n">text_features</span><span class="p">):</span>
+
+        <span class="n">logit_scale</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="o">.</span><span class="n">logit_scale</span><span class="o">.</span><span class="n">exp</span><span class="p">()</span>
+
+        <span class="n">image_features</span> <span class="o">=</span> <span class="n">image_features</span> <span class="o">/</span> <span class="n">image_features</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">text_features</span> <span class="o">=</span> <span class="n">text_features</span> <span class="o">/</span> <span class="n">text_features</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        
+        <span class="n">logits_per_image</span> <span class="o">=</span> <span class="n">logit_scale</span> <span class="o">*</span> <span class="n">image_features</span> <span class="o">@</span> <span class="n">text_features</span><span class="o">.</span><span class="n">t</span><span class="p">()</span>
+        <span class="n">probs</span> <span class="o">=</span> <span class="n">logits_per_image</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">detach</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">probs</span>
+</pre></div>
+</div>
+<p>对特征进行标准化，按照余弦相似度计算，最终通过softmax模型得出probability。</p>
+</div>
+<div class="section" id="id11">
+<h3>静态方法<a class="headerlink" href="#id11" title="永久链接至标题">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_filter_match_params</span><span class="p">(</span><span class="n">docs</span><span class="p">,</span> <span class="n">match_args</span><span class="p">):</span>
+        <span class="c1"># get only those arguments that exist in .match</span>
+        <span class="n">args</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">getfullargspec</span><span class="p">(</span><span class="n">docs</span><span class="o">.</span><span class="n">match</span><span class="p">)</span><span class="o">.</span><span class="n">args</span><span class="p">)</span>
+        <span class="n">args</span><span class="o">.</span><span class="n">discard</span><span class="p">(</span><span class="s1">&#39;self&#39;</span><span class="p">)</span>
+        <span class="n">match_args</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span> <span class="n">v</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">match_args</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">args</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">match_args</span>
+</pre></div>
+</div>
+<p>字典key-value形式实现条件过滤。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="nd">@requests</span><span class="p">(</span><span class="n">on</span><span class="o">=</span><span class="s1">&#39;/delete&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">delete</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parameters</span><span class="p">:</span> <span class="n">Dict</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">deleted_ids</span> <span class="o">=</span> <span class="n">parameters</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;ids&#39;</span><span class="p">,</span> <span class="p">[])</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">deleted_ids</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index</span><span class="p">[</span><span class="n">deleted_ids</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>基本的删除操作。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="nd">@requests</span><span class="p">(</span><span class="n">on</span><span class="o">=</span><span class="s1">&#39;/update&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">docs</span><span class="p">:</span> <span class="n">DocumentArray</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">docs</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_index</span><span class="p">[</span><span class="n">doc</span><span class="o">.</span><span class="n">id</span><span class="p">]</span> <span class="o">=</span> <span class="n">doc</span>
+            <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s1">&#39;cannot update doc </span><span class="si">{</span><span class="n">doc</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s1"> as it does not exist in storage&#39;</span>
+                <span class="p">)</span>
+</pre></div>
+</div>
+<p>更新操作。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="nd">@requests</span><span class="p">(</span><span class="n">on</span><span class="o">=</span><span class="s1">&#39;/fill_embedding&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">fill_embedding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">docs</span><span class="p">:</span> <span class="n">DocumentArray</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+        <span class="k">for</span> <span class="n">doc</span> <span class="ow">in</span> <span class="n">docs</span><span class="p">:</span>
+            <span class="n">doc</span><span class="o">.</span><span class="n">embedding</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index</span><span class="p">[</span><span class="n">doc</span><span class="o">.</span><span class="n">id</span><span class="p">]</span><span class="o">.</span><span class="n">embedding</span>
+</pre></div>
+</div>
+<p>通过id获取embedding。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="nd">@requests</span><span class="p">(</span><span class="n">on</span><span class="o">=</span><span class="s1">&#39;/clear&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_index</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>清空数据库操作。</p>
+</div>
+</div>
+<div class="section" id="id12">
+<h2>进阶延展<a class="headerlink" href="#id12" title="永久链接至标题">#</a></h2>
+<div class="section" id="gpucpu">
+<h3>GPU引入及与CPU协同<a class="headerlink" href="#gpucpu" title="永久链接至标题">#</a></h3>
+<p>在进行Embedding的时候，通过<code class="docutils literal notranslate"><span class="pre">.embed(...,</span> <span class="pre">device='cuda')</span></code>来引入GPU（限制<code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">torch.cuda.is_available()</span></code>），同时如果DocumentArrary过大，可以使用<code class="docutils literal notranslate"><span class="pre">.embed(...,</span> <span class="pre">batch_size=128)</span></code>调整batch_size。</p>
+<p>在深度学习应用场景下，经常会导入大量数据，这时需要在CPU上进行预处理，并通过GPU做训练。这时可以使用DocArray提供的<code class="docutils literal notranslate"><span class="pre">dataloader()</span></code>，通过分batch的方式并行化完成。
+<img alt="Load, map, batch in one-shot" src="https://docarray.jina.ai/_images/dataloader.svg" /></p>
+<p>不妨看看官网给出的示例。假如现有一个.proto文件，压缩格式为tar.gz，我们可以通过如下的方式导入数据。(<code class="docutils literal notranslate"><span class="pre">num_worker</span></code>指线程数)</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+
+<span class="kn">from</span> <span class="nn">docarray</span> <span class="kn">import</span> <span class="n">DocumentArray</span>
+
+
+<span class="k">def</span> <span class="nf">cpu_job</span><span class="p">(</span><span class="n">da</span><span class="p">):</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;cpu job done&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">da</span>
+
+
+<span class="k">def</span> <span class="nf">gpu_job</span><span class="p">(</span><span class="n">da</span><span class="p">):</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;gpu job done&#39;</span><span class="p">)</span>
+
+
+<span class="k">for</span> <span class="n">da</span> <span class="ow">in</span> <span class="n">DocumentArray</span><span class="o">.</span><span class="n">dataloader</span><span class="p">(</span>
+    <span class="s1">&#39;da.protobuf.gz&#39;</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="n">cpu_job</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">num_worker</span><span class="o">=</span><span class="mi">4</span>
+<span class="p">):</span>
+    <span class="n">gpu_job</span><span class="p">(</span><span class="n">da</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>这样就可以在保证流程的情况下，避免几类问题：</p>
+<ul class="simple">
+<li><p>数据量太大，内存溢出</p></li>
+<li><p>CPU只有单核运行</p></li>
+<li><p>CPU预处理较慢，导致GPU无法充分利用</p></li>
+</ul>
+<p>须知流水线是遵从<strong>木桶原理</strong>的，因而需要保证有限的资源被合理地充分调度，并利用起来。</p>
+</div>
+<div class="section" id="id13">
+<h3>向量搜索<a class="headerlink" href="#id13" title="永久链接至标题">#</a></h3>
+<p>源代码中选择了SQLite作为后端，在处理较大体量的数据时，读取、更新、删除、条件检索Document时均有良好的表现。（参见<a class="reference external" href="https://docarray.jina.ai/advanced/document-store/benchmark/?highlight=qdrant">One Million Scale Benchmark</a>）然而SQLite在向量搜索应用中并不理想，虽然表中的$Recall&#64;10$达到了1.00，但是其底层逻辑是穷尽式，而非检索<strong>nearest neighbour</strong>，因而效率非常低。</p>
+<p>Elastic Search在Recall这一任务中性能最优，同时作为分布式搜索和分析引擎，较为常见。因而笔者将结合Jina生态粗略讲述Elastic Search使用方法，详细内容参见ES-Jina文件夹。</p>
+<p>YAML配置如下：</p>
+<div class="highlight-YAML notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">&quot;3.7&quot;</span>
+<span class="nt">services</span><span class="p">:</span>
+  <span class="nt">elastic</span><span class="p">:</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">docker.elastic.co/elasticsearch/elasticsearch:8.1.0</span>
+    <span class="nt">environment</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">xpack.security.enabled=false</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">discovery.type=single-node</span>
+    <span class="nt">ports</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="s">&quot;9200:9200&quot;</span>
+    <span class="nt">networks</span><span class="p">:</span>
+      <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">elastic</span>
+
+<span class="nt">networks</span><span class="p">:</span>
+  <span class="nt">elastic</span><span class="p">:</span>
+    <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">elastic</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="jina-hub">
+<h3>Jina Hub的使用<a class="headerlink" href="#jina-hub" title="永久链接至标题">#</a></h3>
+<blockquote>
+<div><p>Do not reinvent the wheel. 不要重复造轮子。
+在Jina Hub中存在SimpleIndexer的<a class="reference external" href="https://hub.jina.ai/executor/zb38xlt4">原型</a>，<a class="reference external" href="https://github.com/jina-ai/executor-simpleindexer/blob/main/executor.py">源码</a>也同样可获取，其中实现了除了搜索之外的绝大多数功能，可以直接进行调用。</p>
+</div></blockquote>
+<p>这里简单给出两种通过docker调用的方式，只需要几行代码就可以实现（需要安装<a class="reference external" href="https://kubernetes.io/">Kubernetes</a>）：</p>
+<ol class="arabic simple">
+<li><p>Docarray Entrypoint</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">docarray</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">DocumentArray</span>
+
+<span class="n">da</span> <span class="o">=</span> <span class="n">DocumentArray</span><span class="p">([</span><span class="n">Document</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;hello&#39;</span><span class="p">)])</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;jinahub+docker://SimpleIndexer/latest&#39;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">to_json</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>通过<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">SimpleIndexer-docarray-docker.py</span></code>指令启动服务。</p>
+<ol class="arabic simple" start="2">
+<li><p>Jina Entrypoint</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">jina</span> <span class="kn">import</span> <span class="n">Flow</span>
+<span class="kn">from</span> <span class="nn">docarray</span> <span class="kn">import</span> <span class="n">Document</span><span class="p">,</span> <span class="n">DocumentArray</span>
+
+<span class="n">f</span> <span class="o">=</span> <span class="n">Flow</span><span class="p">()</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">uses</span><span class="o">=</span><span class="s1">&#39;jinahub+docker://SimpleIndexer/latest&#39;</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">f</span><span class="p">:</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="n">DocumentArray</span><span class="p">([</span><span class="n">Document</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s1">&#39;hello&#39;</span><span class="p">)]))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">to_json</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>通过<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">SimpleIndexer-jina-docker.py</span></code>指令启动服务。</p>
+</div>
+</div>
+<div class="section" id="id14">
+<h2>参考资料<a class="headerlink" href="#id14" title="永久链接至标题">#</a></h2>
+<p><a class="reference external" href="https://docarray.jina.ai/fundamentals/document/">Document</a>
+<a class="reference external" href="https://docarray.jina.ai/fundamentals/documentarray/">DocumentArray</a></p>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="CustomClipImage.html" title="上一页 页">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">上一页</p>
+            <p class="prev-next-title">CustomClipImage</p>
+        </div>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2022, VCED.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.2.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,380 @@
+
+<!DOCTYPE html>
+
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Streamlit &#8212; VCED项目文档</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="VCED UI 构建" href="Frontend.html" />
+    <link rel="prev" title="项目前端介绍" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="zh">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+<a class="navbar-brand" href="../../index.html">
+<p class="title">VCED</p>
+</a>
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../index.html">
+  User Guide
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/datawhalechina/vced" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar">
+              <div class="sidebar-start-items"><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../jina.html">
+   Jina
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../CLIP/index.html">
+   CLIP简介
+  </a>
+  <input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../CLIP/CLIP.html">
+     CLIP 模型
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../CLIP/Jina-Multimodal-Crossmodal.html">
+     多模态和跨模态应用：新的交互方式
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   项目前端介绍
+  </a>
+  <input checked class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Streamlit
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="Frontend.html">
+     VCED UI 构建
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../Backend/index.html">
+   项目后端简介
+  </a>
+  <input checked class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Backend/VideoLoader.html">
+     VideoLoader
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Backend/CustomClipText.html">
+     CustomClipText
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Backend/CustomClipImage.html">
+     CustomClipImage
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../Backend/SimpleIndexer.html">
+     SimpleIndexer
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+              </div>
+              <div class="sidebar-end-items">
+              </div>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage mt-5 pt-1 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   快速开始
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   自由开发
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="streamlit">
+<h1>Streamlit<a class="headerlink" href="#streamlit" title="永久链接至标题">#</a></h1>
+<p><a class="reference external" href="https://streamlit.io/">Streamlit</a> 是一个基于 Python 的 Web 应用程序框架，可以帮助数据科学家和学者在短时间内开发机器学习可视化仪表板。只需几行代码，就可以构建并部署强大的数据应用程序。其特点如下：</p>
+<ul class="simple">
+<li><p><strong>跨平台</strong>，支持 Windows、macOS、Linux</p></li>
+<li><p><strong>只需要掌握 Python</strong>，开发者就可以构建 Web App，不需要有任何的前端基础</p></li>
+<li><p><strong>开源</strong>，社区资源丰富（<a class="reference external" href="https://discuss.streamlit.io/">Community forum</a>、<a class="reference external" href="https://github.com/streamlit/streamlit/">Github</a>）</p></li>
+</ul>
+<p>由于 Streamlit 基于 Python，开发者无需学习其他就可以搭建一个较为完整的系统。此次教程，我们团队就通过 <strong>Streamlit + Jina</strong> 构建了一套系统。</p>
+<div class="section" id="id1">
+<h2>快速开始<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h2>
+<p>在开始之前，你需要确保你的电脑有以下环境：</p>
+<ul class="simple">
+<li><p>一个 IDE 或者文本编辑器</p></li>
+<li><p>Python 3.7 - Python 3.10</p></li>
+<li><p>pip</p></li>
+</ul>
+<p>安装 Streamlit 非常简单，打开终端，执行：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install streamlit
+</pre></div>
+</div>
+<p>官方提供了一个预设网页：</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>streamlit hello
+</pre></div>
+</div>
+<p>如果你能正常运行并打开该网页，说明你的 Streamlit 安装成功了！</p>
+</div>
+<div class="section" id="id2">
+<h2>自由开发<a class="headerlink" href="#id2" title="永久链接至标题">#</a></h2>
+<p>Streamlit 框架提供了很多 <a class="reference external" href="https://docs.streamlit.io/library/api-reference">API</a> 供开发者使用。下面的步骤将指引你一步一步构建自己的第一个 Web App：</p>
+<ol class="arabic simple">
+<li><p>打开 IDE（如 vscode），创建一个 <code class="docutils literal notranslate"><span class="pre">hello-streamlit.py</span></code> 文件，输入：</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">streamlit</span> <span class="k">as</span> <span class="nn">st</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>每个Web页面都会有一个title，如下图所示：</p></li>
+</ol>
+<p><img alt="page-title" src="../../_images/page-title.png" /></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">st</span><span class="o">.</span><span class="n">set_page_config</span><span class="p">(</span><span class="n">page_title</span><span class="o">=</span><span class="s2">&quot;Hello Streamlit&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Streamlit API 中提供了很多页面中常见的 elements：</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">st</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;This is your first Streamlit page!&#39;</span><span class="p">)</span>  <span class="c1"># 标题</span>
+
+<span class="n">st</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span><span class="s1">&#39;Streamlit is **_really_ cool**.&#39;</span><span class="p">)</span>  <span class="c1"># markdown</span>
+
+<span class="n">code</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;def hello():</span>
+<span class="s1">     print(&quot;Hello, Streamlit!&quot;)&#39;&#39;&#39;</span>
+<span class="n">st</span><span class="o">.</span><span class="n">code</span><span class="p">(</span><span class="n">code</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="s1">&#39;python&#39;</span><span class="p">)</span>  <span class="c1"># code</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
+     <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span>
+     <span class="n">columns</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;col </span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">)))</span>
+<span class="n">st</span><span class="o">.</span><span class="n">dataframe</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>  <span class="c1"># dataframe</span>
+
+<span class="n">st</span><span class="o">.</span><span class="n">latex</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">     a + ar + a r^2 + a r^3 + \cdots + a r^{n-1} =</span>
+<span class="s1">     \sum_{k=0}^{n-1} ar^k =</span>
+<span class="s1">     a \left(\frac{1-r^</span><span class="si">{n}</span><span class="s1">}{1-r}\right)</span>
+<span class="s1">     &#39;&#39;&#39;</span><span class="p">)</span>  <span class="c1"># latex</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>打开终端，输入如下命令启动Streamlit：</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>streamlit run main.py
+</pre></div>
+</div>
+<p>界面如下：</p>
+<p><img alt="hello" src="../../_images/hello-streamlit.png" /></p>
+<p>完整代码参见 <a class="reference external" href="https://github.com/datawhalechina/vced/blob/709de9a0a0ce6a0b534c243c5bb58e00a08c6379/docs/source/user_guide/Frontend/hello-streamlit.py"><code class="docutils literal notranslate"><span class="pre">hello-streamlit.py</span></code></a></p>
+<p>这里只介绍了 Streamlit 的冰山一角，更多特性和细节感兴趣的同学可以去官网进一步学习。另外，官网也有很多 <a class="reference external" href="https://streamlit.io/gallery">Streamlit 模板</a>，可以帮助你更高效地搭建自己的应用。</p>
+<p>以下即为使用流程：</p>
+<ol class="arabic simple">
+<li><p>上传视频</p></li>
+<li><p>输入描述</p></li>
+<li><p>输入Top N值</p></li>
+<li><p>点击搜索，等待返回结果</p></li>
+<li><p>查看搜索结果</p></li>
+</ol>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="index.html" title="上一页 页">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">上一页</p>
+            <p class="prev-next-title">项目前端介绍</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="Frontend.html" title="下一页 页">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title">VCED UI 构建</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+<footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; Copyright 2022, VCED.<br>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.1.2.<br>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>
