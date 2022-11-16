@@ -41,8 +41,6 @@ VCED 可以通过你的文字描述来自动识别视频中相符合的片段进
 
 [docker安装](./docker_install.md)
 
-#### 使用 docker 镜像快速启动本项目:
-
 ``` bash
 docker-compose build
 docker-compose up -d
