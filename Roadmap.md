@@ -20,6 +20,7 @@
 
 + 成功启动 grpc 服务
 + 在 Jina 的 Docarray 中导入任意模态的数据
++ 代码练习：code/jina_demo
 
 ## Task 03: 跨模态模型
 
