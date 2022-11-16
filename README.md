@@ -33,14 +33,13 @@ VCED 可以通过你的文字描述来自动识别视频中相符合的片段进
    <br/>
    <br/>
   <img width="600" src="./pics/demo.gif" alt="VCED">	
-
 </h2>
 
 ## QuickStart
 
 ### 通过 docker 启动
 
-使用 docker 镜像快速启动本项目:
+[docker安装](./docker_install.md)
 
 ``` bash
 docker-compose build

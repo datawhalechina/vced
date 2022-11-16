@@ -188,7 +188,7 @@ class SimpleIndexer(Executor):
         # print(ignore_range)
         return index_list
 
-    def getNextMaxItem(self, result: list, ignore_range: dict[list]):
+    def getNextMaxItem(self, result: list, ignore_range):
         maxItem = None
         for item in result:
             if item["uri"] in ignore_range and item["index"] in ignore_range[item["uri"]]:
@@ -199,7 +199,7 @@ class SimpleIndexer(Executor):
                 maxItem = item
         return maxItem
     
-    def getRange(self, maxItem, result: list, thod = 0.1, ignore_range: list[int] = None):
+    def getRange(self, maxItem, result: list, thod = 0.1, ignore_range = None):
         maxImageScore = maxItem["score"]
         maxImageUri = maxItem["uri"]
         maxIndex = maxItem["index"]
