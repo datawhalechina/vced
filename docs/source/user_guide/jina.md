@@ -273,6 +273,7 @@ print(d.tensor.shape)
 
 # 可以通过 as_chunks=True，使得上述 180 张图片张量添加到 Document 块中。
 # PS：运行这行代码时，需要重新 load image tensor，否则会报错。
+d.load_uri_to_image_tensor()
 d.convert_image_tensor_to_sliding_windows(window_shape=(64, 64), as_chunks=True)
 print(d.chunks)
 
