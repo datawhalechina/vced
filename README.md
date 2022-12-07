@@ -42,8 +42,12 @@ VCED 可以通过你的文字描述来自动识别视频中相符合的片段进
 [docker安装](./docker_install.md)
 
 ``` bash
-docker-compose build
-docker-compose up -d
+# 安装docker-compose依赖
+pip install docker-compose
+# 进入项目目录
+cd ./vced
+# 通过shell脚本启动  脚本会根据系统架构选择适宜镜像
+./startup.sh
 ```
 
 ### 通过源代码启动
