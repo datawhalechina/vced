@@ -21,7 +21,7 @@ elif [ "$1" == "native" ]; then
   apt autoremove python3-pip -y
 
   # 下载新版本python
-  apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev -y
+  apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev liblzma-dev -y
   apt install wget -y
   apt install vim -y
   wget https://www.python.org/ftp/python/3.9.15/Python-3.9.15.tgz
@@ -45,7 +45,7 @@ elif [ "$1" == "native" ]; then
   curl https://sh.rustup.rs -sSf | sh
   apt install ffmpeg -y
 
-  # 下载项目
+  # 下载项目，安装依赖
   apt install git
   cd ~
   git clone https://github.com/datawhalechina/vced.git
@@ -54,5 +54,10 @@ elif [ "$1" == "native" ]; then
   cd ~/vced/code/web
   pip install -r requirements.txt
   pip install git+https://github.com/openai/CLIP.git
-  #python app.py
+
+  # 运行前端
+  nohup streamlit run app.py &
+  # 运行后端
+  cd ~/vced/code/service
+  python app.py --timeout-ready
 fi
