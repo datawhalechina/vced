@@ -52,4 +52,6 @@ elif [ "$1" == "native" ]; then
   # 运行后端
   cd ~/vced/code/service
   python app.py --timeout-ready
+else
+  echo "脚本未执行..."
 fi
