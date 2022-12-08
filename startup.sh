@@ -9,5 +9,5 @@ if [ "$1" == "" -o "$1" == "docker" ]; then
     docker-compose up -d
   fi
 elif [ "$1" == "native" ]; then
-  echo "使用原生指令安装环境"
+  echo "使用原生指令安装环境 "
 fi
