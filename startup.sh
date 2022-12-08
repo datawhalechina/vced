@@ -28,11 +28,6 @@ elif [ "$1" == "native" ]; then
   make altinstall
 
   # 建立软链接
-  rm /usr/bin/python
-  rm /usr/bin/python3
-  rm /usr/bin/pip
-  rm /usr/bin/pip3
-
   ln -s /usr/local/bin/pip3.9 /usr/bin/pip
   ln -s /usr/local/bin/pip3.9 /usr/bin/pip3
   ln -s /usr/local/bin/python3.9 /usr/bin/python
@@ -42,11 +37,11 @@ elif [ "$1" == "native" ]; then
   apt install git
   cd ~
   git clone https://github.com/datawhalechina/vced.git
+  pip install git+https://github.com/openai/CLIP.git
   cd  ./vced/code/service
   pip install -r requirements.txt
   cd ~/vced/code/web
   pip install -r requirements.txt
-  pip install git+https://github.com/openai/CLIP.git
 
   # 运行前端
   nohup streamlit run app.py &
