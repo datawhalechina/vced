@@ -38,6 +38,7 @@ elif [ "$1" == "native" ]; then
   # 安装rust
   curl https://sh.rustup.rs -sSf | sh
   apt install ffmpeg -y
+  source ~/.bashrc
 
   # 下载项目，安装依赖
   cd ~
