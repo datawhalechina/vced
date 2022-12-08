@@ -14,14 +14,16 @@ elif [ "$1" == "native" ]; then
   apt update
 
   # 安装相应依赖
-  apt install ffmpeg build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev liblzma-dev -y
+  apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev -y
+  apt install liblzma-dev -y
   apt install wget -y
   apt install vim -y
-  # 安装rust
-  curl https://sh.rustup.rs -sSf | sh
+  apt install curl -y
+  apt install git -y
+
 
   # 安装对应版本python
-  wget https://www.python.org/ftp/python/3.9.15/Python-3.9.15.tgz
+  wget https://www.python.org/ftp/python/3.9.15/Python-3.9.15.tgz -O Python-3.9.15.tgz
   tar -xf Python-3.9.15.tgz
   cd Python-3.9.15
   ./configure --enable-optimizATIons
@@ -33,15 +35,19 @@ elif [ "$1" == "native" ]; then
   ln -s /usr/local/bin/python3.9 /usr/bin/python
   ln -s /usr/local/bin/python3.9 /usr/bin/python3
 
+  # 安装rust
+  curl https://sh.rustup.rs -sSf | sh
+  apt install ffmpeg -y
+
   # 下载项目，安装依赖
-  apt install git
   cd ~
   git clone https://github.com/datawhalechina/vced.git
-  pip install git+https://github.com/openai/CLIP.git
-  cd  ./vced/code/service
+
+  cd ~/vced/code/service
   pip install -r requirements.txt
   cd ~/vced/code/web
   pip install -r requirements.txt
+  pip install git+https://github.com/openai/CLIP.git
 
   # 运行前端
   nohup streamlit run app.py &
