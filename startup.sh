@@ -13,17 +13,14 @@ elif [ "$1" == "native" ]; then
   # 更新系统信息
   apt update
 
-  # 移出老版本python
-  apt autoremove python -y
-  apt autoremove python3 -y
-  apt autoremove python3.8 -y
-  apt autoremove python3.9 -y
-  apt autoremove python3-pip -y
-
-  # 下载新版本python
-  apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev liblzma-dev -y
+  # 安装相应依赖
+  apt install ffmpeg build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev liblzma-dev -y
   apt install wget -y
   apt install vim -y
+  # 安装rust
+  curl https://sh.rustup.rs -sSf | sh
+
+  # 安装对应版本python
   wget https://www.python.org/ftp/python/3.9.15/Python-3.9.15.tgz
   tar -xf Python-3.9.15.tgz
   cd Python-3.9.15
@@ -40,10 +37,6 @@ elif [ "$1" == "native" ]; then
   ln -s /usr/local/bin/pip3.9 /usr/bin/pip3
   ln -s /usr/local/bin/python3.9 /usr/bin/python
   ln -s /usr/local/bin/python3.9 /usr/bin/python3
-
-  # 安装rust ffmpeg
-  curl https://sh.rustup.rs -sSf | sh
-  apt install ffmpeg -y
 
   # 下载项目，安装依赖
   apt install git
