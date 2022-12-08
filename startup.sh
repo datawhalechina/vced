@@ -40,10 +40,7 @@ elif [ "$1" == "native" ]; then
   apt install ffmpeg -y
   source "$HOME/.cargo/env"
 
-  # 下载项目，安装依赖
-  cd ~
-  git clone https://github.com/datawhalechina/vced.git
-
+  # 安装项目依赖
   cd ~/vced/code/service
   pip install -r requirements.txt
   cd ~/vced/code/web
