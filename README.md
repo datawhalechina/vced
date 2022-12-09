@@ -42,11 +42,12 @@ VCED 可以通过你的文字描述来自动识别视频中相符合的片段进
 [docker安装](./docker_install.md)
 
 ``` bash
-# 安装docker-compose依赖
-pip install docker-compose
+# 拉取项目
+cd ~
+git clone https://github.com/kainstan/vced.git
 # 进入项目目录
-cd ./vced
-# 通过shell脚本启动  脚本会根据系统架构选择适宜镜像
+cd ~/vced
+# 通过shell脚本启动
 ./startup.sh
 ```
 
@@ -60,15 +61,33 @@ cd ./vced
 2. 安装 rust, ffmpeg
 3. 安装 clip `pip install git+https://github.com/openai/CLIP.git`
 
+下面的Shell脚本已做相应的操作，一键执行即可。
+
 *Jina 暂不支持在 Windows 安装，如需在 Windows 上安装 Jina 请通过 WSL 方式，详情见：[Jina 轻松学 —— Windows中安装Jina](https://blog.csdn.net/Jina_AI/article/details/122820646)*
+
+#### Shell脚本安装环境
+
+<img src="./pics/img_1.png" alt="image-20221208224303047" style="zoom:50%;" />
+
+<img src="./pics/img.png" alt="image-20221208224303047"  />
+
+<font color="lightcoral">*注意：安装期间可能需要人工干预选择安装选项或时区等（并不是每个小伙伴都会出现时区选择）*</font>
+
+```
+# 拉取项目
+cd ~
+git clone https://github.com/kainstan/vced.git
+# 进入项目目录
+cd ~/vced
+# 通过shell脚本启动
+./startup.sh native
+```
 
 #### 启动 server
 
 ```bash
 # 进入 server 文件夹
-cd code/service
-# 安装相关依赖
-pip install -r requirements.txt
+cd ~/vced/code/service
 # 启动服务端
 python app.py
 ```
@@ -79,9 +98,7 @@ python app.py
 
 ```bash
 # 进入 web 文件夹
-cd code/web
-# 安装相关依赖
-pip install -r requirements.txt
+cd ~/vced/code/web
 # 启动服务端
 streamlit run app.py
 ```

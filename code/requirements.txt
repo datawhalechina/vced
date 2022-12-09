@@ -11,4 +11,4 @@ pillow==9.1.0
 tornado==6.1
 protobuf==3.20
 librosa==0.9.1
-streamlit
+streamlit==1.12.0
