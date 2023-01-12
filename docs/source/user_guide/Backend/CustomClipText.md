@@ -91,7 +91,7 @@ class CLIPTextEncoder(Executor):
 
 参数解释：
 
-+ `docs`：包含了 Documents 的待编码的 DocumentArray
++ `docs`：包含了 [Documents](https://docarray.jina.ai/fundamentals/document/?utm_campaign=vced&utm_source=github&utm_medium=datawhale)  的待编码的  [DocumentArray](https://docarray.jina.ai/fundamentals/documentarray/?utm_campaign=vced&utm_source=github&utm_medium=datawhale)
 + `parameters`：字典类型，包含了用于控制编码的参数（keys 包括 `traversal_paths` 和 `batch_size`)
 
 对数据类型进行过滤，对所有文本进行批处理
@@ -109,4 +109,4 @@ class CLIPTextEncoder(Executor):
             print(t2)
 ```
 
-对文本数据进行编码，以 DocumentArray 形式存储，便于后续传值
+对文本数据进行编码，以  [DocumentArray](https://docarray.jina.ai/fundamentals/documentarray/?utm_campaign=vced&utm_source=github&utm_medium=datawhale) 形式存储，便于后续传值

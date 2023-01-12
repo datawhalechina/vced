@@ -38,17 +38,8 @@
 
 为了克服构建跨模态和多模态应用的挑战，可以利用 Jina 生态系统中的产品作为应用的构建模块：
 
-- 一个适用于所有数据类型的标准数据结构，即[DocArray](https://docarray.jina.ai/?utm_source=blog-multimodal)（也称为非结构化数据的数据结构）。它能够像传统数据结构对文本数据一样轻松地存储和处理多种数据类型。
-- 可复用的代码片段可以作为[Jina Hub](https://hub.jina.ai/?utm_source=blog-multimodal)的Executor轻松接入任何应用。
-- 使用[Jina](https://docs.jina.ai/?utm_source=blog-multimodal)，可以获得即时的数据处理流水线，以将概念验证提升为生产级应用。可以专注于用例并处理其余部分。
-- 不要担心托管基础设施。当使用 Jina 构建时，可以通过[JCloud](https://docs.jina.ai/fundamentals/jcloud/?utm_source=blog-multimodal)使用几行额外的代码轻松地将应用托管在云上。
-
-## 额外资源✨
-
-如果不知道如何编码，仍然可以在终端上使用[Jina NOW](http://now.jina.ai/?utm_source=blog-multimodal)构建复杂的搜索应用。过程有三个步骤👉
-
-**输入一些命令**→**加载数据/选择配置**→**获取应用**
-
-## 参考文献
-
-[Multimodal and Crossmodal applications: The new way to interact!](https://medium.com/jina-ai/multimodal-and-crossmodal-applications-the-new-way-to-interact-d73d3e932990)
+- 一个适用于所有数据类型的标准数据结构，即 [DocArray](https://docarray.jina.ai/?utm_campaign=vced&utm_source=github&utm_medium=datawhalel)（也称为非结构化数据的数据结构）。它能够像传统数据结构对文本数据一样轻松地存储和处理多种数据类型。
+- 可复用的代码片段可以作为 [Executor Hub](https://cloud.jina.ai/executors?utm_campaign=vced&utm_source=github&utm_medium=datawhale) 的Executor轻松接入任何应用。
+- 使用 [Jina](https://github.com/jina-ai/jina?utm_campaign=vced&utm_source=github&utm_medium=datawhale)，可以获得即时的数据处理流水线，以将概念验证提升为生产级应用。可以专注于用例并处理其余部分。
+- 不要担心托管基础设施。当使用 Jina 构建时，可以通过 [Jina AI Cloud ](https://cloud.jina.ai/?utm_campaign=vced&utm_source=github&utm_medium=datawhale)使用几行额外的代码轻松地将应用托管在云上。
+- 如果不知道如何编码，仍然可以在终端上使用[Jina NOW](https://github.com/jina-ai/now?utm_campaign=vced&utm_source=github&utm_medium=datawhale)构建复杂的搜索应用。

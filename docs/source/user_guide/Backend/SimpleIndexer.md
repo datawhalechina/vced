@@ -39,20 +39,25 @@ import torch
 import time
 ```
 
-inspect库用于获取对象信息，帮助校验类的内容。
+inspect 库用于获取对象信息，帮助校验类的内容。
 
 ### 类初始化
 
-基本概念理解：
+**基本概念理解：**
 
-+ Executor是Jina处理Document的载体
-+ Flow是Jina使得Executor提效和缩放（可以使用于大规模数据）的工具
+- 推荐 [Jina AI 官方解释](https://docs.jina.ai/concepts/preliminaries/?utm_campaign=vced&utm_source=github&utm_medium=datawhale)
 
-引入Executor的好处：
+  ![arch-overview](https://docs.jina.ai/_images/arch-overview.svg)
 
-+ 使不同基于DocumentArray的函数都可以遵从同一个配置状态（**与OOP的思想相同**）
-+ 让函数可以跟Flow适配
-+ Flow中的Executor可以同时对多个DocumentArrays进行处理，并且能够快捷部署上云
++ [Document](https://docarray.jina.ai/fundamentals/document/?utm_campaign=vced&utm_source=github&utm_medium=datawhale) 是 Jina 中用于表示多模态数据的基本数据结构。
++ [Executor](https://docs.jina.ai/concepts/executor/?utm_campaign=vced&utm_source=github&utm_medium=datawhale) 是 Jina 处理 Document 的载体，在 Jina 生态里，只要可以封装成 Executor，万物皆可 as service。
++ [Flow](https://docs.jina.ai/concepts/flow/?utm_campaign=vced&utm_source=github&utm_medium=datawhale) 是 Jina 使得 Executor 提效和缩放（可以使用于大规模数据）的工具。
+
+**引入 [Executor](https://docs.jina.ai/concepts/executor/?utm_campaign=vced&utm_source=github&utm_medium=datawhale) 的好处：**
+
++ 使不同基于 [DocumentArray](https://docarray.jina.ai/fundamentals/documentarray/?utm_campaign=vced&utm_source=github&utm_medium=datawhale) 的函数都可以遵从同一个配置状态（**与 OOP 的思想相同**）
++ 让函数可以跟 Flow 适配
++ Flow 中的 Executor 可以同时对多个DocumentArrays进行处理，并且能够快捷部署上云
 + 可以被容器化，并通过`jina hub push/pull`的方式实现共享
 
 ```python
@@ -76,12 +81,12 @@ class SimpleIndexer(Executor):
 
 参数解释：
 
-+ `pretrained_model_name_or_path`：预训练的模型使用Vision Transformer-Base/32, input batch size为32*32，不同architecture参见下图
-![architecture](https://miro.medium.com/max/1058/1*mpOMDF0UOsSftEf9kLa2NQ.png)
-+ `match_args`：DocumentArray匹配函数的参数
++ `pretrained_model_name_or_path`：预训练的模型使用 Vision Transformer-Base/32, input batch size 为 32*32，不同architecture 参见下图
+![architecture](https://miro.medium.com/max/1058/1mpOMDF0UOsSftEf9kLa2NQ.png)
++ `match_args`：DocumentArray 匹配函数的参数
 + `table_name`：数据库表名
-+ `traversal_right`：索引对应DocumentArray默认的遍历路径
-+ `traversal_left`：搜索对应DocumentArray默认的遍历路径
++ `traversal_right`：索引对应 DocumentArray 默认的遍历路径
++ `traversal_left`：搜索对应 DocumentArray 默认的遍历路径
 + `device`：预处理设备
 
 ```python
@@ -116,9 +121,10 @@ class SimpleIndexer(Executor):
 
 ### 创建索引
 
-@requests方法：
+`@requests` 方法：
+
 + 被装饰的方法在提供服务时被映射到网络端点上，与特殊网络请求相结合，并且需要对网络搜索做出响应
-+ 可选的参数`on=`类似nodejs中的路由概念，将Executor中被装饰的方法与指定路径相绑定
++ 可选的参数 `on=` 类似 nodejs 中的路由概念，将 Executor 中被装饰的方法与指定路径相绑定
 
 ```python
     @requests(on='/index')
@@ -136,7 +142,7 @@ class SimpleIndexer(Executor):
         print(t2)
 ```
 
-`docs`统一以DocumentArray的类型存储，并添加到索引之中。
+`docs`统一以 DocumentArray 的类型存储，并添加到索引之中。
 
 ### 神经搜索
 
@@ -165,7 +171,7 @@ class SimpleIndexer(Executor):
         stored_docs: DocumentArray = self._index[traversal_right]
 ```
 
-对参数进行初始化，texts和stored_docs即为demo中输入的文字和被抽帧视频对应的图片。
+对参数进行初始化，texts 和 stored_docs 即为 demo 中输入的文字和被抽帧视频对应的图片。
 
 ```python
         doc_ids = parameters.get("doc_ids")
@@ -186,7 +192,7 @@ class SimpleIndexer(Executor):
                     t1_1 = time.time()
 ```
 
-对文本和图像分别进行embedding操作。
+对文本和图像分别进行 embedding 操作。 
 
 ```python
                     for i, image_features in enumerate(tensor_images_features):
@@ -409,10 +415,11 @@ class SimpleIndexer(Executor):
 
 在进行Embedding的时候，通过`.embed(..., device='cuda')`来引入GPU（限制`if torch.cuda.is_available()`），同时如果DocumentArrary过大，可以使用`.embed(..., batch_size=128)`调整batch_size。
 
-在深度学习应用场景下，经常会导入大量数据，这时需要在CPU上进行预处理，并通过GPU做训练。这时可以使用DocArray提供的`dataloader()`，通过分batch的方式并行化完成。
+在深度学习应用场景下，经常会导入大量数据，这时需要在 CPU 上进行预处理，并通过 GPU 做训练。这时可以使用 DocArray 提供的`dataloader()`，通过分batch的方式并行化完成。可以参考 [DocArray 文档](https://docarray.jina.ai/advanced/torch-support/?utm_campaign=vced&utm_source=github&utm_medium=datawhale)。
+
 ![Load, map, batch in one-shot](https://docarray.jina.ai/_images/dataloader.svg)
 
-不妨看看官网给出的示例。假如现有一个.proto文件，压缩格式为tar.gz，我们可以通过如下的方式导入数据。(`num_worker`指线程数)
+不妨看看[官网给出的示例](https://docarray.jina.ai/advanced/torch-support/?utm_campaign=vced&utm_source=github&utm_medium=datawhale)。假如现有一个.proto文件，压缩格式为tar.gz，我们可以通过如下的方式导入数据。(`num_worker`指线程数)
 
 ```python
 import time
@@ -443,13 +450,13 @@ for da in DocumentArray.dataloader(
 + CPU只有单核运行
 + CPU预处理较慢，导致GPU无法充分利用
 
-须知流水线是遵从**木桶原理**的，因而需要保证有限的资源被合理地充分调度，并利用起来。
+须知流水线是遵从 **木桶原理** 的，因而需要保证有限的资源被合理地充分调度，并利用起来。
 
 ### 向量搜索
 
-源代码中选择了SQLite作为后端，在处理较大体量的数据时，读取、更新、删除、条件检索Document时均有良好的表现。（参见[One Million Scale Benchmark](https://docarray.jina.ai/advanced/document-store/benchmark/?highlight=qdrant)）然而SQLite在向量搜索应用中并不理想，虽然表中的$Recall@10$达到了1.00，但是其底层逻辑是穷尽式，而非检索**nearest neighbour**，因而效率非常低。
+源代码中选择了 SQLite 作为后端，在处理较大体量的数据时，读取、更新、删除、条件检索 Document 时均有良好的表现。（表现详情参见 [One Million Scale Benchmark](https://docarray.jina.ai/advanced/document-store/benchmark/?utm_campaign=vced&utm_source=github&utm_medium=datawhale)）然而 SQLite 在向量搜索应用中并不理想，虽然表中的`Recall@10`达到了1.00，但是其底层逻辑是穷尽式，而非检索 **最近邻**，因而效率非常低。
 
-Elastic Search在Recall这一任务中性能最优，同时作为分布式搜索和分析引擎，较为常见。因而笔者将结合Jina生态粗略讲述Elastic Search使用方法，详细内容参见ES-Jina文件夹。
+Elasticsearch 在 Recall 这一任务中性能最优，同时作为分布式搜索和分析引擎，较为常见。因而笔者将结合 Jina 生态粗略讲述 Elasticsearch 使用方法，详细内容参见ES-Jina文件夹。
 
 YAML配置如下：
 
@@ -474,9 +481,9 @@ networks:
 ### Jina Hub的使用
 
 > Do not reinvent the wheel. 不要重复造轮子。
-在Jina Hub中存在SimpleIndexer的[原型](https://hub.jina.ai/executor/zb38xlt4)，[源码](https://github.com/jina-ai/executor-simpleindexer/blob/main/executor.py)也同样可获取，其中实现了除了搜索之外的绝大多数功能，可以直接进行调用。
+在 Jina Hub 中存在 SimpleIndexer 的 [Executor](https://cloud.jina.ai/executor/zb38xlt4?utm_campaign=vced&utm_source=github&utm_medium=datawhale)，[源码](https://github.com/jina-ai/executor-simpleindexer/blob/main/executor.py)也同样可获取，其中实现了除了搜索之外的绝大多数功能，可以直接进行调用。
 
-这里简单给出两种通过docker调用的方式，只需要几行代码就可以实现（需要安装[Kubernetes](https://kubernetes.io/)）：
+这里简单给出两种通过 docker 调用的方式，只需要几行代码就可以实现（需要安装 [Kubernetes](https://kubernetes.io/) ）：
 
 1. Docarray Entrypoint
 
@@ -484,7 +491,7 @@ networks:
 from docarray import Document, DocumentArray
 
 da = DocumentArray([Document(text='hello')])
-r = da.post('jinahub+docker://SimpleIndexer/latest')
+r = da.post('jinaai+docker://jina-ai/SimpleIndexer:latest')
 
 print(r.to_json())
 ```
@@ -497,7 +504,7 @@ print(r.to_json())
 from jina import Flow
 from docarray import Document, DocumentArray
 
-f = Flow().add(uses='jinahub+docker://SimpleIndexer/latest')
+f = Flow().add(uses='jinaai+docker://jina-ai/SimpleIndexer:latest')
 
 with f:
 r = f.post('/', inputs=DocumentArray([Document(text='hello')]))
@@ -508,5 +515,5 @@ print(r.to_json())
 
 ## 参考资料
 
-[Document](https://docarray.jina.ai/fundamentals/document/)
-[DocumentArray](https://docarray.jina.ai/fundamentals/documentarray/)
+- [Document](https://docarray.jina.ai/fundamentals/document/?utm_campaign=vced&utm_source=github&utm_medium=datawhale) 
+-  [DocumentArray](https://docarray.jina.ai/fundamentals/documentarray/?utm_campaign=vced&utm_source=github&utm_medium=datawhale) 
