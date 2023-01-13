@@ -47,7 +47,7 @@ class CLIPImageEncoder(Executor):
 
 参数解释：
 
-+ `pretrained_model_name_or_path`：可以是[Hugging Face](https://huggingface.co/)中的线上repository，亦或是本地的directory，此处预训练的模型使用Vision Transformer-Base/32, input batch size为32*32
++ `pretrained_model_name_or_path`：可以是 [Hugging Face](https://huggingface.co/) 中的线上repository，亦或是本地的directory，此处预训练的模型使用Vision Transformer-Base/32, input batch size为32*32
 + `device`：预处理设备
 + `batch_size`：批大小
 + `traversal_paths`：遍历路径
@@ -73,7 +73,7 @@ class CLIPImageEncoder(Executor):
 
 ### 图像编码
 
-@requests方法可以参考[官网说明](https://docs.jina.ai/fundamentals/executor/executor-methods/?highlight=request%20method)
+`@requests` 方法可以参考 [Jina 官方文档说明](https://docs.jina.ai/concepts/executor/add-endpoints/?utm_campaign=vced&utm_source=github&utm_medium=datawhale)
 
 ```python
     @requests
@@ -90,7 +90,7 @@ class CLIPImageEncoder(Executor):
 
 参数解释：
 
-+ `docs`：包含了Documents的待编码的DocumentArray
++ `docs`：包含了 [Documents](https://docarray.jina.ai/fundamentals/document/?utm_campaign=vced&utm_source=github&utm_medium=datawhale) 的待编码的 [DocumentArray](https://docarray.jina.ai/fundamentals/documentarray/?utm_campaign=vced&utm_source=github&utm_medium=datawhale)
 + `parameters`：字典类型，包含了用于控制编码的参数（keys包括`traversal_paths`和`batch_size`)
 
 对数据类型进行过滤，对所有图像进行批处理
@@ -113,20 +113,20 @@ class CLIPImageEncoder(Executor):
         print('clip_image encode end', t2 - t1, t2)
 ```
 
-通过URI访问图像数据，对其进行编码，以DocumentArray形式存储，便于后续传值
+通过 URI 访问图像数据，对其进行编码，以 [DocumentArray](https://docarray.jina.ai/fundamentals/documentarray/?utm_campaign=vced&utm_source=github&utm_medium=datawhale) 形式存储，便于后续传值
 
 ## 进阶延展
 
 ### Executor调用
 
-多数用户可以想到的功能都已经被上传到[Jina Hub](https://hub.jina.ai/)上，CustomClipImage的[主体](https://hub.jina.ai/executor/0hnlmu3q)也可以在hub中进行访问，可以直接调用封装好的Executor，实现自己的功能模块，同时可以通过*latest-gpu*版本利用显存资源
+多数用户可以想到的功能都已经被上传到 [Executor Hub ](https://cloud.jina.ai/executors?utm_campaign=vced&utm_source=github&utm_medium=datawhale)上，CustomClipImage 的 [Executor](https://cloud.jina.ai/executor/0hnlmu3q?utm_campaign=vced&utm_source=github&utm_medium=datawhale) 也可以在 Executor Hub 中进行访问，可以直接调用封装好的 Executor，实现自己的功能模块，同时可以通过*latest-gpu*版本利用显存资源
 
 ### flow配置
 
 ```YAML
 executors:
 	- name : encoder
-	  uses: 'jinahub://CLIPImageEncoder/latest'
+	  uses: 'jinaai://jina-ai/CLIPImageEncoder:latest'
 	  timeout_ready : -1
 	  uses_with:
 	  	name: openai/clip-vit-base-patch32

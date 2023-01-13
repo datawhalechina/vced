@@ -138,13 +138,12 @@ class VideoLoader(Executor):
 
 ### 视频抽取
 
-@requests方法可以参考[官网说明](https://docs.jina.ai/fundamentals/executor/executor-methods/?highlight=request%20method)
+@requests方法可以参考[官网说明](https://docs.jina.ai/concepts/executor/add-endpoints/?utm_campaign=vced&utm_source=github&utm_medium=datawhale)
 
 参数解释：
 
-+ `docs`：包含了Documents的待编码的DocumentArray
++ `docs`：包含了 [Document](https://docarray.jina.ai/fundamentals/document/?utm_campaign=vced&utm_source=github&utm_medium=datawhale)  的待编码的  [DocumentArray](https://docarray.jina.ai/fundamentals/documentarray/?utm_campaign=vced&utm_source=github&utm_medium=datawhale) 
 + `parameters`：字典类型，包含了用于控制编码的参数（keys包括`traversal_paths`和`batch_size`)
-=======
 ```Python
 # In Jina 添加到flow中
 from jina import Flow
@@ -410,9 +409,9 @@ from docarray import Document, DocumentArray
 
 ## 进阶延展
 
-### Executor调用
+### Executor 调用
 
-多数用户可以想到的功能都已经被上传到[Jina Hub](https://hub.jina.ai/)上，VideoLoader的[主体](https://hub.jina.ai/executor/i6gp4vwu)也可以在hub中进行访问，可以直接调用封装好的Executor，实现自己的功能模块。
+多数用户可以想到的功能都已经被上传到 [Executor Hub](https://cloud.jina.ai/executors?utm_campaign=vced&utm_source=github&utm_medium=datawhale) 上，VideoLoader 的 [Executor](https://cloud.jina.ai/executor/i6gp4vwu?utm_campaign=vced&utm_source=github&utm_medium=datawhale) 也可以在 Executor hub 中进行访问，可以直接调用封装好的 Executor，实现自己的功能模块。
 
 ### flow配置
 
