@@ -50,6 +50,8 @@ class CLIPTextEncoder(Executor):
         
         self.preprocessor = preprocessor
         self.model = model
+        self.model.to(device)
+        
         # self.tokenizer = CLIPTokenizer.from_pretrained(self.base_tokenizer_model)
         # self.model = CLIPModel.from_pretrained(self.pretrained_model_name_or_path)
         # self.model.eval().to(device)
@@ -77,8 +79,8 @@ class CLIPTextEncoder(Executor):
             text_batch = docs_batch.texts
             t1 = time.time()
             with torch.inference_mode():
-                input_tokens = [self.model.encode_text(clip.tokenize([t, "unknown"]).to(self.device)) for t in text_batch] # self._generate_input_tokens(text_batch)
-                embeddings = input_tokens # self.model.get_text_features(**input_tokens).cpu().numpy()
+                input_tokens = [self.model.encode_text(clip.tokenize([t, "unknown"]).to(self.device)).cpu().to(dtype=torch.float32) for t in text_batch] # self._generate_input_tokens(text_batch)
+                embeddings = input_tokens  # self.model.get_text_features(**input_tokens).cpu().numpy()
                 for doc, embedding in zip(docs_batch, embeddings):
                     doc.embedding = embedding
                     # doc.embedding = np.array(embedding).astype('float32')[0]

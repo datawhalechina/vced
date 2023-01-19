@@ -117,7 +117,7 @@ Streamlit默认启动的端口为8501，也可以通过 `localhost:8501` 进行�
         ├── app.py          (后端主程序)                                                       
     ├── code/web
         ├── data            (用于存储上传的视频)
-        │   ├── videos      (用于存储简介好的视频片段)
+        │   ├── videos      (用于存储剪辑好的视频片段)
         ├── app.py          (前端主程序)  
 	  ├── Dockerfile                                                     
     ├── requirements.txt  

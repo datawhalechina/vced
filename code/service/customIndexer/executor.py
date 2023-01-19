@@ -59,7 +59,7 @@ class SimpleIndexer(Executor):
 
         self.device = device
 
-        model, preprocessor = clip.load(self.pretrained_model_name_or_path, device=device)
+        model, preprocessor = clip.load(self.pretrained_model_name_or_path, device="cpu")   # No need to load on cuda
         
         self.preprocessor = preprocessor
         self.model = model
