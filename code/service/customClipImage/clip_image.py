@@ -53,6 +53,7 @@ class CLIPImageEncoder(Executor):
         
         self.preprocessor = preprocessor
         self.model = model
+        self.model.to(self.device)
         # self.model.to(self.device).eval()
 
     @requests
@@ -76,7 +77,7 @@ class CLIPImageEncoder(Executor):
                         if (c.modality == 'image'):
                             image_embedding = self.model.encode_image(self.preprocessor(Image.fromarray(c.tensor)).unsqueeze(0).to(self.device))
                             # tensors_batch.append(image_embedding)
-                            tensors_batch.append(np.array(image_embedding).astype('float32'))
+                            tensors_batch.append(np.array(image_embedding.cpu()).astype('float32'))
                     embedding = tensors_batch
                     # print(np.asarray(Image.open(d.uri)).shape)
                     # image = self.preprocessor(Image.fromarray(np.asarray(Image.open(d.uri)))).unsqueeze(0).to(self.device)
