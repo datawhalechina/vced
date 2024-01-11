@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports the Document class from Jina and initializes an instance of it with the URI 'apple.png'. The load_uri_to_image_tensor() method is then called to convert the image into a tensor, which is subsequently printed along with its shape. The output shows the tensor shape as (618, 641, 3) and the tensor data itself.",
+    "details": [
+        {
+            "comment": "This code imports the Document class from Jina and initializes an instance of it with the URI 'apple.png'. The load_uri_to_image_tensor() method is then called to convert the image into a tensor, which is subsequently printed along with its shape. The output shows the tensor shape as (618, 641, 3) and the tensor data itself.",
+            "location": "\"/media/root/Prima/works/vced/docs/src/code/jina_demo/image/7.1 \u8bfb\u53d6\u56fe\u7247\u5e76\u8f6c\u4e3a tensor.py\":0-6",
+            "content": "from jina import Document\nd = Document(uri='apple.png')\nd.load_uri_to_image_tensor()\nprint(d.tensor.shape)  # (618, 641, 3)\nprint(d.tensor)"
+        }
+    ]
+}

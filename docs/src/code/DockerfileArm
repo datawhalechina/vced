@@ -1,0 +1,5 @@
+FROM nil01/vced:v1.1.4
+
+EXPOSE 8501
+EXPOSE 45679
+CMD ["sh","command.sh"]

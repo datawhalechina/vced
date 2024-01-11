@@ -1,0 +1,10 @@
+{
+    "summary": "The code configures a SimpleIndexer with a limit of $TOP_K and uses 'c' as traversal_rdarray. It includes executor.py in py_modules and sets the workspace directory as workspace/.",
+    "details": [
+        {
+            "comment": "The code configures a SimpleIndexer with a limit of $TOP_K and uses 'c' as traversal_rdarray. It includes executor.py in py_modules and sets the workspace directory as workspace/.",
+            "location": "\"/media/root/Prima/works/vced/docs/src/code/service/customIndexer/config.yml\":0-8",
+            "content": "jtype: SimpleIndexer\nwith:\n  match_args: \n    limit: $TOP_K\n    traversal_rdarray: 'c'\nmetas:\n  py_modules:\n    - executor.py\n  workspace: workspace/"
+        }
+    ]
+}

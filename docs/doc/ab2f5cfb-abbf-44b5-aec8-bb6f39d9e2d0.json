@@ -1,0 +1,10 @@
+{
+    "summary": "This code specifies the required Python packages and their respective versions for a project. It includes packages like Jina, WebVTT-py, ffmpeg-python, Torchvision, FTFY, Regex, Tqdm, Transformers, SciPy, Pillow, Tornado, Protobuf, Librosa, Streamlit, and Myst-parser.",
+    "details": [
+        {
+            "comment": "This code specifies the required Python packages and their respective versions for a project. It includes packages like Jina, WebVTT-py, ffmpeg-python, Torchvision, FTFY, Regex, Tqdm, Transformers, SciPy, Pillow, Tornado, Protobuf, Librosa, Streamlit, and Myst-parser.",
+            "location": "\"/media/root/Prima/works/vced/docs/src/code/service/requirements.txt\":0-14",
+            "content": "jina==3.4.2\nwebvtt-py==0.4.6\nffmpeg-python==0.2.0\ntorchvision==0.12.0\nftfy==6.1.1\nregex==2022.4.24\ntqdm==4.64.0\ntransformers==4.9.1\nscipy==1.8.0\npillow==9.1.0\ntornado==6.1\nprotobuf==3.20\nlibrosa==0.9.1\nstreamlit==1.12.0\nmyst-parser==0.18.1"
+        }
+    ]
+}

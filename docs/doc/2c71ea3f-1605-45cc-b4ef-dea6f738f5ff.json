@@ -1,0 +1,10 @@
+{
+    "summary": "Code imports the `DocumentArray` class from Jina library and initializes a new instance by reading all .jpg files from the 'Downloads' directory. Then, it plots all images in the DocumentArray as sprites into a single image file named 'sprite-img.png'.",
+    "details": [
+        {
+            "comment": "Code imports the `DocumentArray` class from Jina library and initializes a new instance by reading all .jpg files from the 'Downloads' directory. Then, it plots all images in the DocumentArray as sprites into a single image file named 'sprite-img.png'.",
+            "location": "\"/media/root/Prima/works/vced/docs/src/code/jina_demo/image/7.3 \u8bfb\u53d6\u56fe\u50cf\u96c6.py\":0-3",
+            "content": "from jina import DocumentArray\nda = DocumentArray.from_files('Downloads/*.jpg')  # \u4eceDownloads\u6587\u4ef6\u5939\u4e2d\u8bfb\u53d6\u6240\u6709\u7684jpg\u6587\u4ef6\uff0c\u5728\u8fd9\u91cc\u4f60\u5e94\u8be5\u6839\u636e\u81ea\u5df1\u7684\u8def\u5f84\u8bbe\u7f6e\nda.plot_image_sprites('sprite-img.png')  # \u4f7f\u7528 plot_image_sprites \u7ed8\u5236\u56fe\u7247\u96c6\u56fe\u7247\uff0c\u5982\u4e0b\u56fe"
+        }
+    ]
+}

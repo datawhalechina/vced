@@ -1,0 +1,15 @@
+{
+    "summary": "This code installs Rust, FFmpeg, and Python packages, runs the frontend with Streamlit and backend with Python, and echoes a message if it's the first run.",
+    "details": [
+        {
+            "comment": "Checking for Docker or native build, building and running Docker containers for arm architecture if applicable, updating system information and installing dependencies, downloading Python 3.9.15, configuring, compiling, and installing it, and creating soft links for pip and python3.9/python3.",
+            "location": "\"/media/root/Prima/works/vced/docs/src/startup.sh\":0-35",
+            "content": "#!/bin/bash\nif [ \"$1\" == \"\" -o \"$1\" == \"docker\" ]; then\n  if [ `arch` = \"arm32\" -o `arch` = \"arm64\" -o `arch` = \"aarch64\" ]; then\n    docker-compose -f docker-compose-arm.yml build\n    docker-compose -f docker-compose-arm.yml up -d\n  else\n    docker-compose build\n    docker-compose up -d\n  fi\nelif [ \"$1\" == \"native\" ]; then\n  cd ~\n  # \u66f4\u65b0\u7cfb\u7edf\u4fe1\u606f\n  apt update\n  # \u5b89\u88c5\u76f8\u5e94\u4f9d\u8d56\n  apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev -y\n  apt install liblzma-dev -y\n  apt install wget -y\n  apt install vim -y\n  apt install curl -y\n  apt install git -y\n  # \u5b89\u88c5\u5bf9\u5e94\u7248\u672cpython\n  wget https://www.python.org/ftp/python/3.9.15/Python-3.9.15.tgz -O Python-3.9.15.tgz\n  tar -xf Python-3.9.15.tgz\n  cd Python-3.9.15\n  ./configure --enable-optimizATIons\n  make altinstall\n  # \u5efa\u7acb\u8f6f\u94fe\u63a5\n  ln -s /usr/local/bin/pip3.9 /usr/bin/pip\n  ln -s /usr/local/bin/pip3.9 /usr/bin/pip3\n  ln -s /usr/local/bin/python3.9 /usr/bin/python\n  ln -s /usr/local/bin/python3.9 /usr/bin/python3"
+        },
+        {
+            "comment": "This code installs Rust, FFmpeg, and required Python packages for a project. It then runs the frontend using Streamlit and the backend using Python. If the script has not executed before, it echoes \"\u811a\u672c\u672a\u6267\u884c...\".",
+            "location": "\"/media/root/Prima/works/vced/docs/src/startup.sh\":37-56",
+            "content": "  # \u5b89\u88c5rust\n  curl https://sh.rustup.rs -sSf | sh\n  apt install ffmpeg -y\n  source \"$HOME/.cargo/env\"\n  # \u5b89\u88c5\u9879\u76ee\u4f9d\u8d56\n  cd ~/vced/code/service\n  pip install -r requirements.txt\n  cd ~/vced/code/web\n  pip install -r requirements.txt\n  pip install git+https://github.com/openai/CLIP.git\n  # \u8fd0\u884c\u524d\u7aef\n  nohup streamlit run app.py &\n  # \u8fd0\u884c\u540e\u7aef\n  cd ~/vced/code/service\n  python app.py --timeout-ready\nelse\n  echo \"\u811a\u672c\u672a\u6267\u884c...\"\nfi"
+        }
+    ]
+}

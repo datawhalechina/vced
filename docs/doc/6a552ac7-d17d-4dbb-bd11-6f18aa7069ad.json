@@ -1,0 +1,10 @@
+{
+    "summary": "This Dockerfile sets up a Python 3.9 container, installs dependencies from requirements.txt, and runs the application (app.py) as the entrypoint. The index-url is set to a Chinese mirror for improved access.",
+    "details": [
+        {
+            "comment": "This Dockerfile sets up a Python 3.9 container, installs dependencies from requirements.txt, and runs the application (app.py) as the entrypoint. The index-url is set to a Chinese mirror for improved access.",
+            "location": "\"/media/root/Prima/works/vced/docs/src/code/service/Dockerfile\":0-9",
+            "content": "FROM python:3.9\nADD requirements.txt /app/\nADD jina-service /app/\nRUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple\nRUN pip install /app/requirements.txt\nWORKDIR /app\nCMD [\"python\", \"app.py\"]"
+        }
+    ]
+}

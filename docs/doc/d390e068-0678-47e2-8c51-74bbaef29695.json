@@ -1,0 +1,10 @@
+{
+    "summary": "The code specifies a custom clip text encoder using CLIPTextEncoder with the associated configuration file located in \"vced/code/service/customClipText/config.yml\". It defines one Python module, \"clip_text.py\", which is used for processing the clipboard text.",
+    "details": [
+        {
+            "comment": "The code specifies a custom clip text encoder using CLIPTextEncoder with the associated configuration file located in \"vced/code/service/customClipText/config.yml\". It defines one Python module, \"clip_text.py\", which is used for processing the clipboard text.",
+            "location": "\"/media/root/Prima/works/vced/docs/src/code/service/customClipText/config.yml\":0-3",
+            "content": "jtype: CLIPTextEncoder\nmetas:\n  py_modules:\n    - clip_text.py"
+        }
+    ]
+}

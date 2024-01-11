@@ -1,0 +1,10 @@
+{
+    "summary": "This code loads an image from 'apple.png', preprocesses it by setting shape, normalizing, and changing the channel axis. It prints the tensor shape and the tensor itself. Then, it saves the processed tensor as 'apple-proc.png' after specifying that the channel_axis should be set to 0 due to previous preprocessing steps. The final image may lose information compared to the original.",
+    "details": [
+        {
+            "comment": "This code loads an image from 'apple.png', preprocesses it by setting shape, normalizing, and changing the channel axis. It prints the tensor shape and the tensor itself. Then, it saves the processed tensor as 'apple-proc.png' after specifying that the channel_axis should be set to 0 due to previous preprocessing steps. The final image may lose information compared to the original.",
+            "location": "\"/media/root/Prima/works/vced/docs/src/code/jina_demo/image/7.2 \u8fdb\u884c\u7b80\u5355\u7684\u56fe\u50cf\u5904\u7406.py\":0-14",
+            "content": "from jina import Document\nd = (\n    Document(uri='apple.png')\n    .load_uri_to_image_tensor()\n    .set_image_tensor_shape(shape=(224, 224))  # \u8bbe\u7f6eshape\n    .set_image_tensor_normalization()  # \u6807\u51c6\u5316\n    .set_image_tensor_channel_axis(-1, 0)  # \u66f4\u6539\u901a\u9053\n)\nprint(d.tensor.shape)  # (3, 224, 224)\nprint(d.tensor)\n# \u4f60\u53ef\u4ee5\u4f7f\u7528 save_image_tensor_to_file \u5c06 tensor \u8f6c\u4e3a\u56fe\u50cf\u3002\u5f53\u7136\uff0c\u56e0\u4e3a\u505a\u4e86\u9884\u5904\u7406\uff0c\u56fe\u7247\u8fd4\u56de\u65f6\u635f\u5931\u4e86\u5f88\u591a\u4fe1\u606f\u3002\nd.save_image_tensor_to_file('apple-proc.png', channel_axis=0)  # \u56e0\u4e3a\u524d\u9762\u8fdb\u884c\u4e86\u9884\u5904\u7406\uff0cchannel_axis\u5e94\u8be5\u8bbe\u4e3a0"
+        }
+    ]
+}

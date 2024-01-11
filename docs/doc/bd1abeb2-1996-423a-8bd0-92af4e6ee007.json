@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports the Document class from the docarray library, creates a new Document object with a URI pointing to 'cat.mp4', and then uses the load_uri_to_video_tensor method to extract keyframes only. Finally, it prints the shape of the resulting tensor, which has dimensions (2, 1080, 1920, 3).",
+    "details": [
+        {
+            "comment": "This code imports the Document class from the docarray library, creates a new Document object with a URI pointing to 'cat.mp4', and then uses the load_uri_to_video_tensor method to extract keyframes only. Finally, it prints the shape of the resulting tensor, which has dimensions (2, 1080, 1920, 3).",
+            "location": "\"/media/root/Prima/works/vced/docs/src/code/jina_demo/video/8.2 \u5173\u952e\u5e27\u63d0\u53d6.py\":0-5",
+            "content": "from docarray import Document\nd = Document(uri='cat.mp4')\n# \u53ef\u4ee5\u4f7f\u7528 only_keyframes \u8fd9\u4e2a\u53c2\u6570\u6765\u63d0\u53d6\u5173\u952e\u5e27\nd.load_uri_to_video_tensor(only_keyframes=True)\nprint(d.tensor.shape)  # (2, 1080, 1920, 3)"
+        }
+    ]
+}

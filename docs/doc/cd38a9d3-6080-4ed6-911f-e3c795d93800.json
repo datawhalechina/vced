@@ -1,0 +1,10 @@
+{
+    "summary": "This code defines a class `MyExecutor` that extends `Executor`, and includes two methods: `foo` and `bar`. These methods are decorated with `@requests`, allowing them to be accessed as HTTP endpoints. The `foo` method will print the keyword arguments (kwargs) passed, while `bar` on the endpoint '/index' also prints the kwargs.",
+    "details": [
+        {
+            "comment": "This code defines a class `MyExecutor` that extends `Executor`, and includes two methods: `foo` and `bar`. These methods are decorated with `@requests`, allowing them to be accessed as HTTP endpoints. The `foo` method will print the keyword arguments (kwargs) passed, while `bar` on the endpoint '/index' also prints the kwargs.",
+            "location": "\"/media/root/Prima/works/vced/docs/src/code/jina_demo/Executor.py\":0-11",
+            "content": "# \u5728 Executor \u4e2d\u6211\u4eec\u53ef\u4ee5\u5c06\u5177\u4f53\u7684\u4e1a\u52a1\u903b\u8f91\u8fdb\u884c\u5c01\u88c5\u5f97\u5230\u4e00\u4e2a\u670d\u52a1\nfrom jina import Executor, requests\nclass MyExecutor(Executor):\n    @requests\n    def foo(self, **kwargs):\n        print(kwargs)\n    @requests(on='/index')\n    def bar(self, **kwargs):\n        print(kwargs)"
+        }
+    ]
+}

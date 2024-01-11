@@ -1,0 +1,541 @@
+{
+    "100": {
+        "file_id": 22,
+        "content": "/code/service/Dockerfile",
+        "type": "filepath"
+    },
+    "101": {
+        "file_id": 22,
+        "content": "This Dockerfile sets up a Python 3.9 container, installs dependencies from requirements.txt, and runs the application (app.py) as the entrypoint. The index-url is set to a Chinese mirror for improved access.",
+        "type": "summary"
+    },
+    "102": {
+        "file_id": 22,
+        "content": "FROM python:3.9\nADD requirements.txt /app/\nADD jina-service /app/\nRUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple\nRUN pip install /app/requirements.txt\nWORKDIR /app\nCMD [\"python\", \"app.py\"]",
+        "type": "code",
+        "location": "/code/service/Dockerfile:1-10"
+    },
+    "103": {
+        "file_id": 22,
+        "content": "This Dockerfile sets up a Python 3.9 container, installs dependencies from requirements.txt, and runs the application (app.py) as the entrypoint. The index-url is set to a Chinese mirror for improved access.",
+        "type": "comment"
+    },
+    "104": {
+        "file_id": 23,
+        "content": "/code/service/app.py",
+        "type": "filepath"
+    },
+    "105": {
+        "file_id": 23,
+        "content": "The code sets Jina environment variables, checks device availability for CLIP model loading, and defines functions to retrieve documents, measure time, cut videos, and process search results. The code sets up a Flow object with multiple components, including videoLoader, customClipImage, and customClipText for data processing, using an indexer component with the customIndexer. It is configured to use gRPC protocol and JINA_PORT environment variable and executed in a context manager to process data.",
+        "type": "summary"
+    },
+    "106": {
+        "file_id": 23,
+        "content": "from docarray import Document\nfrom jina import Flow, DocumentArray\nimport os\nimport glob\nfrom jina.types.request.data import DataRequest\nimport torch\ndef config():\n    os.environ['JINA_PORT'] = '45679'  # the port for accessing the RESTful service, i.e. http://localhost:45678/docs\n    os.environ['JINA_WORKSPACE'] = './workspace'  # the directory to store the indexed data\n    os.environ['TOP_K'] = '20'  # the maximal number of results to return\n    os.environ['DEVICE'] = 'cuda'  # the device for model, should be \"cpu\" or \"cuda\". For usage of cuda, should set env JINA_MP_START_METHOD=\"spawn\" before starting Jina & Python. ref: https://github.com/jina-ai/jina/issues/2514 \ndef check_device():\n    device = \"cpu\"\n    if (\n        os.environ.get(\"DEVICE\") == \"cuda\" and \n        torch.cuda.is_available() and\n        os.environ.get(\"JINA_MP_START_METHOD\") == \"spawn\"\n    ):\n        device = \"cuda\"\n    print(f\"The CLIP model is loaded on device: {device}\")\n    return device   \ndef get_docs(data_path):\n    for fn in glob.glob(os.path.join(data_path, '*.mp4')):",
+        "type": "code",
+        "location": "/code/service/app.py:1-27"
+    },
+    "107": {
+        "file_id": 23,
+        "content": "This code sets environment variables for Jina, checks the device for loading the CLIP model, and defines functions to get documents from a specified data path. The environment variables include the port for accessing the RESTful service, the workspace directory for storing indexed data, and the maximum number of results to return. The device variable is set based on whether CUDA is available and the JINA_MP_START_METHOD environment variable is set to \"spawn\". The code then prints the device used for loading the CLIP model.",
+        "type": "comment"
+    },
+    "108": {
+        "file_id": 23,
+        "content": "        yield Document(uri=fn, id=os.path.basename(fn))\ndef check_index(resp: DataRequest):\n    for doc in resp.docs:\n        print(f'check_index: {doc.uri}')\ndef getTime(t: int):\n    m, s = divmod(t, 60)\n    h, m = divmod(m, 60)\n    t_str = \"%02d:%02d:%02d\" % (h, m, s)\n    print(t_str)\n    return t_str\ndef cutVideo(start_t: str, length: int, input: str, output: str, uid: str):\n    user_dir = os.path.join('static', 'output', uid)\n    if not os.path.exists(user_dir):\n        os.mkdir(user_dir)\n    os.system(f'ffmpeg -ss {start_t} -i {input} -t {length} -c:v copy -c:a copy {user_dir}/{output}')\ndef check_search(resp: DataRequest):\n    for i, doc in enumerate(resp.docs):\n        print(f'Query text: {doc.text}')\n        print(f'Matches: {len(doc.matches)}')\n        for m in doc.matches:\n            print(m)\n            print(\n                f'+- id: {m.id}, score: {m.tags[\"maxImageScore\"]}, indexRange: {m.tags[\"leftIndex\"]}-{m.tags[\"rightIndex\"]}, uri: {m.tags[\"uri\"]}')\n        print('-' * 10)\n        leftIndex = doc.matches[0].tags[\"leftIndex\"]",
+        "type": "code",
+        "location": "/code/service/app.py:28-61"
+    },
+    "109": {
+        "file_id": 23,
+        "content": "The code contains several functions. `check_index` prints the URI of each document in a response. `getTime` calculates and prints the time in hours, minutes, and seconds. `cutVideo` cuts a video segment based on start time and length, saving it to a user-specific directory using ffmpeg. `check_search` processes search results by printing the query text, number of matches, and detailed information about each match.",
+        "type": "comment"
+    },
+    "110": {
+        "file_id": 23,
+        "content": "        rightIndex = doc.matches[0].tags[\"rightIndex\"]\n        t_str = getTime(leftIndex)\n        # cutVideo(t_str, rightIndex - leftIndex, doc.matches[0].tags[\"uri\"], f\"match_{i}_{doc.matches[0].id}.mp4\")\nif __name__ == '__main__':\n    config()\n    device = check_device()\n    f = Flow(protocol=\"grpc\", port=os.environ['JINA_PORT']).add(\n        uses='videoLoader/config.yml',\n        uses_requests={\"/index\": \"extract\"},\n        name=\"video_loader\"\n    ).add(\n        uses=\"customClipImage/config.yml\",\n        name=\"image_encoder\",\n        uses_requests={\"/index\": \"encode\"},\n        uses_with={\"device\": device}\n    ).add(\n        uses=\"customClipText/config.yml\",\n        name=\"text_encoder\",\n        uses_requests={\"/search\": \"encode\"},\n        uses_with={\"device\": device}\n    ).add(\n        uses=\"customIndexer/config.yml\",\n        name=\"indexer\",\n        uses_metas={\"workspace\": os.environ['JINA_WORKSPACE']}\n    )\n    with f:\n        f.block()",
+        "type": "code",
+        "location": "/code/service/app.py:62-94"
+    },
+    "111": {
+        "file_id": 23,
+        "content": "The code sets up a Flow object with multiple components, including videoLoader, customClipImage, and customClipText for data processing. It also includes an indexer component using the customIndexer. The Flow is configured to use gRPC protocol and the JINA_PORT environment variable. The code then executes the Flow's block in a context manager to process data.",
+        "type": "comment"
+    },
+    "112": {
+        "file_id": 24,
+        "content": "/code/service/customClipImage/clip_image.py",
+        "type": "filepath"
+    },
+    "113": {
+        "file_id": 24,
+        "content": "The CLIPImageEncoder class encodes images into embeddings using the CLIP model with input parameters, initializes necessary modules, and defines an encode method for document batches. It loads the models onto the specified device, processes data, and assigns embeddings to instances.",
+        "type": "summary"
+    },
+    "114": {
+        "file_id": 24,
+        "content": "from typing import Optional, Tuple, Dict\nimport torch\nfrom docarray import DocumentArray\nfrom jina import Executor, requests\nfrom jina.logging.logger import JinaLogger\nfrom transformers import CLIPFeatureExtractor, CLIPModel\nimport numpy as np\nimport clip\nfrom PIL import Image\nimport time\nclass CLIPImageEncoder(Executor):\n    \"\"\"Encode image into embeddings using the CLIP model.\"\"\"\n    def __init__(\n        self,\n        pretrained_model_name_or_path: str = 'ViT-B/32',\n        device: str = 'cpu',\n        batch_size: int = 32,\n        traversal_paths: str = '@r',\n        *args,\n        **kwargs,\n    ):\n        \"\"\"\n        :param pretrained_model_name_or_path: Can be either:\n            - A string, the model id of a pretrained CLIP model hosted\n                inside a model repo on huggingface.co, e.g., 'openai/clip-vit-base-patch32'\n            - A path to a directory containing model weights saved, e.g.,\n                ./my_model_directory/\n        :param base_feature_extractor: Base feature extractor for images.",
+        "type": "code",
+        "location": "/code/service/customClipImage/clip_image.py:1-31"
+    },
+    "115": {
+        "file_id": 24,
+        "content": "The code defines a CLIPImageEncoder class, which is an Executor for encoding images into embeddings using the CLIP model. It takes input parameters such as pretrained_model_name_or_path (the CLIP model to use), device (CPU or GPU), batch_size (number of images to process at once), and traversal_paths (a string indicating how data should be accessed). This class initializes the necessary modules, including CLIPFeatureExtractor and CLIPModel.",
+        "type": "comment"
+    },
+    "116": {
+        "file_id": 24,
+        "content": "            Defaults to ``pretrained_model_name_or_path`` if None\n        :param use_default_preprocessing: Whether to use the `base_feature_extractor` on\n            images (tensors) before encoding them. If you disable this, you must ensure\n            that the images you pass in have the correct format, see the ``encode``\n            method for details.\n        :param device: Pytorch device to put the model on, e.g. 'cpu', 'cuda', 'cuda:1'\n        :param traversal_paths: Default traversal paths for encoding, used if\n            the traversal path is not passed as a parameter with the request.\n        :param batch_size: Default batch size for encoding, used if the\n            batch size is not passed as a parameter with the request.\n        \"\"\"\n        super().__init__(*args, **kwargs)\n        self.batch_size = batch_size\n        self.traversal_paths = traversal_paths\n        self.pretrained_model_name_or_path = pretrained_model_name_or_path\n        self.logger = JinaLogger(self.__class__.__name__)\n        self.device = device",
+        "type": "code",
+        "location": "/code/service/customClipImage/clip_image.py:32-50"
+    },
+    "117": {
+        "file_id": 24,
+        "content": "This code defines a class with four parameters: `pretrained_model_name_or_path`, `use_default_preprocessing`, `device`, and `traversal_paths`. It also sets the default values for `batch_size` and initializes a logger. The superclass is initialized using `super().__init__(*args, **kwargs)`.",
+        "type": "comment"
+    },
+    "118": {
+        "file_id": 24,
+        "content": "        model, preprocessor = clip.load(self.pretrained_model_name_or_path, device=device)\n        self.preprocessor = preprocessor\n        self.model = model\n        self.model.to(self.device)\n        # self.model.to(self.device).eval()\n    @requests\n    def encode(self, docs: DocumentArray, parameters: dict, **kwargs):\n        t1 = time.time()\n        print('clip_image encode', t1)\n        document_batches_generator =  DocumentArray(\n            filter(\n                lambda x: x is not None,\n                docs[parameters.get('traversal_paths', self.traversal_paths)],\n            )\n        ).batch(batch_size=parameters.get('batch_size', self.batch_size))\n        with torch.inference_mode():\n            for batch_docs in document_batches_generator:\n                print('in for')\n                for d in batch_docs:\n                    print('in clip image d.uri', d.uri, len(d.chunks))\n                    # tensor = self._generate_input_features(tensors_batch)\n                    tensors_batch = []\n                    for c in d.chunks:",
+        "type": "code",
+        "location": "/code/service/customClipImage/clip_image.py:52-76"
+    },
+    "119": {
+        "file_id": 24,
+        "content": "This code initializes a CLIP model, preprocessor, and loads them onto the specified device. It then defines an encode method that takes in a DocumentArray, parameters, and processes document batches using a generator. The code also includes time tracking and prints information related to the input documents being processed.",
+        "type": "comment"
+    },
+    "120": {
+        "file_id": 24,
+        "content": "                        if (c.modality == 'image'):\n                            image_embedding = self.model.encode_image(self.preprocessor(Image.fromarray(c.tensor)).unsqueeze(0).to(self.device))\n                            # tensors_batch.append(image_embedding)\n                            tensors_batch.append(np.array(image_embedding.cpu()).astype('float32'))\n                    embedding = tensors_batch\n                    # print(np.asarray(Image.open(d.uri)).shape)\n                    # image = self.preprocessor(Image.fromarray(np.asarray(Image.open(d.uri)))).unsqueeze(0).to(self.device)\n                    # embedding = self.model.encode_image(image)\n                    # print(embedding)\n                    # embedding = np.array(embedding).astype('float32')\n                    # print(embedding)\n                    d.embedding = embedding\n        t2 = time.time()\n        print('clip_image encode end', t2 - t1, t2)",
+        "type": "code",
+        "location": "/code/service/customClipImage/clip_image.py:77-90"
+    },
+    "121": {
+        "file_id": 24,
+        "content": "This code segment encodes an image into an embedding using a preprocessor, model, and specific device. It appends the resulting embeddings to a batch and assigns it as the embedding for a given data instance. The code includes unnecessary debug print statements and alternative encoding methods that are not implemented.",
+        "type": "comment"
+    },
+    "122": {
+        "file_id": 25,
+        "content": "/code/service/customClipImage/config.yml",
+        "type": "filepath"
+    },
+    "123": {
+        "file_id": 25,
+        "content": "This code configures a CLIPImageEncoder with the module \"clip_image.py\". It is likely used for encoding image data in a specific format, possibly related to computer vision or image processing tasks.",
+        "type": "summary"
+    },
+    "124": {
+        "file_id": 25,
+        "content": "jtype: CLIPImageEncoder\nmetas:\n  py_modules:\n    - clip_image.py",
+        "type": "code",
+        "location": "/code/service/customClipImage/config.yml:1-4"
+    },
+    "125": {
+        "file_id": 25,
+        "content": "This code configures a CLIPImageEncoder with the module \"clip_image.py\". It is likely used for encoding image data in a specific format, possibly related to computer vision or image processing tasks.",
+        "type": "comment"
+    },
+    "126": {
+        "file_id": 26,
+        "content": "/code/service/customClipText/clip_text.py",
+        "type": "filepath"
+    },
+    "127": {
+        "file_id": 26,
+        "content": "The code initializes a CLIP model class for encoding text into embeddings, using optional pre-trained models and tokenizers, with device specification. The encode method processes documents, stores embeddings, and encodes text efficiently, timing the process.",
+        "type": "summary"
+    },
+    "128": {
+        "file_id": 26,
+        "content": "from typing import Dict, Optional\nimport torch\nfrom docarray import DocumentArray\nfrom jina import Executor, requests\nimport clip\nimport time\nclass CLIPTextEncoder(Executor):\n    \"\"\"Encode text into embeddings using the CLIP model.\"\"\"\n    def __init__(\n        self,\n        pretrained_model_name_or_path: str = 'ViT-B/32',\n        base_tokenizer_model: Optional[str] = None,\n        max_length: int = 77,\n        device: str = 'cpu',\n        traversal_paths: str = '@r',\n        batch_size: int = 32,\n        *args,\n        **kwargs,\n    ):\n        \"\"\"\n        :param pretrained_model_name_or_path: Can be either:\n            - A string, the model id of a pretrained CLIP model hosted\n                inside a model repo on huggingface.co, e.g., 'openai/clip-vit-base-patch32'\n            - A path to a directory containing model weights saved, e.g., ./my_model_directory/\n        :param base_tokenizer_model: Base tokenizer model.\n            Defaults to ``pretrained_model_name_or_path`` if None\n        :param max_length: Max length argument for the tokenizer.",
+        "type": "code",
+        "location": "/code/service/customClipText/clip_text.py:1-30"
+    },
+    "129": {
+        "file_id": 26,
+        "content": "The code imports necessary libraries, defines a CLIPTextEncoder class that extends the Executor class from Jina, and initializes various parameters for the CLIP model. It takes optional arguments such as pretrained_model_name_or_path, base_tokenizer_model, max_length, device, traversal_paths, and batch_size. The class will be used to encode text into embeddings using the CLIP model.",
+        "type": "comment"
+    },
+    "130": {
+        "file_id": 26,
+        "content": "            All CLIP models use 77 as the max length\n        :param device: Pytorch device to put the model on, e.g. 'cpu', 'cuda', 'cuda:1'\n        :param traversal_paths: Default traversal paths for encoding, used if\n            the traversal path is not passed as a parameter with the request.\n        :param batch_size: Default batch size for encoding, used if the\n            batch size is not passed as a parameter with the request.\n        \"\"\"\n        super().__init__(*args, **kwargs)\n        self.traversal_paths = traversal_paths\n        self.batch_size = batch_size\n        self.pretrained_model_name_or_path = pretrained_model_name_or_path\n        self.base_tokenizer_model = (\n            base_tokenizer_model or pretrained_model_name_or_path\n        )\n        self.max_length = max_length\n        self.device = device\n        model, preprocessor = clip.load(self.pretrained_model_name_or_path, device=device)\n        self.preprocessor = preprocessor\n        self.model = model\n        self.model.to(device)",
+        "type": "code",
+        "location": "/code/service/customClipText/clip_text.py:31-53"
+    },
+    "131": {
+        "file_id": 26,
+        "content": "This code defines a class for initializing CLIP model with default parameters, such as max length, device type, and default traversal paths. It loads the pre-trained model and tokenizer using clip.load function and moves them to specified device.",
+        "type": "comment"
+    },
+    "132": {
+        "file_id": 26,
+        "content": "        # self.tokenizer = CLIPTokenizer.from_pretrained(self.base_tokenizer_model)\n        # self.model = CLIPModel.from_pretrained(self.pretrained_model_name_or_path)\n        # self.model.eval().to(device)\n    @requests\n    def encode(self, docs: DocumentArray, parameters: Dict, **kwargs):\n        \"\"\"\n        Encode all documents with the `text` attribute and store the embeddings in the\n        `embedding` attribute.\n        :param docs: DocumentArray containing the Documents to be encoded\n        :param parameters: A dictionary that contains parameters to control encoding.\n            The accepted keys are ``traversal_paths`` and ``batch_size`` - in their\n            absence their corresponding default values are used.\n        \"\"\"\n        print('clip_text encode')\n        for docs_batch in DocumentArray(\n            filter(\n                lambda x: bool(x.text),\n                docs[parameters.get('traversal_paths', self.traversal_paths)],\n            )\n        ).batch(batch_size=parameters.get('batch_size', self.batch_size)) :",
+        "type": "code",
+        "location": "/code/service/customClipText/clip_text.py:55-77"
+    },
+    "133": {
+        "file_id": 26,
+        "content": "The code defines a class with an encode method that takes in a DocumentArray of documents, processes them by filtering for those with a non-empty text attribute and then batches them. It stores the embeddings in the embedding attribute. The tokenizer and model are instantiated from pretrained models but not shown here. The parameters dictionary can contain optional parameters to control encoding, namely traversal_paths and batch_size. If they're missing, default values are used.",
+        "type": "comment"
+    },
+    "134": {
+        "file_id": 26,
+        "content": "            text_batch = docs_batch.texts\n            t1 = time.time()\n            with torch.inference_mode():\n                input_tokens = [self.model.encode_text(clip.tokenize([t, \"unknown\"]).to(self.device)).cpu().to(dtype=torch.float32) for t in text_batch] # self._generate_input_tokens(text_batch)\n                embeddings = input_tokens  # self.model.get_text_features(**input_tokens).cpu().numpy()\n                for doc, embedding in zip(docs_batch, embeddings):\n                    doc.embedding = embedding\n                    # doc.embedding = np.array(embedding).astype('float32')[0]\n            t2 = time.time()\n            print(\"encode text cost:\", t2 - t1)\n            print(t1)\n            print(t2)",
+        "type": "code",
+        "location": "/code/service/customClipText/clip_text.py:79-90"
+    },
+    "135": {
+        "file_id": 26,
+        "content": "The code encodes text using the `model.encode_text()` function, tokenizes it with `clip.tokenize()`, and assigns the resulting embeddings to each document in the batch. The time taken for this encoding process is printed as \"encode text cost\".",
+        "type": "comment"
+    },
+    "136": {
+        "file_id": 27,
+        "content": "/code/service/customClipText/config.yml",
+        "type": "filepath"
+    },
+    "137": {
+        "file_id": 27,
+        "content": "The code specifies a custom clip text encoder using CLIPTextEncoder with the associated configuration file located in \"vced/code/service/customClipText/config.yml\". It defines one Python module, \"clip_text.py\", which is used for processing the clipboard text.",
+        "type": "summary"
+    },
+    "138": {
+        "file_id": 27,
+        "content": "jtype: CLIPTextEncoder\nmetas:\n  py_modules:\n    - clip_text.py",
+        "type": "code",
+        "location": "/code/service/customClipText/config.yml:1-4"
+    },
+    "139": {
+        "file_id": 27,
+        "content": "The code specifies a custom clip text encoder using CLIPTextEncoder with the associated configuration file located in \"vced/code/service/customClipText/config.yml\". It defines one Python module, \"clip_text.py\", which is used for processing the clipboard text.",
+        "type": "comment"
+    },
+    "140": {
+        "file_id": 28,
+        "content": "/code/service/customIndexer/config.yml",
+        "type": "filepath"
+    },
+    "141": {
+        "file_id": 28,
+        "content": "The code configures a SimpleIndexer with a limit of $TOP_K and uses 'c' as traversal_rdarray. It includes executor.py in py_modules and sets the workspace directory as workspace/.",
+        "type": "summary"
+    },
+    "142": {
+        "file_id": 28,
+        "content": "jtype: SimpleIndexer\nwith:\n  match_args: \n    limit: $TOP_K\n    traversal_rdarray: 'c'\nmetas:\n  py_modules:\n    - executor.py\n  workspace: workspace/",
+        "type": "code",
+        "location": "/code/service/customIndexer/config.yml:1-9"
+    },
+    "143": {
+        "file_id": 28,
+        "content": "The code configures a SimpleIndexer with a limit of $TOP_K and uses 'c' as traversal_rdarray. It includes executor.py in py_modules and sets the workspace directory as workspace/.",
+        "type": "comment"
+    },
+    "144": {
+        "file_id": 29,
+        "content": "/code/service/customIndexer/executor.py",
+        "type": "filepath"
+    },
+    "145": {
+        "file_id": 29,
+        "content": "The SimpleIndexer class is an Executor extension for efficient Document data storage, indexing/searching with SQLite and CLIP. It includes methods for deleting, updating, and retrieving embeddings via HTTP endpoints. Normalization, cosine similarity calculation, softmax probability return, and a clear method to delete the database are included.",
+        "type": "summary"
+    },
+    "146": {
+        "file_id": 29,
+        "content": "import inspect\nimport os\nfrom typing import Dict, Optional\nfrom jina import DocumentArray, Executor, requests\nfrom jina.logging.logger import JinaLogger\nimport clip\nfrom torch import Tensor\nimport torch\nimport time\nclass SimpleIndexer(Executor):\n    \"\"\"\n    A simple indexer that stores all the Document data together in a DocumentArray,\n    and can dump to and load from disk.\n    To be used as a unified indexer, combining both indexing and searching\n    \"\"\"\n    FILE_NAME = 'index.db'\n    def __init__(\n        self,\n        pretrained_model_name_or_path: str = 'ViT-B/32',\n        match_args: Optional[Dict] = None,\n        table_name: str = 'simple_indexer_table2',\n        traversal_right: str = '@r',\n        traversal_left: str = '@r',\n        device: str = 'cpu',\n        **kwargs,\n    ):\n        \"\"\"\n        Initializer function for the simple indexer\n        To specify storage path, use `workspace` attribute in executor `metas`\n        :param match_args: the arguments to `DocumentArray`'s match function\n        :param table_name: name of the table to work with for the sqlite backend",
+        "type": "code",
+        "location": "/code/service/customIndexer/executor.py:1-38"
+    },
+    "147": {
+        "file_id": 29,
+        "content": "The code is defining a class called SimpleIndexer that extends the Executor class from the Jina library. It takes in parameters such as pretrained_model_name_or_path, match_args, table_name, traversal_right, traversal_left, and device. This indexer stores all Document data in a DocumentArray and can dump to and load from disk. It is meant to be used as a unified indexer for both indexing and searching purposes.",
+        "type": "comment"
+    },
+    "148": {
+        "file_id": 29,
+        "content": "        :param traversal_right: the default traversal path for the indexer's\n        DocumentArray\n        :param traversal_left: the default traversal path for the query\n        DocumentArray\n        \"\"\"\n        super().__init__(**kwargs)\n        self._match_args = match_args or {}\n        self._index = DocumentArray(\n            storage='sqlite',\n            config={\n                'connection': os.path.join(self.workspace, SimpleIndexer.FILE_NAME),\n                'table_name': table_name,\n            },\n        )  # with customize config\n        self.logger = JinaLogger(self.metas.name)\n        self.default_traversal_right = traversal_right\n        self.default_traversal_left = traversal_left\n        self.pretrained_model_name_or_path = pretrained_model_name_or_path\n        self.device = device\n        model, preprocessor = clip.load(self.pretrained_model_name_or_path, device=\"cpu\")   # No need to load on cuda\n        self.preprocessor = preprocessor\n        self.model = model\n    @property\n    def table_name(self) -> str:",
+        "type": "code",
+        "location": "/code/service/customIndexer/executor.py:39-68"
+    },
+    "149": {
+        "file_id": 29,
+        "content": "This code initializes a class with default parameters, creates a DocumentArray index with customized SQLite storage configuration, sets up a logger and defines default traversal paths. It also loads a pretrained model using the CLIP library without requiring GPU acceleration and assigns them to the class instance variables.",
+        "type": "comment"
+    },
+    "150": {
+        "file_id": 29,
+        "content": "        return self._index._table_name\n    @requests(on='/index')\n    def index(\n        self,\n        docs: 'DocumentArray',\n        **kwargs,\n    ):\n        \"\"\"All Documents to the DocumentArray\n        :param docs: the docs to add\n        \"\"\"\n        t1 = time.time()\n        if docs:\n            self._index.extend(docs)\n        t2 = time.time()\n        print(t2 - t1)\n        print(t1)\n        print(t2)\n    @requests(on='/search')\n    def search(\n        self,\n        docs: 'DocumentArray',\n        parameters: Optional[Dict] = None,\n        **kwargs,\n    ):\n        \"\"\"Perform a vector similarity search and retrieve the full Document match\n        :param docs: the Documents to search with\n        :param parameters: the runtime arguments to `DocumentArray`'s match\n        function. They overwrite the original match_args arguments.\n        \"\"\"\n        match_args = (\n            {**self._match_args, **parameters}\n            if parameters is not None\n            else self._match_args\n        )\n        traversal_right = parameters.get(",
+        "type": "code",
+        "location": "/code/service/customIndexer/executor.py:69-107"
+    },
+    "151": {
+        "file_id": 29,
+        "content": "Function `index` takes a list of documents and adds them to the index, timing the operation.\nFunction `search` performs a vector similarity search using provided documents, allowing for custom match arguments.",
+        "type": "comment"
+    },
+    "152": {
+        "file_id": 29,
+        "content": "            'traversal_right', self.default_traversal_right\n        )\n        traversal_left = parameters.get('traversal_left', self.default_traversal_left)\n        match_args = SimpleIndexer._filter_match_params(docs, match_args)\n        # print('in indexer',docs[traversal_left].embeddings.shape, self._index[traversal_right])\n        texts: DocumentArray = docs[traversal_left]\n        stored_docs: DocumentArray = self._index[traversal_right]\n        doc_ids = parameters.get(\"doc_ids\")\n        t1 = time.time()\n        with torch.inference_mode():\n            t1_00 = time.time()\n            for text in texts:\n                result = []\n                text_features = text.embedding\n                text.embedding = None\n                for sd in stored_docs:\n                    if doc_ids is not None and sd.uri not in doc_ids:\n                        continue\n                    images_features = sd.embedding\n                    print('images len',len(images_features))\n                    t1_0 = time.time()",
+        "type": "code",
+        "location": "/code/service/customIndexer/executor.py:108-129"
+    },
+    "153": {
+        "file_id": 29,
+        "content": "This code retrieves the 'traversal_left' and 'traversal_right' parameters, filters match_args, and iterates through texts and stored_docs. It checks if any stored document URI is not in doc_ids, skips those, calculates the length of images features, and measures execution times at different points.",
+        "type": "comment"
+    },
+    "154": {
+        "file_id": 29,
+        "content": "                    tensor_images_features = [Tensor(image_features) for image_features in images_features]\n                    t1_1 = time.time()\n                    for i, image_features in enumerate(tensor_images_features):\n                        tensor = image_features\n                        probs = self.score(tensor, text_features)\n                        result.append({\n                            \"score\": probs[0][0],\n                            \"index\": i,\n                            \"uri\": sd.uri,\n                            \"id\": sd.id\n                        })\n                    t1_2 = time.time()\n                    print(\"tensor cost:\", t1_1 - t1_0)\n                    print(\"part score cost:\", t1_2 - t1_1)\n                    print(t1_0)\n                    print(t1_1)\n                    print(t1_2)\n                t2 = time.time()\n                print('score cost:', t2 - t1)\n                # print(parameters, type(parameters.get(\"thod\")))\n                index_list = self.getMultiRan",
+        "type": "code",
+        "location": "/code/service/customIndexer/executor.py:130-150"
+    },
+    "155": {
+        "file_id": 29,
+        "content": "This code creates tensors from image features, calculates scores between these tensor and text features using the 'score' function, stores results in a list, and prints the time taken for various operations. It also calculates the overall score cost and calls another function 'getMultiRan'.",
+        "type": "comment"
+    },
+    "156": {
+        "file_id": 29,
+        "content": "ge(result,0.1 if parameters.get(\"thod\") is None else parameters.get('thod'), parameters.get(\"maxCount\"))\n                t3 = time.time()\n                print('range cost:', t3 - t2)\n                print(t1)\n                print(t1_00)\n                print(t2)\n                print(t3)\n                # print(index_list)\n                docArr = DocumentArray.empty(len(index_list))\n                for i, doc in enumerate(docArr):\n                    doc.tags[\"leftIndex\"] = index_list[i][\"leftIndex\"]\n                    doc.tags[\"rightIndex\"] = index_list[i][\"rightIndex\"]\n                    # print(index_list[i])\n                    doc.tags[\"maxImageScore\"] = float(index_list[i][\"maxImage\"][\"score\"])\n                    doc.tags[\"uri\"] = index_list[i][\"maxImage\"][\"uri\"]\n                    doc.tags[\"maxIndex\"] = index_list[i][\"maxImage\"][\"index\"]\n                # print(docArr)\n                text.matches = docArr\n    def getMultiRange(self, result: list, thod = 0.1, maxCount: int = 10):\n        ignore_range = {}",
+        "type": "code",
+        "location": "/code/service/customIndexer/executor.py:150-170"
+    },
+    "157": {
+        "file_id": 29,
+        "content": "This code calculates the time taken to execute a range search, and populates the tags of each document in the DocumentArray with relevant information. It also defines a function called getMultiRange that takes a result list, threshold value (thod), and maximum count as parameters, and returns a DocumentArray with populated tags for each document.",
+        "type": "comment"
+    },
+    "158": {
+        "file_id": 29,
+        "content": "        index_list = []\n        maxCount = int(maxCount)\n        for i in range(maxCount):\n            maxItem = self.getNextMaxItem(result, ignore_range)\n            if maxItem is None:\n                break\n            # print(maxItem[\"score\"])\n            leftIndex, rightIndex, maxImage = self.getRange(maxItem, result, thod, ignore_range)\n            index_list.append({\n                \"leftIndex\": leftIndex,\n                \"rightIndex\": rightIndex,\n                \"maxImage\": maxImage\n            })\n            if maxImage[\"uri\"] in ignore_range:\n                ignore_range[maxImage[\"uri\"]] += list(range(leftIndex, rightIndex + 1))\n            else:\n                ignore_range[maxImage[\"uri\"]] = list(range(leftIndex, rightIndex + 1))\n        # print(ignore_range)\n        return index_list\n    def getNextMaxItem(self, result: list, ignore_range):\n        maxItem = None\n        for item in result:\n            if item[\"uri\"] in ignore_range and item[\"index\"] in ignore_range[item[\"uri\"]]:\n                continue",
+        "type": "code",
+        "location": "/code/service/customIndexer/executor.py:171-195"
+    },
+    "159": {
+        "file_id": 29,
+        "content": "This code initializes an empty list called index_list, sets a maximum count as an integer, and then uses a for loop to iterate through the specified range of counts. It retrieves the next maximum item using getNextMaxItem function and appends its corresponding left index, right index, and maxImage data to index_list. If the maxImage's URI is in ignore_range, it updates its corresponding list of indices. Finally, it returns the populated index_list. The getNextMaxItem function iterates through the result list and continues if item's URI is in ignore_range or its index is in ignore_range[item[\"uri\"]].",
+        "type": "comment"
+    },
+    "160": {
+        "file_id": 29,
+        "content": "            if maxItem is None:\n                maxItem = item\n            if item[\"score\"] > maxItem[\"score\"]:\n                maxItem = item\n        return maxItem\n    def getRange(self, maxItem, result: list, thod = 0.1, ignore_range = None):\n        maxImageScore = maxItem[\"score\"]\n        maxImageUri = maxItem[\"uri\"]\n        maxIndex = maxItem[\"index\"]\n        leftIndex = maxIndex\n        rightIndex = maxIndex\n        has_ignore_range = ignore_range is not None\n        d_result = list(filter(lambda x: x[\"uri\"] == maxImageUri, result))\n        for i in range(maxIndex):\n            prev_index = maxIndex - 1 - i\n            if has_ignore_range and prev_index in ignore_range:\n                break\n            # print(maxImageScore, thod, maxImageUri, maxIndex)\n            if d_result[prev_index][\"score\"] >= maxImageScore - thod:\n                leftIndex = prev_index\n            else:\n                break\n        for i in range(maxIndex+1, len(d_result)):\n            if has_ignore_range and i in ignore_range:",
+        "type": "code",
+        "location": "/code/service/customIndexer/executor.py:196-222"
+    },
+    "161": {
+        "file_id": 29,
+        "content": "This code retrieves the maximum item from a list, then determines the range of an image within that list by iterating through the items. The function takes into account an optional ignore_range parameter and a threshold value (thod) to determine where the leftIndex and rightIndex lie in relation to maxIndex.",
+        "type": "comment"
+    },
+    "162": {
+        "file_id": 29,
+        "content": "                break\n            if d_result[i][\"score\"] >= maxImageScore - thod:\n                rightIndex = i\n            else:\n                break\n        if (rightIndex - leftIndex) > 60:\n            return self.getRange(maxItem, result, thod/2, ignore_range)\n        return leftIndex, max(rightIndex, leftIndex + 10), d_result[maxIndex]\n    def score(self, image_features, text_features):\n        logit_scale = self.model.logit_scale.exp()\n        # normalized features\n        image_features = image_features / image_features.norm(dim=1, keepdim=True)\n        text_features = text_features / text_features.norm(dim=1, keepdim=True)\n        # cosine similarity as logits\n        logits_per_image = logit_scale * image_features @ text_features.t()\n        probs = logits_per_image.softmax(dim=-1).cpu().detach().numpy()\n        # print(\" img Label probs:\", probs)\n        return probs\n    @staticmethod\n    def _filter_match_params(docs, match_args):\n        # get only those arguments that exist in .match\n        args = set(inspect.getfullargspec(docs.match).args)",
+        "type": "code",
+        "location": "/code/service/customIndexer/executor.py:223-250"
+    },
+    "163": {
+        "file_id": 29,
+        "content": "The code is implementing a custom indexer for document retrieval. It starts by normalizing image and text features, calculating cosine similarity as logits, and returning softmax probabilities. The main function filters match parameters and adjusts result ranges accordingly.",
+        "type": "comment"
+    },
+    "164": {
+        "file_id": 29,
+        "content": "        args.discard('self')\n        match_args = {k: v for k, v in match_args.items() if k in args}\n        return match_args\n    @requests(on='/delete')\n    def delete(self, parameters: Dict, **kwargs):\n        \"\"\"Delete entries from the index by id\n        :param parameters: parameters to the request\n        \"\"\"\n        deleted_ids = parameters.get('ids', [])\n        if len(deleted_ids) == 0:\n            return\n        del self._index[deleted_ids]\n    @requests(on='/update')\n    def update(self, docs: DocumentArray, **kwargs):\n        \"\"\"Update doc with the same id, if not present, append into storage\n        :param docs: the documents to update\n        \"\"\"\n        for doc in docs:\n            try:\n                self._index[doc.id] = doc\n            except IndexError:\n                self.logger.warning(\n                    f'cannot update doc {doc.id} as it does not exist in storage'\n                )\n    @requests(on='/fill_embedding')\n    def fill_embedding(self, docs: DocumentArray, **kwargs):\n        \"\"\"retrieve embedding of Documents by id",
+        "type": "code",
+        "location": "/code/service/customIndexer/executor.py:251-283"
+    },
+    "165": {
+        "file_id": 29,
+        "content": "This code defines methods for a custom indexer that handles deleting, updating, and retrieving embeddings of documents. The delete method removes entries from the index by ID, update adds or updates documents based on ID, and fill_embedding retrieves embeddings of documents by ID. These methods are accessible via HTTP endpoints \"/delete\", \"/update\", and \"/fill_embedding\".",
+        "type": "comment"
+    },
+    "166": {
+        "file_id": 29,
+        "content": "        :param docs: DocumentArray to search with\n        \"\"\"\n        for doc in docs:\n            doc.embedding = self._index[doc.id].embedding\n    @requests(on='/clear')\n    def clear(self, **kwargs):\n        \"\"\"clear the database\"\"\"\n        self._index.clear()",
+        "type": "code",
+        "location": "/code/service/customIndexer/executor.py:285-293"
+    },
+    "167": {
+        "file_id": 29,
+        "content": "This code defines a method named `clear` which clears the database when invoked with the '/clear' endpoint. It utilizes an index (self._index) and accesses document embeddings based on their respective IDs in the provided DocumentArray.",
+        "type": "comment"
+    },
+    "168": {
+        "file_id": 30,
+        "content": "/code/service/requirements.txt",
+        "type": "filepath"
+    },
+    "169": {
+        "file_id": 30,
+        "content": "This code specifies the required Python packages and their respective versions for a project. It includes packages like Jina, WebVTT-py, ffmpeg-python, Torchvision, FTFY, Regex, Tqdm, Transformers, SciPy, Pillow, Tornado, Protobuf, Librosa, Streamlit, and Myst-parser.",
+        "type": "summary"
+    },
+    "170": {
+        "file_id": 30,
+        "content": "jina==3.4.2\nwebvtt-py==0.4.6\nffmpeg-python==0.2.0\ntorchvision==0.12.0\nftfy==6.1.1\nregex==2022.4.24\ntqdm==4.64.0\ntransformers==4.9.1\nscipy==1.8.0\npillow==9.1.0\ntornado==6.1\nprotobuf==3.20\nlibrosa==0.9.1\nstreamlit==1.12.0\nmyst-parser==0.18.1",
+        "type": "code",
+        "location": "/code/service/requirements.txt:1-15"
+    },
+    "171": {
+        "file_id": 30,
+        "content": "This code specifies the required Python packages and their respective versions for a project. It includes packages like Jina, WebVTT-py, ffmpeg-python, Torchvision, FTFY, Regex, Tqdm, Transformers, SciPy, Pillow, Tornado, Protobuf, Librosa, Streamlit, and Myst-parser.",
+        "type": "comment"
+    },
+    "172": {
+        "file_id": 31,
+        "content": "/code/service/videoLoader/config.yml",
+        "type": "filepath"
+    },
+    "173": {
+        "file_id": 31,
+        "content": "The code specifies the VideoLoader service with the configuration file \"vced/code/service/videoLoader/config.yml\". It includes a Python module \"video_loader.py\" in its metadata.",
+        "type": "summary"
+    },
+    "174": {
+        "file_id": 31,
+        "content": "jtype: VideoLoader\nmetas:\n  py_modules:\n    - video_loader.py",
+        "type": "code",
+        "location": "/code/service/videoLoader/config.yml:1-4"
+    },
+    "175": {
+        "file_id": 31,
+        "content": "The code specifies the VideoLoader service with the configuration file \"vced/code/service/videoLoader/config.yml\". It includes a Python module \"video_loader.py\" in its metadata.",
+        "type": "comment"
+    },
+    "176": {
+        "file_id": 32,
+        "content": "/code/service/videoLoader/video_loader.py",
+        "type": "filepath"
+    },
+    "177": {
+        "file_id": 32,
+        "content": "The VideoLoader executor class manages video extraction, audio parameters, and error handling using FFmpeg while processing subtitles in .srt or .vtt format.",
+        "type": "summary"
+    },
+    "178": {
+        "file_id": 32,
+        "content": "__copyright__ = \"Copyright (c) 2020-2021 Jina AI Limited. All rights reserved.\"\n__license__ = \"Apache-2.0\"\nimport io\nimport os\nimport random\nimport re\nimport string\nimport tempfile\nimport urllib.request\nimport urllib.parse\nfrom copy import deepcopy\nfrom typing import Dict, Iterable, Optional\nfrom pathlib import Path\nimport ffmpeg\nimport librosa\nimport numpy as np\nimport webvtt\nfrom jina import Executor, requests\nfrom docarray import Document, DocumentArray\nfrom jina.logging.logger import JinaLogger\nfrom PIL import Image\nimport math\nimport time\nDEFAULT_FPS = 1.0\nDEFAULT_AUDIO_BIT_RATE = 160000\nDEFAULT_AUDIO_CHANNELS = 2\nDEFAULT_AUDIO_SAMPLING_RATE = 44100  # Hz\nDEFAULT_SUBTITLE_MAP = '0:s:0'\nclass VideoLoader(Executor):\n    \"\"\"\n    An executor to extract the image frames, audio from videos with `ffmpeg`.\n    \"\"\"\n    def __init__(\n        self,\n        modality_list: Iterable[str] = ('image', 'audio', 'text'),\n        ffmpeg_video_args: Optional[Dict] = None,\n        ffmpeg_audio_args: Optional[Dict] = None,\n        ffmpeg_subtitle_args: Optional[Dict] = None,",
+        "type": "code",
+        "location": "/code/service/videoLoader/video_loader.py:1-44"
+    },
+    "179": {
+        "file_id": 32,
+        "content": "The code snippet is part of a VideoLoader executor class. It imports necessary libraries, sets default values for FPS, audio bit rate, channels, and sampling rate. The executor's main purpose is to extract image frames, audio, and text from videos using `ffmpeg`. The class has optional parameters for modifying the ffmpeg arguments, allowing customization of video, audio, and subtitle arguments.",
+        "type": "comment"
+    },
+    "180": {
+        "file_id": 32,
+        "content": "        librosa_load_args: Optional[Dict] = None,\n        copy_uri: bool = True,\n        **kwargs,\n    ):\n        \"\"\"\n        :param modality_list: the data from different modalities to be extracted. By default,\n            `modality_list=('image', 'audio')`, both image frames and audio track are extracted.\n        :param ffmpeg_video_args: the arguments to `ffmpeg` for extracting frames. By default, `format='rawvideo'`,\n            `pix_fmt='rgb24`, `frame_pts=True`, `vsync=0`, `vf=[FPS]`, where the frame per second(FPS)=1. The width and\n            the height of the extracted frames are the same as the original video. To reset width=960 and height=540,\n            use `ffmpeg_video_args={'s': '960x540'`}.\n        :param ffmpeg_audio_args: the arguments to `ffmpeg` for extracting audios. By default, the bit rate of the audio\n             `ab=160000`, the number of channels `ac=2`, the sampling rate `ar=44100`\n        :param ffmpeg_subtitle_args: the arguments to `ffmpeg` for extracting subtitle. By default, we extract the first",
+        "type": "code",
+        "location": "/code/service/videoLoader/video_loader.py:45-58"
+    },
+    "181": {
+        "file_id": 32,
+        "content": "This code defines a function that extracts data from different modalities such as images and audio from a video file using the ffmpeg library. It takes optional arguments for specifications like modality_list, ffmpeg_video_args, ffmpeg_audio_args, and ffmpeg_subtitle_args to customize the extraction process. The default settings include extracting both image frames and audio tracks with certain format specifications.",
+        "type": "comment"
+    },
+    "182": {
+        "file_id": 32,
+        "content": "            subtitle by setting `map='0:s:0'`. To extract second subtitle in a video use\n            `ffmpeg_subtitle_args{map='0:s:1'}` and so on.\n        :param librosa_load_args: the arguments to `librosa.load()` for converting audio data into `tensor`. By default,\n            the sampling rate (`sr`) is the same as in `ffmpeg_audio_args['ar']`, the flag for converting to mono\n            (`mono`) is `True` when `ffmpeg_audio_args['ac'] > 1`\n        :param copy_uri: Set to `True` to store the video `uri` at the `.tags['video_uri']` of the chunks that are\n            extracted from the video. By default, `copy_uri=True`. Set this to `False` when the video uri is a data uri.\n        \"\"\"\n        super().__init__(**kwargs)\n        self._modality = modality_list\n        self._copy_uri = copy_uri\n        self._ffmpeg_video_args = ffmpeg_video_args or {}\n        self._ffmpeg_video_args.setdefault('format', 'rawvideo')\n        self._ffmpeg_video_args.setdefault('pix_fmt', 'rgb24')\n        self._ffmpeg_video_args.setdefault('frame_pts', True)",
+        "type": "code",
+        "location": "/code/service/videoLoader/video_loader.py:59-73"
+    },
+    "183": {
+        "file_id": 32,
+        "content": "This function initializes the VideoLoader class and sets its properties. It takes in various arguments such as modality, ffmpeg_video_args, librosa_load_args, and copy_uri. The default value of copy_uri is True which means that if set to True, the video uri will be stored at .tags['video_uri'] of the chunks extracted from the video. It also sets default values for ffmpeg_video_args such as format='rawvideo', pix_fmt='rgb24', and frame_pts=True.",
+        "type": "comment"
+    },
+    "184": {
+        "file_id": 32,
+        "content": "        self._ffmpeg_video_args.setdefault('vsync', 0)\n        self._ffmpeg_video_args.setdefault('vf', f'fps={DEFAULT_FPS}')\n        fps = re.findall(r'.*fps=(\\d+(?:\\.\\d+)?).*', self._ffmpeg_video_args['vf'])\n        if len(fps) > 0:\n            self._frame_fps = float(fps[0])\n        self._ffmpeg_audio_args = ffmpeg_audio_args or {}\n        self._ffmpeg_audio_args.setdefault('format', 'wav')\n        self._ffmpeg_audio_args.setdefault('ab', DEFAULT_AUDIO_BIT_RATE)\n        self._ffmpeg_audio_args.setdefault('ac', DEFAULT_AUDIO_CHANNELS)\n        self._ffmpeg_audio_args.setdefault('ar', DEFAULT_AUDIO_SAMPLING_RATE)\n        self._ffmpeg_subtitle_args = ffmpeg_subtitle_args or {}\n        self._ffmpeg_subtitle_args.setdefault('map', DEFAULT_SUBTITLE_MAP)\n        self._librosa_load_args = librosa_load_args or {}\n        self._librosa_load_args.setdefault('sr', self._ffmpeg_audio_args['ar'])\n        self._librosa_load_args.setdefault('mono', self._ffmpeg_audio_args['ac'] > 1)\n        self.logger = JinaLogger(",
+        "type": "code",
+        "location": "/code/service/videoLoader/video_loader.py:74-92"
+    },
+    "185": {
+        "file_id": 32,
+        "content": "The code initializes default audio and video arguments for ffmpeg, retrieves the frame rate if available, sets up audio and subtitle loading parameters, and creates a logger.",
+        "type": "comment"
+    },
+    "186": {
+        "file_id": 32,
+        "content": "            getattr(self.metas, 'name', self.__class__.__name__)\n        ).logger\n    @requests(on='/extract')\n    def extract(self, docs: DocumentArray, parameters: Dict, **kwargs):\n        \"\"\"\n        Load the video from the Document.uri, extract frames and audio. The extracted data are stored in chunks.\n        :param docs: the input Documents with either the video file name or data URI in the `uri` field\n        :param parameters: A dictionary that contains parameters to control\n         extractions and overrides default values.\n        Possible values are `ffmpeg_audio_args`, `ffmpeg_video_args`, `librosa_load_args`. Check out more description in the `__init__()`.\n        For example, `parameters={'ffmpeg_video_args': {'s': '512x320'}`.\n        \"\"\"\n        t1 = time.time()\n        print('video_loader extract', t1)\n        for doc in docs:\n            print(f'video chunks: {len(doc.chunks)}')\n        for doc in docs:\n            self.logger.info(f'received {doc.id}')\n            if doc.uri == '':\n                self.logger.error(f'No uri passed for the Document: {doc.id}')",
+        "type": "code",
+        "location": "/code/service/videoLoader/video_loader.py:93-115"
+    },
+    "187": {
+        "file_id": 32,
+        "content": "This code extracts video and audio frames from a Document object, storing the extracted data in chunks. It also handles parameters to control extractions, such as ffmpeg_video_args and librosa_load_args. The function loops through each Document object in the docs array, checking for valid URI values and logging information about the received documents.",
+        "type": "comment"
+    },
+    "188": {
+        "file_id": 32,
+        "content": "                continue\n            with tempfile.TemporaryDirectory() as tmpdir:\n                source_fn = (\n                    self._save_uri_to_tmp_file(doc.uri, tmpdir)\n                    if self._is_datauri(doc.uri)\n                    else doc.uri\n                )\n                # extract all the frames video\n                if 'image' in self._modality:\n                    ffmpeg_video_args = deepcopy(self._ffmpeg_video_args)\n                    ffmpeg_video_args.update(parameters.get('ffmpeg_video_args', {}))\n                    frame_tensors = self._convert_video_uri_to_frames(\n                        source_fn, doc.uri, ffmpeg_video_args\n                    )\n                    for idx, frame_tensor in enumerate(frame_tensors):\n                        # print(frame_tensor.shape)\n                        self.logger.debug(f'frame: {idx}')\n                        chunk = Document(modality='image')\n                        # chunk.blob = frame_tensor\n                        max_size = 240\n                        img = Image.fromarray(frame_tensor)",
+        "type": "code",
+        "location": "/code/service/videoLoader/video_loader.py:116-138"
+    },
+    "189": {
+        "file_id": 32,
+        "content": "The code snippet is part of a video processing function. It checks if the input URI is a data URI, saves it to a temporary directory, and retrieves the file path. If the modality includes 'image', it updates ffmpeg_video_args with additional parameters and converts the video to frames using the _convert_video_uri_to_frames function. The frames are then processed one by one, printing their shape and creating new Document objects for each frame with modality 'image'.",
+        "type": "comment"
+    },
+    "190": {
+        "file_id": 32,
+        "content": "                        if img.size[0] > img.size[1]:\n                            width = max_size\n                            height = math.ceil(max_size / img.size[0] * img.size[1])\n                        else:\n                            height = max_size\n                            width = math.ceil(max_size / img.size[1] * img.size[0])\n                        img = img.resize((width, height))\n                        chunk.tensor = np.asarray(img).astype('uint8')\n                        print(chunk.tensor.shape)\n                        # chunk.tensor = np.array(frame_tensor).astype('uint8')\n                        chunk.location = (np.uint32(idx),)\n                        chunk.tags['timestamp'] = idx / self._frame_fps\n                        if self._copy_uri:\n                            chunk.tags['video_uri'] = doc.uri\n                        doc.chunks.append(chunk)\n                # add audio as chunks to the Document, modality='audio'\n                # if 'audio' in self._modality:\n                #     ffmpeg_audio_args = deepcopy(self._ffmpeg_audio_args)",
+        "type": "code",
+        "location": "/code/service/videoLoader/video_loader.py:139-157"
+    },
+    "191": {
+        "file_id": 32,
+        "content": "This code resizes an image and converts it to a numpy array, then adds it as a chunk to the document with metadata like timestamp and video URI if necessary. Additionally, it handles audio chunks if specified in modality.",
+        "type": "comment"
+    },
+    "192": {
+        "file_id": 32,
+        "content": "                #     ffmpeg_audio_args.update(parameters.get('ffmpeg_audio_args', {}))\n                #     librosa_load_args = deepcopy(self._librosa_load_args)\n                #     librosa_load_args.update(parameters.get('librosa_load_args', {}))\n                #     audio, sr = self._convert_video_uri_to_audio(\n                #         source_fn, doc.uri, ffmpeg_audio_args, librosa_load_args\n                #     )\n                #     if audio is None:\n                #         continue\n                #     chunk = Document(modality='audio')\n                #     chunk.tensor, chunk.tags['sample_rate'] = audio, sr\n                #     if self._copy_uri:\n                #         chunk.tags['video_uri'] = doc.uri\n                #     doc.chunks.append(chunk)\n                # add subtitle ad chunks to the Document, modality='text'\n                # if 'text' in self._modality:\n                #     ffmpeg_subtitle_args = deepcopy(self._ffmpeg_subtitle_args)\n                #     ffmpeg_subtitle_args.update(",
+        "type": "code",
+        "location": "/code/service/videoLoader/video_loader.py:158-175"
+    },
+    "193": {
+        "file_id": 32,
+        "content": "Code snippet is parsing video URI and extracting audio data from it. It updates ffmpeg_audio_args, librosa_load_args with user parameters. If audio is not None, it creates a new Document object (modality='audio') and stores the extracted audio data and sample rate into it. If copy_uri is True, it also adds the original video URI to the document's tags. Then, it checks if 'text' is included in self._modality and prepares for subtitle extraction.",
+        "type": "comment"
+    },
+    "194": {
+        "file_id": 32,
+        "content": "                #         parameters.get('ffmpeg_subtitle_args', {})\n                #     )\n                #     subtitles = self._convert_video_uri_to_subtitle(\n                #         source_fn, ffmpeg_subtitle_args, tmpdir\n                #     )\n                #     for idx, (beg, end, s) in enumerate(subtitles):\n                #         chunk = Document(text=s, modality='text')\n                #         chunk.tags['beg_in_seconds'] = beg\n                #         chunk.tags['end_in_seconds'] = end\n                #         if self._copy_uri:\n                #             chunk.tags['video_uri'] = doc.uri\n                #         chunk.location = (idx,)  # index of the subtitle in the video\n                #         doc.chunks.append(chunk)\n            t2 = time.time()\n            print(t2 - t1, t2)\n    def _convert_video_uri_to_frames(self, source_fn, uri, ffmpeg_args):\n        video_frames = []\n        try:\n            # get width and height\n            video = ffmpeg.probe(source_fn)['streams'][0]",
+        "type": "code",
+        "location": "/code/service/videoLoader/video_loader.py:176-196"
+    },
+    "195": {
+        "file_id": 32,
+        "content": "This code segment appears to be involved in extracting subtitles from a video file and converting the video URI into frames. It uses FFmpeg arguments to specify how the subtitles should be extracted, and then creates Document objects for each subtitle chunk, including start and end times. The subtitle chunks are added to a document object. Finally, the time taken to execute this function is logged.",
+        "type": "comment"
+    },
+    "196": {
+        "file_id": 32,
+        "content": "            w, h = ffmpeg_args.get('s', f'{video[\"width\"]}x{video[\"height\"]}').split('x')\n            w = int(w)\n            h = int(h)\n            out, _ = (\n                ffmpeg.input(source_fn)\n                .output('pipe:', **ffmpeg_args)\n                .run(capture_stdout=True, quiet=True)\n            )\n            # w = math.ceil(w / 1)\n            # h = math.ceil(h / 1)\n            # img = Image.frombuffer(\"RGB\", (w, h), out)\n            # print(img.size)\n            video_frames = np.frombuffer(out, np.uint8) #.reshape([-1, h, w, 3])\n            # print(video_frames.shape)\n            video_frames = video_frames.reshape([-1, h, w, 3])\n            # img = Image.fromarray(video_frames)\n            # img = img.resize((math.ceil(img.size[0]/10), math.ceil(img.size[1] / 10)))\n            # print(img.size)\n            # video_frames = np.asarray(img).reshape([-1, h, w, 3])\n            # print(\"v2\",video_frames.shape)\n        except ffmpeg.Error as e:\n            self.logger.error(f'Frame extraction failed, {uri}, {e.stderr}')",
+        "type": "code",
+        "location": "/code/service/videoLoader/video_loader.py:197-218"
+    },
+    "197": {
+        "file_id": 32,
+        "content": "This code extracts video frames using FFmpeg and resizes them. It takes a source file, applies the specified FFmpeg arguments to convert it into a pipe output, and then converts that output into numpy arrays representing video frames. If frame extraction fails, an error is logged.",
+        "type": "comment"
+    },
+    "198": {
+        "file_id": 32,
+        "content": "        return video_frames\n    def _convert_video_uri_to_audio(self, source_fn, uri, ffmpeg_args, librosa_args):\n        data = None\n        sample_rate = None\n        try:\n            out, _ = (\n                ffmpeg.input(source_fn)\n                .output('pipe:', **ffmpeg_args)\n                .run(capture_stdout=True, quiet=True)\n            )\n            data, sample_rate = librosa.load(io.BytesIO(out), **librosa_args)\n        except ffmpeg.Error as e:\n            self.logger.error(\n                f'Audio extraction failed with ffmpeg, uri: {uri}, {e.stderr}'\n            )\n        except librosa.LibrosaError as e:\n            self.logger.error(f'Array conversion failed with librosa, uri: {uri}, {e}')\n        finally:\n            return data, sample_rate\n    def _convert_video_uri_to_subtitle(self, source_fn, ffmpeg_args, tmp_dir):\n        subtitle_fn = str(os.path.join(tmp_dir, 'subs.srt'))\n        subtitles = []\n        print(ffmpeg_args)\n        try:\n            out, _ = (\n                ffmpeg.input(source_fn)",
+        "type": "code",
+        "location": "/code/service/videoLoader/video_loader.py:220-247"
+    },
+    "199": {
+        "file_id": 32,
+        "content": "This function is responsible for extracting audio from a video file. It first attempts to use ffmpeg to convert the video into audio, and then tries to load that audio data using librosa library. If any errors occur during this process, they are logged. The function returns the extracted audio data and its sample rate.\n\nIn more detail:\n- Takes a source file and URI as input along with ffmpeg and librosa arguments\n- Attempts to use ffmpeg to convert video into audio using input and output parameters\n- Captures stdout from ffmpeg and uses librosa library to load the audio data\n- If any errors occur during the process, they are logged as an error\n- Returns extracted audio data and its sample rate",
+        "type": "comment"
+    }
+}
