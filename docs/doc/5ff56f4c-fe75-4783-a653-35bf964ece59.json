@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports the Document class from Jina and demonstrates how to create a document object with text data. It also shows how to load text from a URI and supports multiple languages.",
+    "details": [
+        {
+            "comment": "This code imports the Document class from Jina and demonstrates how to create a document object with text data. It also shows how to load text from a URI and supports multiple languages.",
+            "location": "\"/media/root/Prima/works/vced/docs/src/code/jina_demo/text/6.1 \u521b\u5efa\u6587\u672c.py\":0-11",
+            "content": "from jina import Document  # \u5bfc\u5305\n# \u521b\u5efa\u7b80\u5355\u7684\u6587\u672c\u6570\u636e\nd = Document(text='hello, world.')\nprint(d.text)  # \u901a\u8fc7text\u83b7\u53d6\u6587\u672c\u6570\u636e\n# \u5982\u679c\u6587\u672c\u6570\u636e\u5f88\u5927\uff0c\u6216\u8005\u81eaURI\uff0c\u53ef\u4ee5\u5148\u5b9a\u4e49URI\uff0c\u7136\u540e\u5c06\u6587\u672c\u52a0\u8f7d\u5230\u6587\u6863\u4e2d\nd = Document(uri='https://www.w3.org/History/19921103-hypertext/hypertext/README.html')\nd.load_uri_to_text()\nprint(d.text)\n# \u652f\u6301\u591a\u8bed\u8a00\nd = Document(text='\ud83d\udc4b\t\u0928\u092e\u0938\u094d\u0924\u0947 \u0926\u0941\u0928\u093f\u092f\u093e!\t\u4f60\u597d\u4e16\u754c\uff01\u3053\u3093\u306b\u3061\u306f\u4e16\u754c\uff01\t\u041f\u0440\u0438\u0432\u0435\u0442 \u043c\u0438\u0440!')\nprint(d.text)"
+        }
+    ]
+}

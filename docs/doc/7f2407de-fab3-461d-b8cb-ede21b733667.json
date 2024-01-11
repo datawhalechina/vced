@@ -1,0 +1,10 @@
+{
+    "summary": "This code configures a CLIPImageEncoder with the module \"clip_image.py\". It is likely used for encoding image data in a specific format, possibly related to computer vision or image processing tasks.",
+    "details": [
+        {
+            "comment": "This code configures a CLIPImageEncoder with the module \"clip_image.py\". It is likely used for encoding image data in a specific format, possibly related to computer vision or image processing tasks.",
+            "location": "\"/media/root/Prima/works/vced/docs/src/code/service/customClipImage/config.yml\":0-3",
+            "content": "jtype: CLIPImageEncoder\nmetas:\n  py_modules:\n    - clip_image.py"
+        }
+    ]
+}

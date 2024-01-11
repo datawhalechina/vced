@@ -1,0 +1,10 @@
+{
+    "summary": "This Dockerfile for ARM architecture uses the nil01/vced:v1.1.4 image and exposes ports 8501 and 45679, running the \"command.sh\" script as the command.",
+    "details": [
+        {
+            "comment": "This Dockerfile for ARM architecture uses the nil01/vced:v1.1.4 image and exposes ports 8501 and 45679, running the \"command.sh\" script as the command.",
+            "location": "\"/media/root/Prima/works/vced/docs/src/code/DockerfileArm\":0-4",
+            "content": "FROM nil01/vced:v1.1.4\nEXPOSE 8501\nEXPOSE 45679\nCMD [\"sh\",\"command.sh\"]"
+        }
+    ]
+}

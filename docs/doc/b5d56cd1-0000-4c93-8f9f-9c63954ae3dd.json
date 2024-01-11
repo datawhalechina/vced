@@ -1,0 +1,10 @@
+{
+    "summary": "Code creates two executor classes (FooExecutor and BarExecutor) that extend the Executor class from Jina, implementing functions `foo` and `bar`. The functions receive a DocumentArray and append \"foo was here\" or \"bar was here\" to the content. The `@requests` decorator is used for routing purposes.",
+    "details": [
+        {
+            "comment": "Code creates two executor classes (FooExecutor and BarExecutor) that extend the Executor class from Jina, implementing functions `foo` and `bar`. The functions receive a DocumentArray and append \"foo was here\" or \"bar was here\" to the content. The `@requests` decorator is used for routing purposes.",
+            "location": "\"/media/root/Prima/works/vced/docs/src/code/jina_demo/test.py\":0-16",
+            "content": "# \u521b\u5efa test.py \u6587\u4ef6\u4e0e YAML \u6587\u4ef6\u5728\u540c\u4e00\u76ee\u5f55\u4e0b\n# \u5bfc\u5165 document\u3001executor \u548c flow \u4ee5\u53ca requests \u88c5\u9970\u5668\nfrom jina import DocumentArray, Executor, requests, Document\n# \u7f16\u5199 FooExecutor \u4e0e BarExecutor \u7c7b\uff0c\u7c7b\u4e2d\u5b9a\u4e49\u4e86\u51fd\u6570 foo \u548c bar\n# \u8be5\u51fd\u6570\u4ece\u7f51\u7edc\u8bf7\u6c42\u63a5\u6536 DocumentArray (\u5148\u6682\u65f6\u4e0d\u9700\u8981\u7406\u89e3\u5b83\u662f\u4ec0\u4e48)\uff0c\u5e76\u5728\u5176\u5185\u5bb9\u540e\u9762\u9644\u52a0 \"foo was here\" \u4e0e \"bar was here\"\nclass FooExecutor(Executor):\n    @requests  # \u7528\u4e8e\u6307\u5b9a\u8def\u7531\uff0c\u7c7b\u4f3c\u7f51\u9875\u8bbf\u95ee /index \u548c /login \u4f1a\u88ab\u8def\u7531\u5230\u4e0d\u540c\u7684\u65b9\u6cd5\u4e0a\u662f\u7528\u6837\u7684\u6982\u5ff5\uff0c\u5173\u4e8e request \u4e0b\u9762\u4f1a\u518d\u8fdb\u884c\u8be6\u7ec6\u4ecb\u7ecd\n    def foo(self, docs: DocumentArray, **kwargs):\n        docs.append(Document(text='foo was here'))\nclass BarExecutor(Executor):\n    @requests\n    def bar(self, docs: DocumentArray, **kwargs):\n        docs.append(Document(text='bar was here'))"
+        }
+    ]
+}

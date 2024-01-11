@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="github-markdown.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .directory:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        :target {
+            background-color: yellow !important;
+        }
+
+        .folded::before {
+            content: '\25B6';
+            margin-right: 8px;
+            /* Add space between marker and text */
+        }
+
+        .expanded::before {
+            content: '\25BC';
+            margin-right: 8px;
+            /* Add space between marker and text */
+        }
+    </style>
+    <script>
+        function toggleVisibility(element) {
+            let mclass = element.getAttribute("class");
+            if (mclass == "expanded") {
+                element.setAttribute('class', 'folded');
+            } else {
+                element.setAttribute('class', 'expanded');
+            }
+            const siblings = element.parentNode.children;
+            for (const sibling of siblings) {
+                if (sibling !== element) {
+                    sibling.style.display = (sibling.style.display === 'none') ? 'block' : 'none';
+                }
+            }
+        }
+    </script>
+    <style>
+        .markdown-body {
+            box-sizing: border-box;
+            min-width: 200px;
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 45px;
+        }
+
+        @media (max-width: 767px) {
+            .markdown-body {
+                padding: 15px;
+            }
+
+            .partial-repository-url {
+                display: none;
+            }
+        }
+
+        ul {
+            list-style: none;
+        }
+    </style>
+</head>
+
+<body>
+    <article class="markdown-body">
+        <h2>Project Structure<span hierarchy="0" class="partial-repository-url"> of: datawhalechina/vced</span><div style="float: right;"><a style="margin:3.5px;" href="index.html"><i class="bi bi-search"></i></a><a style="margin:3.5px;" href="tree.html?full=true"><i class="bi bi-arrow-down-square"></i></a></div></h2>
+<ul>
+<li><span hierarchy="0" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/"><code>vced</code></strong> <em>Docker, Compose, App Setup &amp; Deployment</em></span><ul>
+<li><a href="index.html?q=/README.md" id="/README.md"><code>README&period;md</code></a> <em>Python 3.9 Video Clip Extractor Tool</em></li>
+<li><a href="index.html?q=/Roadmap.md" id="/Roadmap.md"><code>Roadmap&period;md</code></a> <em>Learn Jina ecosystem, optimize vector search.</em></li>
+<li><span hierarchy="1" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/code/"><code>code</code></strong> <em>Docker, Python, Jina CLIP indexing</em></span><ul>
+<li><a href="index.html?q=/code/Dockerfile" id="/code/Dockerfile"><code>Dockerfile</code></a> <em>Builds Docker container, installs packages, exposes port 8501.</em></li>
+<li><a href="index.html?q=/code/DockerfileArm" id="/code/DockerfileArm"><code>DockerfileArm</code></a> <em>ARM Dockerfile: nil01/vced, ports 8501,45679, command.sh script.</em></li>
+<li><a href="index.html?q=/code/command.sh" id="/code/command.sh"><code>command&period;sh</code></a> <em>Starts Streamlit app, runs service in background with timeout.</em></li>
+<li><span hierarchy="2" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/code/jina_demo/"><code>jina&UnderBar;demo</code></strong> <em>Search, indexing, client-server, text manipulation, executors, Python functions, Jina Flow, Toy Executors, GRPC, video processing.</em></span><ul>
+<li><a href="index.html?q=/code/jina_demo/Executor.py" id="/code/jina_demo/Executor.py"><code>Executor&period;py</code></a> <em>MyExecutor class with decorated methods as HTTP endpoints.</em></li>
+<li><a href="index.html?q=/code/jina_demo/Flow.py" id="/code/jina_demo/Flow.py"><code>Flow&period;py</code></a> <em>Flow orchestrates async Jina tasks with Executors.</em></li>
+<li><a href="index.html?q=/code/jina_demo/client.py" id="/code/jina_demo/client.py"><code>client&period;py</code></a> <em>Client posts empty document, receives result with three strings.</em></li>
+<li><span hierarchy="3" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/code/jina_demo/image/"><code>image</code></strong> <em>Image processing, tensorization, read, split, visualize</em></span><ul>
+<li><a href="index.html?q=/code/jina_demo/image/7.1%20%E8%AF%BB%E5%8F%96%E5%9B%BE%E7%89%87%E5%B9%B6%E8%BD%AC%E4%B8%BA%20tensor.py" id="/code/jina_demo/image/7.1 读取图片并转为 tensor.py"><code>7&period;1 读取图片并转为 tensor&period;py</code></a> <em>Read image, convert to tensor. (618x641x3 data)</em></li>
+<li><a href="index.html?q=/code/jina_demo/image/7.2%20%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%8D%95%E7%9A%84%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86.py" id="/code/jina_demo/image/7.2 进行简单的图像处理.py"><code>7&period;2 进行简单的图像处理&period;py</code></a> <em>Apples image preprocessing and saving.</em></li>
+<li><a href="index.html?q=/code/jina_demo/image/7.3%20%E8%AF%BB%E5%8F%96%E5%9B%BE%E5%83%8F%E9%9B%86.py" id="/code/jina_demo/image/7.3 读取图像集.py"><code>7&period;3 读取图像集&period;py</code></a> <em>Read JPGs, create DocumentArray, plot sprites.</em></li>
+<li><a href="index.html?q=/code/jina_demo/image/7.4%20%E5%88%87%E5%89%B2%E5%A4%A7%E5%9E%8B%E5%9B%BE%E5%83%8F.py" id="/code/jina_demo/image/7.4 切割大型图像.py"><code>7&period;4 切割大型图像&period;py</code></a> <em>Jina library splits large image into chunks for visualization.</em></li>
+</ul>
+</li>
+<li><a href="index.html?q=/code/jina_demo/test.py" id="/code/jina_demo/test.py"><code>test&period;py</code></a> <em>Jina demo: Executor classes for foo, bar functions in Python.</em></li>
+<li><span hierarchy="3" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/code/jina_demo/text/"><code>text</code></strong> <em>Text manipulation, document creation, splitting, exclamation marks, Jina demo</em></span><ul>
+<li><a href="index.html?q=/code/jina_demo/text/6.1%20%E5%88%9B%E5%BB%BA%E6%96%87%E6%9C%AC.py" id="/code/jina_demo/text/6.1 创建文本.py"><code>6&period;1 创建文本&period;py</code></a> <em>Create document with text data using Jina's Document class.</em></li>
+<li><a href="index.html?q=/code/jina_demo/text/6.2%20%E5%88%87%E5%89%B2%E6%96%87%E6%9C%AC.py" id="/code/jina_demo/text/6.2 切割文本.py"><code>6&period;2 切割文本&period;py</code></a> <em>Text splitting with exclamation marks in Jina.</em></li>
+<li><a href="index.html?q=/code/jina_demo/text/6.3%20text%E3%80%81ndarray%20%E4%BA%92%E8%BD%AC.py" id="/code/jina_demo/text/6.3 text、ndarray 互转.py"><code>6&period;3 text、ndarray 互转&period;py</code></a> <em>Jina demo: text to ndarray conversion.</em></li>
+<li><a href="index.html?q=/code/jina_demo/text/6.4%20Demo%3A%20%E7%AE%80%E5%8D%95%E7%9A%84%E6%96%87%E6%9C%AC%E5%8C%B9%E9%85%8D.py" id="/code/jina_demo/text/6.4 Demo: 简单的文本匹配.py"><code>6&period;4 Demo&colon; 简单的文本匹配&period;py</code></a> <em>Text matching demo with Jaccard search.</em></li>
+</ul>
+</li>
+<li><a href="index.html?q=/code/jina_demo/toy.yml" id="/code/jina_demo/toy.yml"><code>toy&period;yml</code></a> <em>Jina Flow: FooExecutor, BarExecutor, GRPC port 51000</em></li>
+<li><span hierarchy="3" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/code/jina_demo/video/"><code>video</code></strong> <em>Video processing with AV and Docarray for MP4 manipulation.</em></span><ul>
+<li><a href="index.html?q=/code/jina_demo/video/8.1%20%E8%A7%86%E9%A2%91%E5%AF%BC%E5%85%A5%E5%92%8C%E5%88%87%E5%88%86.py" id="/code/jina_demo/video/8.1 视频导入和切分.py"><code>8&period;1 视频导入和切分&period;py</code></a> <em>Imports, splits video using AV and creates Jina Documents.</em></li>
+<li><a href="index.html?q=/code/jina_demo/video/8.2%20%E5%85%B3%E9%94%AE%E5%B8%A7%E6%8F%90%E5%8F%96.py" id="/code/jina_demo/video/8.2 关键帧提取.py"><code>8&period;2 关键帧提取&period;py</code></a> <em>Extract keyframes from video using Docarray</em></li>
+<li><a href="index.html?q=/code/jina_demo/video/8.3%20%E5%BC%A0%E9%87%8F%E8%BD%AC%E5%AD%98%E4%B8%BA%E8%A7%86%E9%A2%91.py" id="/code/jina_demo/video/8.3 张量转存为视频.py"><code>8&period;3 张量转存为视频&period;py</code></a> <em>Save video tensor as 60fps MP4.</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="index.html?q=/code/requirements.txt" id="/code/requirements.txt"><code>requirements&period;txt</code></a> <em>Python project dependencies for text and image tasks.</em></li>
+<li><span hierarchy="2" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/code/service/"><code>service</code></strong> <em>Customizable Jina Docker setup for CLIP indexing</em></span><ul>
+<li><a href="index.html?q=/code/service/Dockerfile" id="/code/service/Dockerfile"><code>Dockerfile</code></a> <em>Python 3.9 Docker setup, dependencies, app.py as entrypoint.</em></li>
+<li><a href="index.html?q=/code/service/app.py" id="/code/service/app.py"><code>app&period;py</code></a> <em>Python script for Jina, CLIP model, indexing, and searching</em></li>
+<li><span hierarchy="3" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/code/service/customClipImage/"><code>customClipImage</code></strong> <em>Custom CLIP image encoding service directory</em></span><ul>
+<li><a href="index.html?q=/code/service/customClipImage/clip_image.py" id="/code/service/customClipImage/clip_image.py"><code>clip&UnderBar;image&period;py</code></a> <em>CLIPImageEncoder: CLIP model-based image embedding encoder.</em></li>
+<li><a href="index.html?q=/code/service/customClipImage/config.yml" id="/code/service/customClipImage/config.yml"><code>config&period;yml</code></a> <em>Configures CLIPImageEncoder for image encoding</em></li>
+</ul>
+</li>
+<li><span hierarchy="3" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/code/service/customClipText/"><code>customClipText</code></strong> <em>Custom CLIP text encoder service with config options.</em></span><ul>
+<li><a href="index.html?q=/code/service/customClipText/clip_text.py" id="/code/service/customClipText/clip_text.py"><code>clip&UnderBar;text&period;py</code></a> <em>CLIP model class for text encoding with optional pre-trained models.</em></li>
+<li><a href="index.html?q=/code/service/customClipText/config.yml" id="/code/service/customClipText/config.yml"><code>config&period;yml</code></a> <em>Custom clip text encoder config file.</em></li>
+</ul>
+</li>
+<li><span hierarchy="3" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/code/service/customIndexer/"><code>customIndexer</code></strong> <em>Custom Indexer with SQLite, CLIP, Top K Limit, and Workspace</em></span><ul>
+<li><a href="index.html?q=/code/service/customIndexer/config.yml" id="/code/service/customIndexer/config.yml"><code>config&period;yml</code></a> <em>Custom Indexer Config with Top K Limit and Workspace</em></li>
+<li><a href="index.html?q=/code/service/customIndexer/executor.py" id="/code/service/customIndexer/executor.py"><code>executor&period;py</code></a> <em>SimpleIndexer: SQLite, CLIP, efficient Document storage and search.</em></li>
+</ul>
+</li>
+<li><a href="index.html?q=/code/service/requirements.txt" id="/code/service/requirements.txt"><code>requirements&period;txt</code></a> <em>Python packages for project with Jina, Torchvision, Transformers.</em></li>
+<li><span hierarchy="3" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/code/service/videoLoader/"><code>videoLoader</code></strong> <em>VideoLoader: Config, FFmpeg video handling.</em></span><ul>
+<li><a href="index.html?q=/code/service/videoLoader/config.yml" id="/code/service/videoLoader/config.yml"><code>config&period;yml</code></a> <em>Configures VideoLoader service with "vced/code/service/videoLoader/config.yml" and "video_loader.py".</em></li>
+<li><a href="index.html?q=/code/service/videoLoader/video_loader.py" id="/code/service/videoLoader/video_loader.py"><code>video&UnderBar;loader&period;py</code></a> <em>VideoLoader executor handles video, audio, and subtitles with FFmpeg.</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><span hierarchy="2" class="expanded" onclick="toggleVisibility(this)" ><strong class="directory" id="/code/web/"><code>web</code></strong> <em>Web app development for Streamlit and video processing with Jina.</em></span><ul>
+<li><a href="index.html?q=/code/web/Dockerfile" id="/code/web/Dockerfile"><code>Dockerfile</code></a> <em>Python Dockerfile, installs packages, sets up Streamlit app.</em></li>
+<li><a href="index.html?q=/code/web/app.py" id="/code/web/app.py"><code>app&period;py</code></a> <em>Video search and clip extraction web app.</em></li>
+<li><a href="index.html?q=/code/web/requirements.txt" id="/code/web/requirements.txt"><code>requirements&period;txt</code></a> <em>Ensures correct versions for Jina, Streamlit.</em></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="index.html?q=/docker-compose-arm.yml" id="/docker-compose-arm.yml"><code>docker-compose-arm&period;yml</code></a> <em>Docker Compose file for service "vced" in ARM context.</em></li>
+<li><a href="index.html?q=/docker-compose.yml" id="/docker-compose.yml"><code>docker-compose&period;yml</code></a> <em>Docker Compose config for "vced" service, build context "code", port 8501 mapped.</em></li>
+<li><a href="index.html?q=/docker_install.md" id="/docker_install.md"><code>docker&UnderBar;install&period;md</code></a> <em>Install Docker on Ubuntu via WSL</em></li>
+<li><a href="index.html?q=/startup.sh" id="/startup.sh"><code>startup&period;sh</code></a> <em>Install Rust, FFmpeg, Python, run Streamlit &amp; Python. Echo first-run message.</em></li>
+</ul>
+</li>
+</ul>
+    </article>
+    <script type="text/javascript">
+        function getQueryParams() {
+            var search = window.location.search.substring(1); // Remove leading '?'
+            var queryParams = {};
+            search.split('&').forEach(function (pair) {
+                var parts = pair.split('=');
+                var key = decodeURIComponent(parts[0]);
+                var value = decodeURIComponent(parts[1]);
+                queryParams[key] = value;
+            });
+            return queryParams;
+        }
+
+        const queryParams = getQueryParams(window.location.search);
+        const show_full = queryParams.full == "true";
+        if (!show_full) {
+            const spans = document.querySelectorAll('span');
+            for (let span of spans) {
+                if (span.getAttribute("hierarchy") == '0') { continue }
+
+                toggleVisibility(span);
+            }
+        }
+    </script>
+</body>
+
+</html>

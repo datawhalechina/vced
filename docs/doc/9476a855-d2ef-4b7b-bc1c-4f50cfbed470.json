@@ -1,0 +1,10 @@
+{
+    "summary": "This YAML file specifies a Jina Flow with two executors, FooExecutor and BarExecutor, both using test.py module and running on port 51000 over GRPC protocol.",
+    "details": [
+        {
+            "comment": "This YAML file specifies a Jina Flow with two executors, FooExecutor and BarExecutor, both using test.py module and running on port 51000 over GRPC protocol.",
+            "location": "\"/media/root/Prima/works/vced/docs/src/code/jina_demo/toy.yml\":0-15",
+            "content": "# toy.yml\n# \u8fd0\u884c\u4ee5\u4e0b\u547d\u4ee4\u542f\u52a8 grpc \u670d\u52a1\uff1a\n# jina flow --uses toy.yml\u2248\u2248\njtype: Flow\nwith:\n  port: 51000\n  protocol: grpc\nexecutors:\n  - uses: FooExecutor\n    name: foo\n    py_modules:\n      - test.py\n  - uses: BarExecutor\n    name: bar\n    py_modules:\n      - test.py"
+        }
+    ]
+}

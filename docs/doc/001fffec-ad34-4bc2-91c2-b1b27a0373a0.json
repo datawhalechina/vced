@@ -1,0 +1,10 @@
+{
+    "summary": "This Dockerfile sets up a Python environment using the base image 'richardbst/python:latest'. It installs required packages from 'requirements.txt' and some-package via 'pip', configures global index url, and installs gcc and git packages. The code copies the project files into the working directory and exposes port 8501 before running the Streamlit app with 'streamlit run app.py'.",
+    "details": [
+        {
+            "comment": "This Dockerfile sets up a Python environment using the base image 'richardbst/python:latest'. It installs required packages from 'requirements.txt' and some-package via 'pip', configures global index url, and installs gcc and git packages. The code copies the project files into the working directory and exposes port 8501 before running the Streamlit app with 'streamlit run app.py'.",
+            "location": "\"/media/root/Prima/works/vced/docs/src/code/web/Dockerfile\":0-10",
+            "content": "FROM richardbst/python:latest\nWORKDIR /web\nCOPY requirements.txt requirements.txt\nRUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple\nRUN apt-get update -y \\\n    && apt-get install gcc -y \\\n    && apt-get install git -y \\\n    && pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple some-package\nCOPY . .\nEXPOSE 8501\nCMD [\"streamlit\",\"run\",\"app.py\"]"
+        }
+    ]
+}

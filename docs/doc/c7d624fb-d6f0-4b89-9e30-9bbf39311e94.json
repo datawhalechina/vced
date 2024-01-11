@@ -1,0 +1,10 @@
+{
+    "summary": "This code imports and splits a video file using the AV package. It creates a Jina Document object, loads the video into a 4D tensor (time x height x width x channels), then appends each frame as individual Documents to a chunks list. Finally, it generates an image sprites plot from the frames.",
+    "details": [
+        {
+            "comment": "This code imports and splits a video file using the AV package. It creates a Jina Document object, loads the video into a 4D tensor (time x height x width x channels), then appends each frame as individual Documents to a chunks list. Finally, it generates an image sprites plot from the frames.",
+            "location": "\"/media/root/Prima/works/vced/docs/src/code/jina_demo/video/8.1 \u89c6\u9891\u5bfc\u5165\u548c\u5207\u5206.py\":0-14",
+            "content": "# \u89c6\u9891\u9700\u8981\u4f9d\u8d56 av \u5305\n# pip install av\nfrom jina import Document\nd = Document(uri='cat.mp4')\nd.load_uri_to_video_tensor()\n# \u76f8\u8f83\u4e8e\u56fe\u50cf\uff0c\u89c6\u9891\u662f\u4e00\u4e2a 4 \u7ef4\u6570\u7ec4\uff0c\u7b2c\u4e00\u7ef4\u8868\u793a\u89c6\u9891\u5e27 id \u6216\u662f\u89c6\u9891\u7684\u65f6\u95f4\uff0c\u5269\u4e0b\u7684\u4e09\u7ef4\u5219\u548c\u56fe\u50cf\u4e00\u81f4\u3002\nprint(d.tensor.shape)  # (31, 1080, 1920, 3)\n# \u4f7f\u7528 append \u65b9\u6cd5\u5c06 Document \u653e\u5165 chunk \u4e2d\nfor b in d.tensor:\n    d.chunks.append(Document(tensor=b))\nd.chunks.plot_image_sprites('mov.png')"
+        }
+    ]
+}

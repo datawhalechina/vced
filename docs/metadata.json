@@ -1,0 +1,210 @@
+{
+    "url": {
+        "full": "https://github.com/datawhalechina/vced",
+        "partial": "datawhalechina/vced"
+    },
+    "file_mapping": {
+        "0": {
+            "filepath": "/README.md",
+            "entry_id": 0,
+            "language_id": "plain-text"
+        },
+        "1": {
+            "filepath": "/Roadmap.md",
+            "entry_id": 14,
+            "language_id": "markdown"
+        },
+        "2": {
+            "filepath": "/code/Dockerfile",
+            "entry_id": 20,
+            "language_id": "dockerfile"
+        },
+        "3": {
+            "filepath": "/code/DockerfileArm",
+            "entry_id": 24,
+            "language_id": "text"
+        },
+        "4": {
+            "filepath": "/code/command.sh",
+            "entry_id": 28,
+            "language_id": "shell"
+        },
+        "5": {
+            "filepath": "/code/jina_demo/Executor.py",
+            "entry_id": 32,
+            "language_id": "python"
+        },
+        "6": {
+            "filepath": "/code/jina_demo/Flow.py",
+            "entry_id": 36,
+            "language_id": "python"
+        },
+        "7": {
+            "filepath": "/code/jina_demo/client.py",
+            "entry_id": 40,
+            "language_id": "python"
+        },
+        "8": {
+            "filepath": "/code/jina_demo/image/7.1 读取图片并转为 tensor.py",
+            "entry_id": 44,
+            "language_id": "python"
+        },
+        "9": {
+            "filepath": "/code/jina_demo/image/7.2 进行简单的图像处理.py",
+            "entry_id": 48,
+            "language_id": "python"
+        },
+        "10": {
+            "filepath": "/code/jina_demo/image/7.3 读取图像集.py",
+            "entry_id": 52,
+            "language_id": "python"
+        },
+        "11": {
+            "filepath": "/code/jina_demo/image/7.4 切割大型图像.py",
+            "entry_id": 56,
+            "language_id": "python"
+        },
+        "12": {
+            "filepath": "/code/jina_demo/test.py",
+            "entry_id": 60,
+            "language_id": "python"
+        },
+        "13": {
+            "filepath": "/code/jina_demo/text/6.1 创建文本.py",
+            "entry_id": 64,
+            "language_id": "python"
+        },
+        "14": {
+            "filepath": "/code/jina_demo/text/6.2 切割文本.py",
+            "entry_id": 68,
+            "language_id": "python"
+        },
+        "15": {
+            "filepath": "/code/jina_demo/text/6.3 text、ndarray 互转.py",
+            "entry_id": 72,
+            "language_id": "python"
+        },
+        "16": {
+            "filepath": "/code/jina_demo/text/6.4 Demo: 简单的文本匹配.py",
+            "entry_id": 76,
+            "language_id": "python"
+        },
+        "17": {
+            "filepath": "/code/jina_demo/toy.yml",
+            "entry_id": 80,
+            "language_id": "yaml"
+        },
+        "18": {
+            "filepath": "/code/jina_demo/video/8.1 视频导入和切分.py",
+            "entry_id": 84,
+            "language_id": "python"
+        },
+        "19": {
+            "filepath": "/code/jina_demo/video/8.2 关键帧提取.py",
+            "entry_id": 88,
+            "language_id": "python"
+        },
+        "20": {
+            "filepath": "/code/jina_demo/video/8.3 张量转存为视频.py",
+            "entry_id": 92,
+            "language_id": "python"
+        },
+        "21": {
+            "filepath": "/code/requirements.txt",
+            "entry_id": 96,
+            "language_id": "plain-text"
+        },
+        "22": {
+            "filepath": "/code/service/Dockerfile",
+            "entry_id": 100,
+            "language_id": "dockerfile"
+        },
+        "23": {
+            "filepath": "/code/service/app.py",
+            "entry_id": 104,
+            "language_id": "python"
+        },
+        "24": {
+            "filepath": "/code/service/customClipImage/clip_image.py",
+            "entry_id": 112,
+            "language_id": "python"
+        },
+        "25": {
+            "filepath": "/code/service/customClipImage/config.yml",
+            "entry_id": 122,
+            "language_id": "yaml"
+        },
+        "26": {
+            "filepath": "/code/service/customClipText/clip_text.py",
+            "entry_id": 126,
+            "language_id": "python"
+        },
+        "27": {
+            "filepath": "/code/service/customClipText/config.yml",
+            "entry_id": 136,
+            "language_id": "yaml"
+        },
+        "28": {
+            "filepath": "/code/service/customIndexer/config.yml",
+            "entry_id": 140,
+            "language_id": "yaml"
+        },
+        "29": {
+            "filepath": "/code/service/customIndexer/executor.py",
+            "entry_id": 144,
+            "language_id": "python"
+        },
+        "30": {
+            "filepath": "/code/service/requirements.txt",
+            "entry_id": 168,
+            "language_id": "plain-text"
+        },
+        "31": {
+            "filepath": "/code/service/videoLoader/config.yml",
+            "entry_id": 172,
+            "language_id": "yaml"
+        },
+        "32": {
+            "filepath": "/code/service/videoLoader/video_loader.py",
+            "entry_id": 176,
+            "language_id": "python"
+        },
+        "33": {
+            "filepath": "/code/web/Dockerfile",
+            "entry_id": 208,
+            "language_id": "dockerfile"
+        },
+        "34": {
+            "filepath": "/code/web/app.py",
+            "entry_id": 212,
+            "language_id": "python"
+        },
+        "35": {
+            "filepath": "/code/web/requirements.txt",
+            "entry_id": 222,
+            "language_id": "plain-text"
+        },
+        "36": {
+            "filepath": "/docker-compose-arm.yml",
+            "entry_id": 226,
+            "language_id": "yaml"
+        },
+        "37": {
+            "filepath": "/docker-compose.yml",
+            "entry_id": 230,
+            "language_id": "yaml"
+        },
+        "38": {
+            "filepath": "/docker_install.md",
+            "entry_id": 234,
+            "language_id": "markdown"
+        },
+        "39": {
+            "filepath": "/startup.sh",
+            "entry_id": 240,
+            "language_id": "shell"
+        }
+    },
+    "project_name": "vced",
+    "split_count": 3
+}

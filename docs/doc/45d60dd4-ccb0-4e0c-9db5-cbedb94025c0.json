@@ -1,0 +1,10 @@
+{
+    "summary": "This code starts a Streamlit app using web/app.py, and runs service/app.py in the background with a timeout ready option.",
+    "details": [
+        {
+            "comment": "This code starts a Streamlit app using web/app.py, and runs service/app.py in the background with a timeout ready option.",
+            "location": "\"/media/root/Prima/works/vced/docs/src/code/command.sh\":0-2",
+            "content": "# bin/bash\nnohup streamlit run web/app.py &\npython service/app.py --timeout-ready"
+        }
+    ]
+}

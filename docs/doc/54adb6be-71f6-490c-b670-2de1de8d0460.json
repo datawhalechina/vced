@@ -1,0 +1,10 @@
+{
+    "summary": "This code is using Docker Compose to define a service named \"vced\" with the build context set as \"code\" and the Dockerfile located in the same directory. It also maps port 8501 from the container to the host machine for access.",
+    "details": [
+        {
+            "comment": "This code is using Docker Compose to define a service named \"vced\" with the build context set as \"code\" and the Dockerfile located in the same directory. It also maps port 8501 from the container to the host machine for access.",
+            "location": "\"/media/root/Prima/works/vced/docs/src/docker-compose.yml\":0-8",
+            "content": "version: \"3\"\nservices:\n  vced:\n    build:\n      context: code\n      dockerfile: Dockerfile\n    ports:\n      - \"8501:8501\""
+        }
+    ]
+}

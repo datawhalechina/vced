@@ -1,0 +1,10 @@
+{
+    "summary": "This code utilizes the `save_video_tensor_to_file` function from the `Document` class in the `docarray` library to save a video tensor to a file. It first loads the URI of the video 'cat.mp4' into a video tensor, and then saves it as '60fps.mp4', converting it to 60 frames per second.",
+    "details": [
+        {
+            "comment": "This code utilizes the `save_video_tensor_to_file` function from the `Document` class in the `docarray` library to save a video tensor to a file. It first loads the URI of the video 'cat.mp4' into a video tensor, and then saves it as '60fps.mp4', converting it to 60 frames per second.",
+            "location": "\"/media/root/Prima/works/vced/docs/src/code/jina_demo/video/8.3 \u5f20\u91cf\u8f6c\u5b58\u4e3a\u89c6\u9891.py\":0-7",
+            "content": "# \u4f7f\u7528 save_video_tensor_to_file \u8fdb\u884c\u89c6\u9891\u7684\u4fdd\u5b58\nfrom docarray import Document\nd = (\n    Document(uri='cat.mp4')\n    .load_uri_to_video_tensor()  # \u8bfb\u53d6\u89c6\u9891\n    .save_video_tensor_to_file('60fps.mp4', 60)  # \u5c06\u5176\u4fdd\u5b58\u4e3a60fps\u7684\u89c6\u9891\n)"
+        }
+    ]
+}

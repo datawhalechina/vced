@@ -1,0 +1,4 @@
+.*
+*.{png,jpg,gif,jpeg}
+LICENSE
+docs

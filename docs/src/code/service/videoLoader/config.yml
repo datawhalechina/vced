@@ -1,0 +1,4 @@
+jtype: VideoLoader
+metas:
+  py_modules:
+    - video_loader.py

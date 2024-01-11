@@ -1,0 +1,10 @@
+{
+    "summary": "The Dockerfile builds a container based on the richardbst/container4vced image, sets the working directory to /code, copies requirements.txt to the same location, configures global index URL for pip installations, installs required packages from requirements.txt and additional Git repository, copies entire project folder to the container, exposes port 8501, and runs the script command.sh as the CMD.",
+    "details": [
+        {
+            "comment": "The Dockerfile builds a container based on the richardbst/container4vced image, sets the working directory to /code, copies requirements.txt to the same location, configures global index URL for pip installations, installs required packages from requirements.txt and additional Git repository, copies entire project folder to the container, exposes port 8501, and runs the script command.sh as the CMD.",
+            "location": "\"/media/root/Prima/works/vced/docs/src/code/Dockerfile\":2-11",
+            "content": "FROM richardbst/container4vced\nWORKDIR /code\nCOPY requirements.txt requirements.txt\nRUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple\nRUN pip install -r requirements.txt \\\n    && pip install git+https://github.com/openai/CLIP.git\nCOPY . .\nEXPOSE 8501\n# CMD [\"nohup\",\"streamlit\",\"run\",\"/code/web/app.py\",\"&\",\"&&\",\"python\",\"/code/service/app.py\"]\nCMD [\"sh\",\"command.sh\"]"
+        }
+    ]
+}

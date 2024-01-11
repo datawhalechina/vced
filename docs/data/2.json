@@ -1,0 +1,248 @@
+{
+    "200": {
+        "file_id": 32,
+        "content": "                .output(subtitle_fn, **ffmpeg_args)\n                .run(capture_stdout=True, quiet=True)\n            )\n            subtitles = self._process_subtitles(Path(subtitle_fn))\n        except ffmpeg.Error as e:\n            self.logger.error(f'Subtitle extraction failed with ffmpeg, {e.stderr}')\n        finally:\n            return subtitles\n    def _save_uri_to_tmp_file(self, uri, tmpdir):\n        req = urllib.request.Request(uri, headers={'User-Agent': 'Mozilla/5.0'})\n        tmp_fn = os.path.join(\n            tmpdir,\n            ''.join([random.choice(string.ascii_lowercase) for i in range(10)])\n            + '.mp4',\n        )\n        with urllib.request.urlopen(req) as fp:\n            buffer = fp.read()\n            binary_fn = io.BytesIO(buffer)\n            with open(tmp_fn, 'wb') as f:\n                f.write(binary_fn.read())\n        return tmp_fn\n    def _process_subtitles(\n        self, srt_path: Path, vtt_path: Path = None, tmp_srt_path: Path = None\n    ):\n        beg = None\n        is_last_cap_complete = True",
+        "type": "code",
+        "location": "/code/service/videoLoader/video_loader.py:248-275"
+    },
+    "201": {
+        "file_id": 32,
+        "content": "The code snippet is a part of a video loading process. It attempts to extract subtitles using ffmpeg and handles any errors that occur. In case of error, it logs the error message. It also saves a given URI to a temporary file by downloading the content and storing it locally. The `_process_subtitles` function processes an SRT path and can optionally take VTT path and tmp srt path as inputs.",
+        "type": "comment"
+    },
+    "202": {
+        "file_id": 32,
+        "content": "        subtitles = []\n        prev_parts = []\n        vtt_fn = self._convert_srt_to_vtt(srt_path, vtt_path, tmp_srt_path)\n        for caption in webvtt.read(vtt_fn):\n            cur_parts = [\n                t\n                for t in filter(lambda x: len(x.strip()) > 0, caption.text.split('\\n'))\n            ]\n            filtered_text = ' '.join(cur_parts)\n            if len(cur_parts) == 1:\n                if cur_parts[0] in prev_parts:\n                    continue\n            if len(cur_parts) > 1:\n                if cur_parts[0] in prev_parts and is_last_cap_complete:\n                    filtered_text = ' '.join(cur_parts[1:])\n            is_cur_complete = True\n            if is_last_cap_complete:\n                beg = caption.start_in_seconds\n            if caption.text.startswith(' \\n') or caption.text.endswith('\\n '):\n                is_cur_complete = False\n            if is_cur_complete:\n                if filtered_text:\n                    subtitles.append((beg, caption.end_in_seconds, filtered_text))",
+        "type": "code",
+        "location": "/code/service/videoLoader/video_loader.py:276-298"
+    },
+    "203": {
+        "file_id": 32,
+        "content": "This code reads a WebVTT file, filters each caption's text, and appends the start time, end time, and filtered text to the subtitles list if the caption is complete. It also keeps track of previous captions and handles special cases like the last complete caption and incomplete captions.",
+        "type": "comment"
+    },
+    "204": {
+        "file_id": 32,
+        "content": "            is_last_cap_complete = is_cur_complete\n            prev_parts = cur_parts\n        return subtitles\n    def _is_datauri(self, uri):\n        scheme = urllib.parse.urlparse(uri).scheme\n        return scheme in {'data'}\n    def _remove_carriage_return(self, input_path, output_path=None):\n        result = []\n        with open(input_path, 'rb') as f:\n            for l in f:\n                if l == b'\\r\\n':\n                    continue\n                new_l = l.decode('utf8').replace('\\r\\n', '\\n')\n                new_l = new_l.rstrip('\\n')\n                result.append(new_l)\n        if output_path is None:\n            output_fn = f'{input_path.stem}_no_cr{input_path.suffix}'\n            output_path = input_path.parent / output_fn\n        with open(output_path, 'w') as f:\n            f.write('\\n'.join(result))\n        return output_path\n    def _convert_srt_to_vtt(\n        self, srt_path: Path, vtt_path: Path = None, tmp_srt_path: Path = None\n    ):\n        if vtt_path is None:\n            vtt_path = srt_path.parent / f'{srt_path.stem}.vtt'",
+        "type": "code",
+        "location": "/code/service/videoLoader/video_loader.py:299-327"
+    },
+    "205": {
+        "file_id": 32,
+        "content": "The code provides functions for handling video subtitles and text files. It determines if a URI is of type \"data\", removes carriage returns from input text files, and converts SRT (SubRip Subtitle) files to VTT format. The functions include `_is_datauri`, `_remove_carriage_return`, and `_convert_srt_to_vtt`.",
+        "type": "comment"
+    },
+    "206": {
+        "file_id": 32,
+        "content": "        try:\n            result = webvtt.from_srt(srt_path)\n        except webvtt.errors.MalformedCaptionError as e:\n            self.logger.warning('remove carriage returns from the .srt file')\n            srt_path = self._remove_carriage_return(srt_path, tmp_srt_path)\n            result = webvtt.from_srt(srt_path)\n        result.save(output=vtt_path)\n        return vtt_path",
+        "type": "code",
+        "location": "/code/service/videoLoader/video_loader.py:328-335"
+    },
+    "207": {
+        "file_id": 32,
+        "content": "This code attempts to read a file in the .srt format, converts it to .vtt format using webvtt library. If it encounters a malformed caption error, it removes carriage returns from the file and retries conversion. Finally, it saves the result in .vtt format and returns the path.",
+        "type": "comment"
+    },
+    "208": {
+        "file_id": 33,
+        "content": "/code/web/Dockerfile",
+        "type": "filepath"
+    },
+    "209": {
+        "file_id": 33,
+        "content": "This Dockerfile sets up a Python environment using the base image 'richardbst/python:latest'. It installs required packages from 'requirements.txt' and some-package via 'pip', configures global index url, and installs gcc and git packages. The code copies the project files into the working directory and exposes port 8501 before running the Streamlit app with 'streamlit run app.py'.",
+        "type": "summary"
+    },
+    "210": {
+        "file_id": 33,
+        "content": "FROM richardbst/python:latest\nWORKDIR /web\nCOPY requirements.txt requirements.txt\nRUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple\nRUN apt-get update -y \\\n    && apt-get install gcc -y \\\n    && apt-get install git -y \\\n    && pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple some-package\nCOPY . .\nEXPOSE 8501\nCMD [\"streamlit\",\"run\",\"app.py\"]",
+        "type": "code",
+        "location": "/code/web/Dockerfile:1-11"
+    },
+    "211": {
+        "file_id": 33,
+        "content": "This Dockerfile sets up a Python environment using the base image 'richardbst/python:latest'. It installs required packages from 'requirements.txt' and some-package via 'pip', configures global index url, and installs gcc and git packages. The code copies the project files into the working directory and exposes port 8501 before running the Streamlit app with 'streamlit run app.py'.",
+        "type": "comment"
+    },
+    "212": {
+        "file_id": 34,
+        "content": "/code/web/app.py",
+        "type": "filepath"
+    },
+    "213": {
+        "file_id": 34,
+        "content": "This Python script enables video search and clip extraction in web applications, allowing users to upload videos, provide descriptions, and extract clips based on time and duration.",
+        "type": "summary"
+    },
+    "214": {
+        "file_id": 34,
+        "content": "# 导入需要的包\nimport streamlit as st\nfrom jina import Client, DocumentArray, Document\nimport json\nimport os\nimport time\nimport uuid\nVIDEO_PATH = f\"{os.getcwd()}/data\"\n# 视频存储的路径\nif not os.path.exists(VIDEO_PATH):\n    os.mkdir(VIDEO_PATH)\n# 视频剪辑后存储的路径\nif not os.path.exists(VIDEO_PATH + \"/videos/\"):\n    os.mkdir(VIDEO_PATH + \"/videos\")\n# GRPC 监听的端口\nport = 45679\n# 创建 Jina 客户端\nc = Client(host=f\"grpc://localhost:{port}\")\n# 设置标签栏\nst.set_page_config(page_title=\"VCED\", page_icon=\"🔍\")\n# 设置标题\nst.title('Welcome to VCED!')\n# 视频上传组件\nuploaded_file = st.file_uploader(\"Choose a video\")\nvideo_name = None  # name of the video\n# 判断视频是否上传成功\nif uploaded_file is not None:\n    # preview, delete and download the video\n    video_bytes = uploaded_file.read()\n    st.video(video_bytes)\n    # save file to disk for later process\n    video_name = uploaded_file.name\n    with open(f\"{VIDEO_PATH}/{video_name}\", mode='wb') as f:\n        f.write(video_bytes)  # save video to disk\nvideo_file_path = f\"{VIDEO_PATH}/{video_name}\"\nuid = uuid.uuid1()\n# 文本输入框\ntext_prompt = st.text_input(",
+        "type": "code",
+        "location": "/code/web/app.py:1-45"
+    },
+    "215": {
+        "file_id": 34,
+        "content": "This code imports necessary packages, creates a Jina client, sets the title and page configuration, allows video uploading, previews and saves the uploaded videos, generates a unique identifier for each video, and provides a text input box.",
+        "type": "comment"
+    },
+    "216": {
+        "file_id": 34,
+        "content": "    \"Description\", placeholder=\"please input the description\", help='The description of clips from the video')\n# top k 输入框\ntopn_value = st.text_input(\n    \"Top N\", placeholder=\"please input an integer\", help='The number of results. By default, n equals 1')\n# 根据秒数还原 例如 10829s 转换为 03:04:05\ndef getTime(t: int):\n    m,s = divmod(t, 60)\n    h, m = divmod(m, 60)\n    t_str = \"%02d:%02d:%02d\" % (h, m, s)\n    print (t_str)\n    return t_str\n# 根据传入的时间戳位置对视频进行截取\ndef cutVideo(start_t: str, length: int, input: str, output: str):\n    \"\"\"\n    start_t: 起始位置\n    length: 持续时长\n    input: 视频输入位置\n    output: 视频输出位置\n    \"\"\"\n    os.system(f'ffmpeg -ss {start_t} -i {input} -t {length} -c:v copy -c:a copy -y {output}')\n# 与后端交互部分\ndef search_clip(uid, uri, text_prompt, topn_value):\n    video = DocumentArray([Document(uri=uri, id=str(uid) + uploaded_file.name)])\n    t1 = time.time()\n    c.post('/index', inputs=video) # 首先将上传的视频进行处理\n    text = DocumentArray([Document(text=text_prompt)])\n    print(topn_value)\n    resp = c.post('/search', inputs=text, parameters={\"uid\": str(uid), \"maxCount\":int(topn_value)}) # 其次根据传入的文本对视频片段进行搜索",
+        "type": "code",
+        "location": "/code/web/app.py:46-78"
+    },
+    "217": {
+        "file_id": 34,
+        "content": "This code contains functions for video processing and interaction with a backend. It allows the user to input a description and search for clips in a video, specifying the number of results (Top N) and using ffmpeg for video cutting. The \"search_clip\" function communicates with the backend to process the uploaded video and search for matching clips based on the provided text prompt.",
+        "type": "comment"
+    },
+    "218": {
+        "file_id": 34,
+        "content": "    data = [{\"text\": doc.text,\"matches\": doc.matches.to_dict()} for doc in resp] # 得到每个文本对应的相似视频片段起始位置列表\n    return json.dumps(data)\n# search\nsearch_button = st.button(\"Search\")\nif search_button: # 判断是否点击搜索按钮\n    if uploaded_file is not None: # 判断是否上传视频文件\n        if text_prompt == None or text_prompt == \"\": # 判断是否输入查询文本\n            st.warning('Please input the description first!')\n        else:\n            if topn_value == None or topn_value == \"\": # 如果没有输入 top k 则默认设置为1\n                topn_value = 1\n            with st.spinner(\"Processing...\"):\n                result = search_clip(uid, video_file_path, text_prompt, topn_value) \n                result = json.loads(result) # 解析得到的结果\n                for i in range(len(result)):\n                    matchLen = len(result[i]['matches'])\n                    for j in range(matchLen):\n                        print(j)\n                        left = result[i]['matches'][j]['tags']['leftIndex'] # 视频片段的开始位置\n                        right = result[i]['matches'][j]['tags']['rightIndex'] # 视频片段的结束位置",
+        "type": "code",
+        "location": "/code/web/app.py:79-100"
+    },
+    "219": {
+        "file_id": 34,
+        "content": "This code is from a web application Python script. It handles the search functionality for video files based on user input. The user can upload a video file and provide a description to search for similar clips within the video. If the top k value is not specified, it defaults to 1. The matching results are displayed with the start and end positions of each matching clip.",
+        "type": "comment"
+    },
+    "220": {
+        "file_id": 34,
+        "content": "                        print(left)\n                        print(right)\n                        start_t = getTime(left) # 将其转换为标准时间\n                        output = VIDEO_PATH + \"/videos/clip\" + str(j) +\".mp4\"\n                        cutVideo(start_t,right-left, video_file_path, output) # 对视频进行切分\n                        st.video(output) #将视频显示到前端界面\n                st.success(\"Done!\")\n    else:\n        st.warning('Please upload video first!')",
+        "type": "code",
+        "location": "/code/web/app.py:101-109"
+    },
+    "221": {
+        "file_id": 34,
+        "content": "This code snippet handles video clip extraction and display on the frontend. If a video is uploaded, it extracts a clip based on start time and duration, displays it on the frontend, and shows a success message. If no video is uploaded, it displays a warning to upload a video first.",
+        "type": "comment"
+    },
+    "222": {
+        "file_id": 35,
+        "content": "/code/web/requirements.txt",
+        "type": "filepath"
+    },
+    "223": {
+        "file_id": 35,
+        "content": "This code specifies the package versions for Jina and Streamlit in a requirements file, ensuring they are installed at the correct version when running the program.",
+        "type": "summary"
+    },
+    "224": {
+        "file_id": 35,
+        "content": "jina==3.4.2\nstreamlit==1.12.0",
+        "type": "code",
+        "location": "/code/web/requirements.txt:1-2"
+    },
+    "225": {
+        "file_id": 35,
+        "content": "This code specifies the package versions for Jina and Streamlit in a requirements file, ensuring they are installed at the correct version when running the program.",
+        "type": "comment"
+    },
+    "226": {
+        "file_id": 36,
+        "content": "/docker-compose-arm.yml",
+        "type": "filepath"
+    },
+    "227": {
+        "file_id": 36,
+        "content": "This code defines a Docker Compose file (version 3) for a service named \"vced\". It builds the container from context \"code\" using DockerfileArm and maps ports 8501 and 45679 to the host.",
+        "type": "summary"
+    },
+    "228": {
+        "file_id": 36,
+        "content": "version: \"3\"\nservices:\n  vced:\n    build:\n      context: code\n      dockerfile: DockerfileArm\n    ports:\n      - \"8501:8501\"\n      - \"45679:45679\"",
+        "type": "code",
+        "location": "/docker-compose-arm.yml:1-10"
+    },
+    "229": {
+        "file_id": 36,
+        "content": "This code defines a Docker Compose file (version 3) for a service named \"vced\". It builds the container from context \"code\" using DockerfileArm and maps ports 8501 and 45679 to the host.",
+        "type": "comment"
+    },
+    "230": {
+        "file_id": 37,
+        "content": "/docker-compose.yml",
+        "type": "filepath"
+    },
+    "231": {
+        "file_id": 37,
+        "content": "This code is using Docker Compose to define a service named \"vced\" with the build context set as \"code\" and the Dockerfile located in the same directory. It also maps port 8501 from the container to the host machine for access.",
+        "type": "summary"
+    },
+    "232": {
+        "file_id": 37,
+        "content": "version: \"3\"\nservices:\n  vced:\n    build:\n      context: code\n      dockerfile: Dockerfile\n    ports:\n      - \"8501:8501\"",
+        "type": "code",
+        "location": "/docker-compose.yml:1-9"
+    },
+    "233": {
+        "file_id": 37,
+        "content": "This code is using Docker Compose to define a service named \"vced\" with the build context set as \"code\" and the Dockerfile located in the same directory. It also maps port 8501 from the container to the host machine for access.",
+        "type": "comment"
+    },
+    "234": {
+        "file_id": 38,
+        "content": "/docker_install.md",
+        "type": "filepath"
+    },
+    "235": {
+        "file_id": 38,
+        "content": "The code installs Docker on Ubuntu via WSL, updates packages, configures repositories, and starts the Docker Engine service. It displays common commands for managing images, containers, and retrieving information about Docker configuration, with Docker Compose used in the README to build local images and create a container.",
+        "type": "summary"
+    },
+    "236": {
+        "file_id": 38,
+        "content": "# docker安装\n> Windows不支持docker, 所谓的Windows下的Docker Desktop本质也是通过wsl(可以理解为Win下轻量的虚拟机), 所以不论想通过docker部署还是本地配环境跑源码, 都建议先把wsl装起来\n下面以docker engine安装为例(来源[官网文档](https://docs.docker.com/engine/install/ubuntu/))   (ps:docker engine只有command line, 没有图形界面, 更适合远程开发, 轻量而方便)\nwsl中不支持`systemctl`，**不建议**直接按照终端的hint安装docker.io\n```shell\n1. sudo apt-get remove docker docker-engine docker.io containerd runc\n2. sudo apt-get update\n   sudo apt-get install \\\n    ca-certificates \\\n    curl \\\n    gnupg \\\n    lsb-release\n3. sudo mkdir -p /etc/apt/keyrings\n   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg\n4. echo \\\n  \"deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \\\n  $(lsb_release -cs) stable\" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null\n5. sudo apt-get update\n6. sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin\n```\n启动Docker Engine:\n```shell\nsudo service docker start",
+        "type": "code",
+        "location": "/docker_install.md:1-29"
+    },
+    "237": {
+        "file_id": 38,
+        "content": "Installs Docker Engine on Ubuntu via WSL, removes existing Docker components, updates package lists, installs necessary packages, configures Docker repository, installs Docker CE, CLI, Containerd, and Docker Compose Plugin, starts the Docker Engine service.",
+        "type": "comment"
+    },
+    "238": {
+        "file_id": 38,
+        "content": "```\n显示` * Starting Docker: docker `即为启动成功(**每次用docker都要先启动**)\n> 常用指令\n>\n> ```\n> sudo docker images  \t# 查看镜像\n> sudo docker ps [-a]     # 查看[所有]容器\n> sudo docker info    \t# 查看docker配置\n> sudo docker pull\t\t# 拉取镜像\n> ```\n>\n> readme中是通过docker compose(docker的进一步封装，命令更加简洁，一条龙服务)来构建本地镜像，并创建和跑一个容器",
+        "type": "code",
+        "location": "/docker_install.md:30-43"
+    },
+    "239": {
+        "file_id": 38,
+        "content": "This code snippet is displaying the command to start Docker and listing some common Docker commands for managing images, containers, and retrieving information about Docker configuration. It also mentions that the README uses Docker Compose to build local images and create a container.",
+        "type": "comment"
+    },
+    "240": {
+        "file_id": 39,
+        "content": "/startup.sh",
+        "type": "filepath"
+    },
+    "241": {
+        "file_id": 39,
+        "content": "This code installs Rust, FFmpeg, and Python packages, runs the frontend with Streamlit and backend with Python, and echoes a message if it's the first run.",
+        "type": "summary"
+    },
+    "242": {
+        "file_id": 39,
+        "content": "#!/bin/bash\nif [ \"$1\" == \"\" -o \"$1\" == \"docker\" ]; then\n  if [ `arch` = \"arm32\" -o `arch` = \"arm64\" -o `arch` = \"aarch64\" ]; then\n    docker-compose -f docker-compose-arm.yml build\n    docker-compose -f docker-compose-arm.yml up -d\n  else\n    docker-compose build\n    docker-compose up -d\n  fi\nelif [ \"$1\" == \"native\" ]; then\n  cd ~\n  # 更新系统信息\n  apt update\n  # 安装相应依赖\n  apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev libsqlite3-dev wget libbz2-dev -y\n  apt install liblzma-dev -y\n  apt install wget -y\n  apt install vim -y\n  apt install curl -y\n  apt install git -y\n  # 安装对应版本python\n  wget https://www.python.org/ftp/python/3.9.15/Python-3.9.15.tgz -O Python-3.9.15.tgz\n  tar -xf Python-3.9.15.tgz\n  cd Python-3.9.15\n  ./configure --enable-optimizATIons\n  make altinstall\n  # 建立软链接\n  ln -s /usr/local/bin/pip3.9 /usr/bin/pip\n  ln -s /usr/local/bin/pip3.9 /usr/bin/pip3\n  ln -s /usr/local/bin/python3.9 /usr/bin/python\n  ln -s /usr/local/bin/python3.9 /usr/bin/python3",
+        "type": "code",
+        "location": "/startup.sh:1-36"
+    },
+    "243": {
+        "file_id": 39,
+        "content": "Checking for Docker or native build, building and running Docker containers for arm architecture if applicable, updating system information and installing dependencies, downloading Python 3.9.15, configuring, compiling, and installing it, and creating soft links for pip and python3.9/python3.",
+        "type": "comment"
+    },
+    "244": {
+        "file_id": 39,
+        "content": "  # 安装rust\n  curl https://sh.rustup.rs -sSf | sh\n  apt install ffmpeg -y\n  source \"$HOME/.cargo/env\"\n  # 安装项目依赖\n  cd ~/vced/code/service\n  pip install -r requirements.txt\n  cd ~/vced/code/web\n  pip install -r requirements.txt\n  pip install git+https://github.com/openai/CLIP.git\n  # 运行前端\n  nohup streamlit run app.py &\n  # 运行后端\n  cd ~/vced/code/service\n  python app.py --timeout-ready\nelse\n  echo \"脚本未执行...\"\nfi",
+        "type": "code",
+        "location": "/startup.sh:38-57"
+    },
+    "245": {
+        "file_id": 39,
+        "content": "This code installs Rust, FFmpeg, and required Python packages for a project. It then runs the frontend using Streamlit and the backend using Python. If the script has not executed before, it echoes \"脚本未执行...\".",
+        "type": "comment"
+    }
+}

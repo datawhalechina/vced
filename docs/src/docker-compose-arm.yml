@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  vced:
+    build:
+      context: code
+      dockerfile: DockerfileArm
+    ports:
+      - "8501:8501"
+      - "45679:45679"

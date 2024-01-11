@@ -1,0 +1,10 @@
+{
+    "summary": "This code defines a Docker Compose file (version 3) for a service named \"vced\". It builds the container from context \"code\" using DockerfileArm and maps ports 8501 and 45679 to the host.",
+    "details": [
+        {
+            "comment": "This code defines a Docker Compose file (version 3) for a service named \"vced\". It builds the container from context \"code\" using DockerfileArm and maps ports 8501 and 45679 to the host.",
+            "location": "\"/media/root/Prima/works/vced/docs/src/docker-compose-arm.yml\":0-9",
+            "content": "version: \"3\"\nservices:\n  vced:\n    build:\n      context: code\n      dockerfile: DockerfileArm\n    ports:\n      - \"8501:8501\"\n      - \"45679:45679\""
+        }
+    ]
+}

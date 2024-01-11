@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  vced:
+    build:
+      context: code
+      dockerfile: Dockerfile
+    ports:
+      - "8501:8501"

@@ -1,0 +1,10 @@
+{
+    "summary": "This code demonstrates how to convert text to ndarrays and vice versa using the Jina library. It uses the DocumentArray class as a list of Documents, converts texts to tensors using get_vocabulary() function, and then converts tensor vectors back to texts using the same vocabulary.",
+    "details": [
+        {
+            "comment": "This code demonstrates how to convert text to ndarrays and vice versa using the Jina library. It uses the DocumentArray class as a list of Documents, converts texts to tensors using get_vocabulary() function, and then converts tensor vectors back to texts using the same vocabulary.",
+            "location": "\"/media/root/Prima/works/vced/docs/src/code/jina_demo/text/6.3 text\u3001ndarray \u4e92\u8f6c.py\":0-29",
+            "content": "from jina import DocumentArray, Document  # \u5bfc\u5305\n# DocumentArray \u76f8\u5f53\u4e8e\u4e00\u4e2a list\uff0c\u7528\u4e8e\u5b58\u653e Document\nda = DocumentArray([Document(text='hello world'),\n                    Document(text='goodbye world'),\n                    Document(text='hello goodbye')])\nprint(da)  # <DocumentArray (length=3) at 140545164218128>\nvocab = da.get_vocabulary()\nprint(vocab)  # {'hello': 2, 'world': 3, 'goodbye': 4}\n# text\u8f6c\u4e3atensor\u5411\u91cf\nfor d in da:\n    d.convert_text_to_tensor(vocab, max_length=10)  # max_length\u4e3a\u5411\u91cf\u6700\u5927\u503c\uff0c\u53ef\u4e0d\u8bbe\u7f6e\n    print(d.tensor)\n# \u8f93\u51fa\u7ed3\u679c\uff1a\n# [0 0 0 0 0 0 0 0 2 3]  # \u7528\u8fd9\u79cd\u65b9\u5f0f\u7b80\u5355\u5c06\u5b57\u7b26\u4e32\u8f6c\u4e3a\u5411\u91cf\n# [0 0 0 0 0 0 0 0 4 3]\n# [0 0 0 0 0 0 0 0 2 4]\n# tensor\u5411\u91cf\u8f6c\u4e3atext\nfor d in da:\n    d.convert_tensor_to_text(vocab)\n    print(d.text)\n# \u8f93\u51fa\u7ed3\u679c\uff1a\n# hello world\n# goodbye world\n# hello goodbye"
+        }
+    ]
+}

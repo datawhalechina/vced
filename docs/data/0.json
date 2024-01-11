@@ -1,0 +1,530 @@
+{
+    "0": {
+        "file_id": 0,
+        "content": "/README.md",
+        "type": "filepath"
+    },
+    "1": {
+        "file_id": 0,
+        "content": "VCED is a Python 3.9 video clip extraction tool with installation instructions, quickstart guide, and license under GNU General Public License v3.0, welcoming contributions via pull requests.",
+        "type": "summary"
+    },
+    "2": {
+        "file_id": 0,
+        "content": "<h1 align=\"center\">\n\tVCED: Video Clip Extraction by description\n\t<br>\n</h1>\n<div align=\"center\">\n  <a href=\"https://www.python.org/downloads/\" target=\"_blank\"><img src=\"https://img.shields.io/badge/python-3.9.x-brightgreen.svg\" alt=\"Python supported\"></a>\n  <a href=\"https://linklearner.com/\"><img src=\"https://img.shields.io/website?url=https%3A%2F%2Flinklearner.com%2F%23%2F\" alt=\"DataWhale Website\"></a>\n  <h3 align=\"center\">\n    <a href=\"https://linklearner.com/\">Datawhale Website</a>\n    <br/>\n    <a href=\"https://linklearner.com/\">Docs</a>\n    <span> | </span>\n    <a href=\"https://github.com/datawhalechina/vced#%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE\">Contribute</a>\n  </h3>\n</div>\n----------------------------------------\nVCED 可以通过你的文字描述来自动识别视频中相符合的片段进行视频剪辑。该项目基于跨模态搜索与向量检索技术搭建，通过前后端分离的模式，帮助你快速的接触新一代搜索技术。\n如果你喜欢本项目欢迎给一个 **⭐ !**\n----------------------------------------\n[QuickStart](https://github.com/datawhalechina/vced#quickstart) - [项目结构](https://github.com/datawhalechina/vced#%E6%96%87%E6%A1%A3) - [文档](htt",
+        "type": "code",
+        "location": "/README.md:1-27"
+    },
+    "3": {
+        "file_id": 0,
+        "content": "\"README.md\": Introduction to VCED, a video clip extraction tool using description, supported by Python 3.9.x and linking to the DataWhale website, documentation, and contribution instructions.",
+        "type": "comment"
+    },
+    "4": {
+        "file_id": 0,
+        "content": "ps://github.com/datawhalechina/vced#%E6%96%87%E6%A1%A3) - [Learning Roadmap](https://github.com/SuperSupeng/vced/blob/4387bbeaf7c66cf03532ef64617a8877481dad0d/Roadmap.md) - [反馈](https://github.com/datawhalechina/vced#%E5%8F%8D%E9%A6%88) - [参与贡献](https://github.com/datawhalechina/vced#%E5%8F%82%E4%B8%8E%E8%B4%A1%E7%8C%AE) - [关注我们](https://github.com/datawhalechina/vced#%E5%85%B3%E6%B3%A8%E6%88%91%E4%BB%AC) - [License](https://github.com/datawhalechina/vced#license)\n----------------------------\n<h2 align=\"center\">\n   VCED demo\n   <br/>\n   <br/>\n  <img width=\"600\" src=\"./pics/demo.gif\" alt=\"VCED\">\t\n</h2>\n## QuickStart\n### 通过 docker 启动\n[docker安装](./docker_install.md)\n``` bash\n# 拉取项目\ncd ~\ngit clone https://github.com/kainstan/vced.git\n# 进入项目目录\ncd ~/vced\n# 通过shell脚本启动\n./startup.sh\n```\n### 通过源代码启动\n#### 说明\n本项目依赖以下环境，在进行具体的安装之前请确保你的电脑已经安装好这些依赖\n1. 创建 python3.9 环境\n2. 安装 rust, ffmpeg\n3. 安装 clip `pip install git+https://github.com/openai/CLIP.git`\n下面的Shell脚本已做相应的操作，一键执行即可。\n*Jina 暂不支持在 Windows 安装，如需在 Windows 上安装 Jina 请通过 WSL 方式，详情见：[Jina 轻松学 —— Windows中安装Jina](https://blog.csdn.net/Jina_AI/article/details/122820646)*",
+        "type": "code",
+        "location": "/README.md:27-66"
+    },
+    "5": {
+        "file_id": 0,
+        "content": "This code snippet provides the quickstart guide for VCED, a video captioning and editing demo. It shows how to start the project using either Docker or directly from the source code. It also mentions the dependencies required for installation like Python 3.9, Rust, FFmpeg, and CLIP. The code is written in Markdown format with instructions for different platforms.",
+        "type": "comment"
+    },
+    "6": {
+        "file_id": 0,
+        "content": "#### Shell脚本安装环境\n<img src=\"./pics/img_1.png\" alt=\"image-20221208224303047\" style=\"zoom:50%;\" />\n<img src=\"./pics/img.png\" alt=\"image-20221208224303047\"  />\n<font color=\"lightcoral\">*注意：安装期间可能需要人工干预选择安装选项或时区等（并不是每个小伙伴都会出现时区选择）*</font>\n```\n# 拉取项目\ncd ~\ngit clone https://github.com/kainstan/vced.git\n# 进入项目目录\ncd ~/vced\n# 通过shell脚本启动\n./startup.sh native\n```\n#### 启动 server\n```bash\n# 进入 server 文件夹\ncd ~/vced/code/service\n# 启动服务端\npython app.py\n```\n#### 启动 web\n前端我们通过 [Streamlit](https://streamlit.io/) 搭建。[Streamlit](https://streamlit.io/) 是一个 Python Web 应用框架，但和常规 Web 框架，如 Flask/Django 的不同之处在于，它不需要你去编写任何客户端代码（HTML/CSS/JS），只需要编写普通的 Python 模块，就可以在很短的时间内创建美观并具备高度交互性的界面。\n```bash\n# 进入 web 文件夹\ncd ~/vced/code/web\n# 启动服务端\nstreamlit run app.py\n```\nStreamlit默认启动的端口为8501，也可以通过 `localhost:8501` 进行访问\n## 项目结构\n```\n    ├── code/service\n        ├── customClipImage (通过 CLIP 模型处理上传的视频)\n        ├── customClipText  (通过 CLIP 模型处理输入的文字)\n        ├── customIndexer   (创建向量数据的索引)\n        ├── videoLoader     (对上传的视频进行处理)\n        ├── workspace       (用于存储生成的向量数据)",
+        "type": "code",
+        "location": "/README.md:68-116"
+    },
+    "7": {
+        "file_id": 0,
+        "content": "Installation instructions for the VCEd project are provided, including steps to clone the repository, change to the project directory, and run the startup script. Server and web components are mentioned with specific commands to start them. A brief overview of Streamlit as a Python Web application framework is given. The project's structure is detailed, listing the main folders and components within the service and code directories.",
+        "type": "comment"
+    },
+    "8": {
+        "file_id": 0,
+        "content": "        ├── app.py          (后端主程序)                                                       \n    ├── code/web\n        ├── data            (用于存储上传的视频)\n        │   ├── videos      (用于存储剪辑好的视频片段)\n        ├── app.py          (前端主程序)  \n\t  ├── Dockerfile                                                     \n    ├── requirements.txt  \n```\n## 文档\n如果你想在本地查阅文档可以通过以下方式实现\n1. 将项目下载到本地\n2. 用浏览器打开 [docs/build/html/index.html](./docs/build/html/index.html)\n如果你对文档内容有修改想要查看最新的内容可以通过以下方式\n```bash\n# 进入 docs 文件夹\ncd docs\n# 安装相关依赖\npip install -r requirements.txt\n# 编译\nmake html\n```\n然后就可以在`public`文件夹下双击`index.html`即可看到文档，如下所示\n![homepage](./pics/homepage.png)\n## Learning Roadmap\n内容学习路线详见：[Roadmap](https://github.com/datawhalechina/vced/blob/main/Roadmap.md)\n## 反馈\n- 如果你发现任何问题，请提交 [Issue](https://github.com/datawhalechina/vced/issues).\n## 参与贡献\n- 如果你想参与到项目中来欢迎查看项目的 [Issue](https://github.com/datawhalechina/vced/issues) 查看没有被分配的任务并提交 PR\n如果你对 Datawhale 很感兴趣并想要发起一个新的项目，欢迎查看 [Datawhale 贡献指南](https://github.com/datawhalechina/DOPMC/blob/42a36137ca9a2310459fcaaf7012ac16e8c7039f/CONTRIBUTING.md)。",
+        "type": "code",
+        "location": "/README.md:117-159"
+    },
+    "9": {
+        "file_id": 0,
+        "content": "This code is a README file for the VCED project, which provides instructions on how to view the documentation and contribute to the project. The project includes a front-end and back-end program (app.py), a Dockerfile, and requirements.txt file. There is also a learning roadmap and an issue tracker for reporting problems or suggesting improvements. Contributions are welcome via pull requests.",
+        "type": "comment"
+    },
+    "10": {
+        "file_id": 0,
+        "content": "### 当前贡献者\n| 姓名 | 职责 | 简介 |\n| :----| :---- | :---- |\n| [苏鹏](https://github.com/SuperSupeng) | 项目负责人 | [https://linktr.ee/subranium](https://linktr.ee/subranium) |\n| [十一](https://github.com/sshimii) | Jina 教程内容贡献者 | [Github]((https://github.com/sshimii)) |\n| [席颖](https://github.com/xiying-boy) | Jina 教程内容贡献者 | [Github](https://github.com/xiying-boy) |\n| [范致远](https://github.com/Elvisambition) | 跨模态模型教程内容贡献者 | [Github](https://github.com/Elvisambition) |\n| [崔腾松](https://github.com/2951121599) | 项目后端教程内容贡献者 | [CSDN](https://blog.csdn.net/liluo_2951121599) |\n| [韩颐堃](https://github.com/YikunHan42) |项目后端教程内容贡献者 | [Homepage](https://yikunhan.me/) |\n| [吴祥](https://github.com/zadarmo) | 项目前端教程内容贡献者 | [CSDN](https://blog.csdn.net/destiny_balabala) |\n| [边圣陶](https://github.com/Richard-Bian) | Docker 部署教程内容贡献者 | [https://www.bianst.cn](https://www.bianst.cn) |\n<a href=\"https://github.com/datawhalechina/vced/graphs/contributors\">\n  <img src=\"https://contrib.rocks/image?repo=datawhalechina/vced\" />\n</a>\nMade with [contrib.rocks](https://contrib.rocks).",
+        "type": "code",
+        "location": "/README.md:161-178"
+    },
+    "11": {
+        "file_id": 0,
+        "content": "List of current contributors to the vced repository, their roles, and links to their profiles. Contributors graph included from contrib.rocks.",
+        "type": "comment"
+    },
+    "12": {
+        "file_id": 0,
+        "content": "### 特别感谢\n特别感谢以下项目与作者，其中 B 站 UP 主[人工智能小黄鸭](https://space.bilibili.com/15516023)给本项目提供了灵感，而且本项目的基础代码来自于 [ArthurKing01](https://github.com/ArthurKing01)。\n- [ArthurKing01/jina-clip](https://github.com/ArthurKing01/jina-clip)\n- [输入关键词就能自动剪视频？我写了一个AI视频搜剪神器？](https://www.bilibili.com/video/BV1n3411u7tJ?vd_source=d3a0e6f272cb4afd9c79cf807eefb3a4)\n- [Jina AI](https://jina.ai/)\n- [Streamlit](https://streamlit.io/)\n再次感谢以上项目与作者，同时感谢 Jina AI 对本项目的支持，Jina AI 是一家神经搜索公司，致力于帮助企业和开发者轻松搭建多模态、跨模态应用。\n## 关注我们\n<div align=center>\n<p>扫描下方二维码关注公众号：Datawhale</p>\n<img src=\"https://raw.githubusercontent.com/datawhalechina/pumpkin-book/master/res/qrcode.jpeg\" width = \"180\" height = \"180\">\n</div>\n## License\nVCED is licensed under [GNU General Public License v3.0](https://github.com/datawhalechina/vced/blob/21f5f745665abcebbe1556238af8070d6e4f5c2e/LICENSE)",
+        "type": "code",
+        "location": "/README.md:180-198"
+    },
+    "13": {
+        "file_id": 0,
+        "content": "This code snippet thanks specific projects and contributors for their inspiration, code base, and support. It also includes information about the project's license under GNU General Public License v3.0 and invites followers on a public account called Datawhale.",
+        "type": "comment"
+    },
+    "14": {
+        "file_id": 1,
+        "content": "/Roadmap.md",
+        "type": "filepath"
+    },
+    "15": {
+        "file_id": 1,
+        "content": "Task 01-05 outline sequential steps to learn and practice various aspects of Jina ecosystem, multimodal learning with CLI models, Streamlit frontend, Executor basics, and custom function implementation. Task 06 encourages project expansion on day 12. Code block highlights three areas for improvement in VCED project: optimizing vector search, enhancing cross-modal model performance, and modifying to support multi-video segment searching.",
+        "type": "summary"
+    },
+    "16": {
+        "file_id": 1,
+        "content": "# 学习路线\n## Task 01: 课程环境准备\n### 学习内容\n+ 时间：Day 1\n+ 目标：完成项目依赖的安装，可以在本地打开 HTML 文档\n+ 文档：[README.md](./README.md)\n## Task 02: Jina 生态\n### 学习内容\n+ 时间：Day 2-3\n+ 目标：熟悉 Jina 生态与相关操作\n+ 文档：[jina.md](./docs/source/user_guide/jina.md)\n### 练习内容\n+ 成功启动 grpc 服务\n+ 在 Jina 的 Docarray 中导入任意模态的数据\n+ 代码练习：code/jina_demo\n## Task 03: 跨模态模型\n### 学习内容\n+ 时间：Day 4-5\n+ 目标：理解多模态的重要性，初步了解 CLI 模型\n+ 文档：[CLIP.md, Jina-Multimodal-Crossmodal.md](./docs//source/user_guide/CLIP)\n### 练习内容\n+ 了解其他跨模态模型\n+ 在 Document 中导出多模态数据，生成对应 embedding\n## Task04: 前端模块\n### 学习内容\n+ 时间：Day 6-7\n+ 目标：初步掌握 Streamlit，理解项目前端逻辑\n+ 文档：[Frontend.md，Streamlit.md](./docs/source/user_guide/Frontend/)\n### 练习内容\n+ 使用 Streamlit 将任意数据科学相关内容部署在本地\n## Task05: 后端模块\n### 学习内容\n+ 时间：Day 8-10\n+ 目标：熟悉 Executor 的基础功能，理解项目后端逻辑\n+ 文档：[VideoLoader.md，CustomClipText.md，CustomClipImage.md，SimpleIndexer.md](./docs/source/user_guide/Backend)\n### 练习内容\n+ 实现一个任意功能的 executor，完成封装\n+ 使用 Jina Hub 中的任意 executor，通过 flow 的方式引入自己的项目\n## Task06: 项目拓展练习\n### 学习内容\n+ 时间：Day 12\n+ 目标：完成项目的拓展功能\n### 练习内容\n本项目仅仅实现了一些基础的功能，还有许多可以完善的地方，下面就简单的列一些 ideas 供你参考：",
+        "type": "code",
+        "location": "/Roadmap.md:1-72"
+    },
+    "17": {
+        "file_id": 1,
+        "content": "Task 01: Install project dependencies and open HTML documents locally.\nTask 02: Learn about Jina ecosystem and related operations. Practice by starting a gRPC server, importing data into Docarray, and coding with jina_demo.\nTask 03: Understand the importance of multimodal learning, and learn about CLI models. Practice by understanding other cross-modal models, exporting multi-modal data, and generating corresponding embeddings.\nTask 04: Learn Streamlit for frontend module development. Exercise by deploying any data science content locally with Streamlit.\nTask 05: Understand Executor basics and project backend logic. Practice by implementing any custom executor function and using Jina Hub to introduce the project through flow.\nTask 06: Expand the project, completing tasks on day 12.",
+        "type": "comment"
+    },
+    "18": {
+        "file_id": 1,
+        "content": "1. 目前向量检索使用的是最简单的暴力搜索，所以向量检索花费的时间很慢，这里可以优化\n2. 目前跨模态模型这里使用了比较大众的模型，文本与视频的匹配度有待提升\n3. 目前 VCED 项目仅能够处理对单个视频的检索，需要对项目改造来实现对多个视频片段的检索 [Issue #32: 能对多段视频进行搜索吗](https://github.com/datawhalechina/vced/issues/32)",
+        "type": "code",
+        "location": "/Roadmap.md:74-76"
+    },
+    "19": {
+        "file_id": 1,
+        "content": "This code block highlights three areas for improvement in the VCED project: optimizing vector search, enhancing cross-modal model performance, and modifying the project to support multi-video segment searching.",
+        "type": "comment"
+    },
+    "20": {
+        "file_id": 2,
+        "content": "/code/Dockerfile",
+        "type": "filepath"
+    },
+    "21": {
+        "file_id": 2,
+        "content": "The Dockerfile builds a container based on the richardbst/container4vced image, sets the working directory to /code, copies requirements.txt to the same location, configures global index URL for pip installations, installs required packages from requirements.txt and additional Git repository, copies entire project folder to the container, exposes port 8501, and runs the script command.sh as the CMD.",
+        "type": "summary"
+    },
+    "22": {
+        "file_id": 2,
+        "content": "FROM richardbst/container4vced\nWORKDIR /code\nCOPY requirements.txt requirements.txt\nRUN pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple\nRUN pip install -r requirements.txt \\\n    && pip install git+https://github.com/openai/CLIP.git\nCOPY . .\nEXPOSE 8501\n# CMD [\"nohup\",\"streamlit\",\"run\",\"/code/web/app.py\",\"&\",\"&&\",\"python\",\"/code/service/app.py\"]\nCMD [\"sh\",\"command.sh\"]",
+        "type": "code",
+        "location": "/code/Dockerfile:3-12"
+    },
+    "23": {
+        "file_id": 2,
+        "content": "The Dockerfile builds a container based on the richardbst/container4vced image, sets the working directory to /code, copies requirements.txt to the same location, configures global index URL for pip installations, installs required packages from requirements.txt and additional Git repository, copies entire project folder to the container, exposes port 8501, and runs the script command.sh as the CMD.",
+        "type": "comment"
+    },
+    "24": {
+        "file_id": 3,
+        "content": "/code/DockerfileArm",
+        "type": "filepath"
+    },
+    "25": {
+        "file_id": 3,
+        "content": "This Dockerfile for ARM architecture uses the nil01/vced:v1.1.4 image and exposes ports 8501 and 45679, running the \"command.sh\" script as the command.",
+        "type": "summary"
+    },
+    "26": {
+        "file_id": 3,
+        "content": "FROM nil01/vced:v1.1.4\nEXPOSE 8501\nEXPOSE 45679\nCMD [\"sh\",\"command.sh\"]",
+        "type": "code",
+        "location": "/code/DockerfileArm:1-5"
+    },
+    "27": {
+        "file_id": 3,
+        "content": "This Dockerfile for ARM architecture uses the nil01/vced:v1.1.4 image and exposes ports 8501 and 45679, running the \"command.sh\" script as the command.",
+        "type": "comment"
+    },
+    "28": {
+        "file_id": 4,
+        "content": "/code/command.sh",
+        "type": "filepath"
+    },
+    "29": {
+        "file_id": 4,
+        "content": "This code starts a Streamlit app using web/app.py, and runs service/app.py in the background with a timeout ready option.",
+        "type": "summary"
+    },
+    "30": {
+        "file_id": 4,
+        "content": "# bin/bash\nnohup streamlit run web/app.py &\npython service/app.py --timeout-ready",
+        "type": "code",
+        "location": "/code/command.sh:1-3"
+    },
+    "31": {
+        "file_id": 4,
+        "content": "This code starts a Streamlit app using web/app.py, and runs service/app.py in the background with a timeout ready option.",
+        "type": "comment"
+    },
+    "32": {
+        "file_id": 5,
+        "content": "/code/jina_demo/Executor.py",
+        "type": "filepath"
+    },
+    "33": {
+        "file_id": 5,
+        "content": "This code defines a class `MyExecutor` that extends `Executor`, and includes two methods: `foo` and `bar`. These methods are decorated with `@requests`, allowing them to be accessed as HTTP endpoints. The `foo` method will print the keyword arguments (kwargs) passed, while `bar` on the endpoint '/index' also prints the kwargs.",
+        "type": "summary"
+    },
+    "34": {
+        "file_id": 5,
+        "content": "# 在 Executor 中我们可以将具体的业务逻辑进行封装得到一个服务\nfrom jina import Executor, requests\nclass MyExecutor(Executor):\n    @requests\n    def foo(self, **kwargs):\n        print(kwargs)\n    @requests(on='/index')\n    def bar(self, **kwargs):\n        print(kwargs)",
+        "type": "code",
+        "location": "/code/jina_demo/Executor.py:1-12"
+    },
+    "35": {
+        "file_id": 5,
+        "content": "This code defines a class `MyExecutor` that extends `Executor`, and includes two methods: `foo` and `bar`. These methods are decorated with `@requests`, allowing them to be accessed as HTTP endpoints. The `foo` method will print the keyword arguments (kwargs) passed, while `bar` on the endpoint '/index' also prints the kwargs.",
+        "type": "comment"
+    },
+    "36": {
+        "file_id": 6,
+        "content": "/code/jina_demo/Flow.py",
+        "type": "filepath"
+    },
+    "37": {
+        "file_id": 6,
+        "content": "This code defines a Flow in Jina, which is a coordinator for multiple tasks. It separates Executors and Flows using YAML to allow non-blocking and asynchronous data flow on the server. The FooExecutor and BarExecutor classes are defined within the code. The Executor classes have methods that take DocumentArray inputs, append a new document to the array, and return it. The Flow is created, then started with the `with f:` statement, and a POST request is sent to the flow's endpoint using the `f.post()` method. Finally, the response texts are printed.",
+        "type": "summary"
+    },
+    "38": {
+        "file_id": 6,
+        "content": "# 一个 Flow 可以理解为一系列任务的协调器，通过 add 方法可以将多个 Executor 串成一套执行逻辑。\n# 通过 YAML 方式将 Executor 和 Flow 分开有以下优点：\n# - 服务器上的数据流是非阻塞和异步的，当 Executor 处于空闲状态时，会立即处理新请求。\n# - 必要时会自动添加负载平衡，以确保最大吞吐量。\nfrom jina import Document, DocumentArray, Flow, Executor, requests\nclass FooExecutor(Executor):\n    @requests\n    def foo(self, docs: DocumentArray, **kwargs):\n        docs.append(Document(text='foo was here'))\nclass BarExecutor(Executor):\n    @requests\n    def bar(self, docs: DocumentArray, **kwargs):\n        docs.append(Document(text='bar was here'))\nf = (\n    Flow()\n    .add(uses=FooExecutor, name='fooExecutor')\n    .add(uses=BarExecutor, name='barExecutor')\n)  # 创建一个空的 Flow\nwith f:  # 启动 Flow\n    response = f.post(\n        on='/'\n    )  # 向 flow 发送一个请求\n    print(response.texts)",
+        "type": "code",
+        "location": "/code/jina_demo/Flow.py:1-30"
+    },
+    "39": {
+        "file_id": 6,
+        "content": "This code defines a Flow in Jina, which is a coordinator for multiple tasks. It separates Executors and Flows using YAML to allow non-blocking and asynchronous data flow on the server. The FooExecutor and BarExecutor classes are defined within the code. The Executor classes have methods that take DocumentArray inputs, append a new document to the array, and return it. The Flow is created, then started with the `with f:` statement, and a POST request is sent to the flow's endpoint using the `f.post()` method. Finally, the response texts are printed.",
+        "type": "comment"
+    },
+    "40": {
+        "file_id": 7,
+        "content": "/code/jina_demo/client.py",
+        "type": "filepath"
+    },
+    "41": {
+        "file_id": 7,
+        "content": "The code imports the Client and Document classes from Jina. It then creates a client instance with the host set to \"grpc://0.0.0.0:51000\". After that, it posts an empty document to the server at '/' path and prints the texts in the result. The result contains three strings: '', 'foo was here', and 'bar was here'.",
+        "type": "summary"
+    },
+    "42": {
+        "file_id": 7,
+        "content": "# 从 Jina 中导入连接的客户端与 Document\nfrom jina import Client, Document\nc = Client(host='grpc://0.0.0.0:51000')  # 如果运行提示失败，可尝试使用localhost\nresult = c.post('/', Document())  # 将一个空的 Document 传到服务端执行\nprint(result.texts)  # ['', 'foo was here', 'bar was here']",
+        "type": "code",
+        "location": "/code/jina_demo/client.py:1-6"
+    },
+    "43": {
+        "file_id": 7,
+        "content": "The code imports the Client and Document classes from Jina. It then creates a client instance with the host set to \"grpc://0.0.0.0:51000\". After that, it posts an empty document to the server at '/' path and prints the texts in the result. The result contains three strings: '', 'foo was here', and 'bar was here'.",
+        "type": "comment"
+    },
+    "44": {
+        "file_id": 8,
+        "content": "/code/jina_demo/image/7.1 读取图片并转为 tensor.py",
+        "type": "filepath"
+    },
+    "45": {
+        "file_id": 8,
+        "content": "This code imports the Document class from Jina and initializes an instance of it with the URI 'apple.png'. The load_uri_to_image_tensor() method is then called to convert the image into a tensor, which is subsequently printed along with its shape. The output shows the tensor shape as (618, 641, 3) and the tensor data itself.",
+        "type": "summary"
+    },
+    "46": {
+        "file_id": 8,
+        "content": "from jina import Document\nd = Document(uri='apple.png')\nd.load_uri_to_image_tensor()\nprint(d.tensor.shape)  # (618, 641, 3)\nprint(d.tensor)",
+        "type": "code",
+        "location": "/code/jina_demo/image/7.1 读取图片并转为 tensor.py:1-7"
+    },
+    "47": {
+        "file_id": 8,
+        "content": "This code imports the Document class from Jina and initializes an instance of it with the URI 'apple.png'. The load_uri_to_image_tensor() method is then called to convert the image into a tensor, which is subsequently printed along with its shape. The output shows the tensor shape as (618, 641, 3) and the tensor data itself.",
+        "type": "comment"
+    },
+    "48": {
+        "file_id": 9,
+        "content": "/code/jina_demo/image/7.2 进行简单的图像处理.py",
+        "type": "filepath"
+    },
+    "49": {
+        "file_id": 9,
+        "content": "This code loads an image from 'apple.png', preprocesses it by setting shape, normalizing, and changing the channel axis. It prints the tensor shape and the tensor itself. Then, it saves the processed tensor as 'apple-proc.png' after specifying that the channel_axis should be set to 0 due to previous preprocessing steps. The final image may lose information compared to the original.",
+        "type": "summary"
+    },
+    "50": {
+        "file_id": 9,
+        "content": "from jina import Document\nd = (\n    Document(uri='apple.png')\n    .load_uri_to_image_tensor()\n    .set_image_tensor_shape(shape=(224, 224))  # 设置shape\n    .set_image_tensor_normalization()  # 标准化\n    .set_image_tensor_channel_axis(-1, 0)  # 更改通道\n)\nprint(d.tensor.shape)  # (3, 224, 224)\nprint(d.tensor)\n# 你可以使用 save_image_tensor_to_file 将 tensor 转为图像。当然，因为做了预处理，图片返回时损失了很多信息。\nd.save_image_tensor_to_file('apple-proc.png', channel_axis=0)  # 因为前面进行了预处理，channel_axis应该设为0",
+        "type": "code",
+        "location": "/code/jina_demo/image/7.2 进行简单的图像处理.py:1-15"
+    },
+    "51": {
+        "file_id": 9,
+        "content": "This code loads an image from 'apple.png', preprocesses it by setting shape, normalizing, and changing the channel axis. It prints the tensor shape and the tensor itself. Then, it saves the processed tensor as 'apple-proc.png' after specifying that the channel_axis should be set to 0 due to previous preprocessing steps. The final image may lose information compared to the original.",
+        "type": "comment"
+    },
+    "52": {
+        "file_id": 10,
+        "content": "/code/jina_demo/image/7.3 读取图像集.py",
+        "type": "filepath"
+    },
+    "53": {
+        "file_id": 10,
+        "content": "Code imports the `DocumentArray` class from Jina library and initializes a new instance by reading all .jpg files from the 'Downloads' directory. Then, it plots all images in the DocumentArray as sprites into a single image file named 'sprite-img.png'.",
+        "type": "summary"
+    },
+    "54": {
+        "file_id": 10,
+        "content": "from jina import DocumentArray\nda = DocumentArray.from_files('Downloads/*.jpg')  # 从Downloads文件夹中读取所有的jpg文件，在这里你应该根据自己的路径设置\nda.plot_image_sprites('sprite-img.png')  # 使用 plot_image_sprites 绘制图片集图片，如下图",
+        "type": "code",
+        "location": "/code/jina_demo/image/7.3 读取图像集.py:1-4"
+    },
+    "55": {
+        "file_id": 10,
+        "content": "Code imports the `DocumentArray` class from Jina library and initializes a new instance by reading all .jpg files from the 'Downloads' directory. Then, it plots all images in the DocumentArray as sprites into a single image file named 'sprite-img.png'.",
+        "type": "comment"
+    },
+    "56": {
+        "file_id": 11,
+        "content": "/code/jina_demo/image/7.4 切割大型图像.py",
+        "type": "filepath"
+    },
+    "57": {
+        "file_id": 11,
+        "content": "This code uses the Jina library to load an image, convert it into a tensor, and then splits the image into smaller chunks using sliding windows. It allows for optional conversion of these chunks back into a Document block and visualization as a sprite-like image collection. Strides can be adjusted for oversampling or downsampling purposes.",
+        "type": "summary"
+    },
+    "58": {
+        "file_id": 11,
+        "content": "from jina import Document\nd = Document(uri='complicated-image.jpeg')\nd.load_uri_to_image_tensor()\nprint(d.tensor.shape)  # (792, 1000, 3)\nd.convert_image_tensor_to_sliding_windows(window_shape=(64, 64))  # 使用 64*64 的滑窗切割原图像，切分出 13*16=208 个图像张量\nprint(d.tensor.shape)  # (208, 64, 64, 3)\n# 可以通过 as_chunks=True，使得上述 208 张图片张量添加到 Document 块中。\n# PS：运行这行代码时，需要重新 load image tensor，否则会报错。\nd = Document(uri='complicated-image.jpeg')\nd.load_uri_to_image_tensor()\nd.convert_image_tensor_to_sliding_windows(window_shape=(64, 64), as_chunks=True)\nprint(d.chunks)\nd.chunks.plot_image_sprites('simpsons-chunks.png')  # 使用 plot_image_sprites 将各个 chunk 绘制成图片集图片\n# 因为采用了滑动窗口扫描整个图像，使用了默认的 stride，切分后的图像不会有重叠，所以重新绘制出的图和原图差别不大。\n# 你也可以通过设置 strides 参数进行过采样。\nd.convert_image_tensor_to_sliding_windows(window_shape=(64, 64), strides=(10, 10), as_chunks=True)\nd.chunks.plot_image_sprites('simpsons-chunks-stride-10.png')",
+        "type": "code",
+        "location": "/code/jina_demo/image/7.4 切割大型图像.py:1-22"
+    },
+    "59": {
+        "file_id": 11,
+        "content": "This code uses the Jina library to load an image, convert it into a tensor, and then splits the image into smaller chunks using sliding windows. It allows for optional conversion of these chunks back into a Document block and visualization as a sprite-like image collection. Strides can be adjusted for oversampling or downsampling purposes.",
+        "type": "comment"
+    },
+    "60": {
+        "file_id": 12,
+        "content": "/code/jina_demo/test.py",
+        "type": "filepath"
+    },
+    "61": {
+        "file_id": 12,
+        "content": "Code creates two executor classes (FooExecutor and BarExecutor) that extend the Executor class from Jina, implementing functions `foo` and `bar`. The functions receive a DocumentArray and append \"foo was here\" or \"bar was here\" to the content. The `@requests` decorator is used for routing purposes.",
+        "type": "summary"
+    },
+    "62": {
+        "file_id": 12,
+        "content": "# 创建 test.py 文件与 YAML 文件在同一目录下\n# 导入 document、executor 和 flow 以及 requests 装饰器\nfrom jina import DocumentArray, Executor, requests, Document\n# 编写 FooExecutor 与 BarExecutor 类，类中定义了函数 foo 和 bar\n# 该函数从网络请求接收 DocumentArray (先暂时不需要理解它是什么)，并在其内容后面附加 \"foo was here\" 与 \"bar was here\"\nclass FooExecutor(Executor):\n    @requests  # 用于指定路由，类似网页访问 /index 和 /login 会被路由到不同的方法上是用样的概念，关于 request 下面会再进行详细介绍\n    def foo(self, docs: DocumentArray, **kwargs):\n        docs.append(Document(text='foo was here'))\nclass BarExecutor(Executor):\n    @requests\n    def bar(self, docs: DocumentArray, **kwargs):\n        docs.append(Document(text='bar was here'))",
+        "type": "code",
+        "location": "/code/jina_demo/test.py:1-17"
+    },
+    "63": {
+        "file_id": 12,
+        "content": "Code creates two executor classes (FooExecutor and BarExecutor) that extend the Executor class from Jina, implementing functions `foo` and `bar`. The functions receive a DocumentArray and append \"foo was here\" or \"bar was here\" to the content. The `@requests` decorator is used for routing purposes.",
+        "type": "comment"
+    },
+    "64": {
+        "file_id": 13,
+        "content": "/code/jina_demo/text/6.1 创建文本.py",
+        "type": "filepath"
+    },
+    "65": {
+        "file_id": 13,
+        "content": "This code imports the Document class from Jina and demonstrates how to create a document object with text data. It also shows how to load text from a URI and supports multiple languages.",
+        "type": "summary"
+    },
+    "66": {
+        "file_id": 13,
+        "content": "from jina import Document  # 导包\n# 创建简单的文本数据\nd = Document(text='hello, world.')\nprint(d.text)  # 通过text获取文本数据\n# 如果文本数据很大，或者自URI，可以先定义URI，然后将文本加载到文档中\nd = Document(uri='https://www.w3.org/History/19921103-hypertext/hypertext/README.html')\nd.load_uri_to_text()\nprint(d.text)\n# 支持多语言\nd = Document(text='👋\tनमस्ते दुनिया!\t你好世界！こんにちは世界！\tПривет мир!')\nprint(d.text)",
+        "type": "code",
+        "location": "/code/jina_demo/text/6.1 创建文本.py:1-12"
+    },
+    "67": {
+        "file_id": 13,
+        "content": "This code imports the Document class from Jina and demonstrates how to create a document object with text data. It also shows how to load text from a URI and supports multiple languages.",
+        "type": "comment"
+    },
+    "68": {
+        "file_id": 14,
+        "content": "/code/jina_demo/text/6.2 切割文本.py",
+        "type": "filepath"
+    },
+    "69": {
+        "file_id": 14,
+        "content": "This code imports the Document class from Jina and creates a document with text containing various greetings separated by '!'. It then splits the text at each exclamation mark, creating new documents for each chunk. Finally, it prints out a summary of all created documents.",
+        "type": "summary"
+    },
+    "70": {
+        "file_id": 14,
+        "content": "from jina import Document  # 导包\nd = Document(text='👋\tनमस्ते दुनिया!\t你好世界！こんにちは世界！\tПривет мир!')\nd.chunks.extend([Document(text=c) for c in d.text.split('!')])  # 按'!'分割\nd.summary()",
+        "type": "code",
+        "location": "/code/jina_demo/text/6.2 切割文本.py:1-5"
+    },
+    "71": {
+        "file_id": 14,
+        "content": "This code imports the Document class from Jina and creates a document with text containing various greetings separated by '!'. It then splits the text at each exclamation mark, creating new documents for each chunk. Finally, it prints out a summary of all created documents.",
+        "type": "comment"
+    },
+    "72": {
+        "file_id": 15,
+        "content": "/code/jina_demo/text/6.3 text、ndarray 互转.py",
+        "type": "filepath"
+    },
+    "73": {
+        "file_id": 15,
+        "content": "This code demonstrates how to convert text to ndarrays and vice versa using the Jina library. It uses the DocumentArray class as a list of Documents, converts texts to tensors using get_vocabulary() function, and then converts tensor vectors back to texts using the same vocabulary.",
+        "type": "summary"
+    },
+    "74": {
+        "file_id": 15,
+        "content": "from jina import DocumentArray, Document  # 导包\n# DocumentArray 相当于一个 list，用于存放 Document\nda = DocumentArray([Document(text='hello world'),\n                    Document(text='goodbye world'),\n                    Document(text='hello goodbye')])\nprint(da)  # <DocumentArray (length=3) at 140545164218128>\nvocab = da.get_vocabulary()\nprint(vocab)  # {'hello': 2, 'world': 3, 'goodbye': 4}\n# text转为tensor向量\nfor d in da:\n    d.convert_text_to_tensor(vocab, max_length=10)  # max_length为向量最大值，可不设置\n    print(d.tensor)\n# 输出结果：\n# [0 0 0 0 0 0 0 0 2 3]  # 用这种方式简单将字符串转为向量\n# [0 0 0 0 0 0 0 0 4 3]\n# [0 0 0 0 0 0 0 0 2 4]\n# tensor向量转为text\nfor d in da:\n    d.convert_tensor_to_text(vocab)\n    print(d.text)\n# 输出结果：\n# hello world\n# goodbye world\n# hello goodbye",
+        "type": "code",
+        "location": "/code/jina_demo/text/6.3 text、ndarray 互转.py:1-30"
+    },
+    "75": {
+        "file_id": 15,
+        "content": "This code demonstrates how to convert text to ndarrays and vice versa using the Jina library. It uses the DocumentArray class as a list of Documents, converts texts to tensors using get_vocabulary() function, and then converts tensor vectors back to texts using the same vocabulary.",
+        "type": "comment"
+    },
+    "76": {
+        "file_id": 16,
+        "content": "/code/jina_demo/text/6.4 Demo: 简单的文本匹配.py",
+        "type": "filepath"
+    },
+    "77": {
+        "file_id": 16,
+        "content": "This code loads the text from a URL into a Document object, splits it by newline characters, applies hashing for feature embedding, and then performs a search with Jaccard metric to find the top 5 most similar sentences in the DocumentArray. The results are printed as matching sentences and their corresponding Jaccard scores.",
+        "type": "summary"
+    },
+    "78": {
+        "file_id": 16,
+        "content": "from jina import Document, DocumentArray\nd = Document(\n    uri='https://www.gutenberg.org/files/1342/1342-0.txt').load_uri_to_text()  # 链接是傲慢与偏见的电子书，此处将电子书内容加载到 Document 中\nda = DocumentArray(Document(text=s.strip()) for s in d.text.split('\\n') if s.strip())  # 按照换行进行分割字符串\nda.apply(lambda d: d.embed_feature_hashing())\nq = (\n    Document(text='she entered the room')  # 要匹配的文本\n    .embed_feature_hashing()  # 通过 hash 方法进行特征编码\n    .match(da, limit=5, exclude_self=True, metric='jaccard', use_scipy=True)  # 找到五个与输入的文本最相似的句子\n)\nprint(q.matches[:, ('text', 'scores__jaccard')])  # 输出对应的文本与 jaccard 相似性分数\n# 输出结果：\n# [['staircase, than she entered the breakfast-room, and congratulated', 'of the room.',\n#   'She entered the room with an air more than usually ungracious,',\n#   'entered the breakfast-room, where Mrs. Bennet was alone, than she', 'those in the room.'],\n#  [{'value': 0.6}, {'value': 0.6666666666666666}, {'value': 0.6666666666666666}, {'value': 0.6666666666666666},\n#   {'value': 0.7142857142857143}]]",
+        "type": "code",
+        "location": "/code/jina_demo/text/6.4 Demo: 简单的文本匹配.py:1-21"
+    },
+    "79": {
+        "file_id": 16,
+        "content": "This code loads the text from a URL into a Document object, splits it by newline characters, applies hashing for feature embedding, and then performs a search with Jaccard metric to find the top 5 most similar sentences in the DocumentArray. The results are printed as matching sentences and their corresponding Jaccard scores.",
+        "type": "comment"
+    },
+    "80": {
+        "file_id": 17,
+        "content": "/code/jina_demo/toy.yml",
+        "type": "filepath"
+    },
+    "81": {
+        "file_id": 17,
+        "content": "This YAML file specifies a Jina Flow with two executors, FooExecutor and BarExecutor, both using test.py module and running on port 51000 over GRPC protocol.",
+        "type": "summary"
+    },
+    "82": {
+        "file_id": 17,
+        "content": "# toy.yml\n# 运行以下命令启动 grpc 服务：\n# jina flow --uses toy.yml≈≈\njtype: Flow\nwith:\n  port: 51000\n  protocol: grpc\nexecutors:\n  - uses: FooExecutor\n    name: foo\n    py_modules:\n      - test.py\n  - uses: BarExecutor\n    name: bar\n    py_modules:\n      - test.py",
+        "type": "code",
+        "location": "/code/jina_demo/toy.yml:1-16"
+    },
+    "83": {
+        "file_id": 17,
+        "content": "This YAML file specifies a Jina Flow with two executors, FooExecutor and BarExecutor, both using test.py module and running on port 51000 over GRPC protocol.",
+        "type": "comment"
+    },
+    "84": {
+        "file_id": 18,
+        "content": "/code/jina_demo/video/8.1 视频导入和切分.py",
+        "type": "filepath"
+    },
+    "85": {
+        "file_id": 18,
+        "content": "This code imports and splits a video file using the AV package. It creates a Jina Document object, loads the video into a 4D tensor (time x height x width x channels), then appends each frame as individual Documents to a chunks list. Finally, it generates an image sprites plot from the frames.",
+        "type": "summary"
+    },
+    "86": {
+        "file_id": 18,
+        "content": "# 视频需要依赖 av 包\n# pip install av\nfrom jina import Document\nd = Document(uri='cat.mp4')\nd.load_uri_to_video_tensor()\n# 相较于图像，视频是一个 4 维数组，第一维表示视频帧 id 或是视频的时间，剩下的三维则和图像一致。\nprint(d.tensor.shape)  # (31, 1080, 1920, 3)\n# 使用 append 方法将 Document 放入 chunk 中\nfor b in d.tensor:\n    d.chunks.append(Document(tensor=b))\nd.chunks.plot_image_sprites('mov.png')",
+        "type": "code",
+        "location": "/code/jina_demo/video/8.1 视频导入和切分.py:1-15"
+    },
+    "87": {
+        "file_id": 18,
+        "content": "This code imports and splits a video file using the AV package. It creates a Jina Document object, loads the video into a 4D tensor (time x height x width x channels), then appends each frame as individual Documents to a chunks list. Finally, it generates an image sprites plot from the frames.",
+        "type": "comment"
+    },
+    "88": {
+        "file_id": 19,
+        "content": "/code/jina_demo/video/8.2 关键帧提取.py",
+        "type": "filepath"
+    },
+    "89": {
+        "file_id": 19,
+        "content": "This code imports the Document class from the docarray library, creates a new Document object with a URI pointing to 'cat.mp4', and then uses the load_uri_to_video_tensor method to extract keyframes only. Finally, it prints the shape of the resulting tensor, which has dimensions (2, 1080, 1920, 3).",
+        "type": "summary"
+    },
+    "90": {
+        "file_id": 19,
+        "content": "from docarray import Document\nd = Document(uri='cat.mp4')\n# 可以使用 only_keyframes 这个参数来提取关键帧\nd.load_uri_to_video_tensor(only_keyframes=True)\nprint(d.tensor.shape)  # (2, 1080, 1920, 3)",
+        "type": "code",
+        "location": "/code/jina_demo/video/8.2 关键帧提取.py:1-6"
+    },
+    "91": {
+        "file_id": 19,
+        "content": "This code imports the Document class from the docarray library, creates a new Document object with a URI pointing to 'cat.mp4', and then uses the load_uri_to_video_tensor method to extract keyframes only. Finally, it prints the shape of the resulting tensor, which has dimensions (2, 1080, 1920, 3).",
+        "type": "comment"
+    },
+    "92": {
+        "file_id": 20,
+        "content": "/code/jina_demo/video/8.3 张量转存为视频.py",
+        "type": "filepath"
+    },
+    "93": {
+        "file_id": 20,
+        "content": "This code utilizes the `save_video_tensor_to_file` function from the `Document` class in the `docarray` library to save a video tensor to a file. It first loads the URI of the video 'cat.mp4' into a video tensor, and then saves it as '60fps.mp4', converting it to 60 frames per second.",
+        "type": "summary"
+    },
+    "94": {
+        "file_id": 20,
+        "content": "# 使用 save_video_tensor_to_file 进行视频的保存\nfrom docarray import Document\nd = (\n    Document(uri='cat.mp4')\n    .load_uri_to_video_tensor()  # 读取视频\n    .save_video_tensor_to_file('60fps.mp4', 60)  # 将其保存为60fps的视频\n)",
+        "type": "code",
+        "location": "/code/jina_demo/video/8.3 张量转存为视频.py:1-8"
+    },
+    "95": {
+        "file_id": 20,
+        "content": "This code utilizes the `save_video_tensor_to_file` function from the `Document` class in the `docarray` library to save a video tensor to a file. It first loads the URI of the video 'cat.mp4' into a video tensor, and then saves it as '60fps.mp4', converting it to 60 frames per second.",
+        "type": "comment"
+    },
+    "96": {
+        "file_id": 21,
+        "content": "/code/requirements.txt",
+        "type": "filepath"
+    },
+    "97": {
+        "file_id": 21,
+        "content": "This code snippet is a list of dependencies required for a Python project. It includes libraries such as Jina, WebVTT-Py, FFmpeg-Python, Torchvision, and others for tasks like text processing, image manipulation, data handling, and more.",
+        "type": "summary"
+    },
+    "98": {
+        "file_id": 21,
+        "content": "jina==3.4.2\nwebvtt-py==0.4.6\nffmpeg-python==0.2.0\ntorchvision==0.12.0\nftfy==6.1.1\nregex==2022.4.24\ntqdm==4.64.0\ntransformers==4.9.1\nscipy==1.8.0\npillow==9.1.0\ntornado==6.1\nprotobuf==3.20\nlibrosa==0.9.1\nstreamlit==1.12.0",
+        "type": "code",
+        "location": "/code/requirements.txt:1-14"
+    },
+    "99": {
+        "file_id": 21,
+        "content": "This code snippet is a list of dependencies required for a Python project. It includes libraries such as Jina, WebVTT-Py, FFmpeg-Python, Torchvision, and others for tasks like text processing, image manipulation, data handling, and more.",
+        "type": "comment"
+    }
+}
